@@ -25,6 +25,11 @@
     <!-- Favicon (placeholder - replace with actual favicon) -->
     <link rel="icon" type="image/svg+xml" href="images/logo/logo-kartel-boats.svg">
     
+    <!-- Google Fonts: Montserrat (Premium Header Font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* KARTEL BOATS DESIGN SYSTEM v2.0 (Hybrid: Classic Desktop + Super Mobile) */
 
@@ -62,7 +67,7 @@
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -78,9 +83,11 @@
         }
 
         h1 {
-            font-size: clamp(36px, 6vw, 64px);
+            font-size: clamp(42px, 7vw, 72px);
             line-height: 1.1;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         h2 {
@@ -156,20 +163,86 @@
             color: var(--accent);
         }
 
-        /* HEADER (Restored Original Sizes) */
+        /* PRELOADER (Like Houseboats) */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-logo {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .preloader-subtitle {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-family: 'Courier New', Courier, monospace;
+            text-transform: uppercase;
+        }
+
+        .preloader-bar {
+            width: 300px;
+            height: 2px;
+            background: #333;
+            margin: 0 auto 16px auto;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .preloader-percent {
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* HEADER (Transparent → Solid on Scroll) */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.95),
-                rgba(0, 0, 0, 0.60)
-            );
-            backdrop-filter: blur(10px);
-            border-bottom: var(--border-thin);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid #222;
         }
 
         .nav-container {
@@ -183,33 +256,71 @@
 
         .logo {
             display: inline-flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             text-decoration: none;
             padding: 0;
             margin: 0;
+            gap: 6px;
+            transition: all 0.3s ease;
         }
         
-        .logo-mark {
-            display: block;
-            /* Restored Desktop Logo Size */
-            height: 104px; 
+        .logo-img {
+            height: 44px;
             width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s ease;
+        }
+
+        /* Logo Green when scrolled (permanent) */
+        header.scrolled .logo-img {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
+        }
+
+        /* Logo Green on hover */
+        .logo:hover .logo-img {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            letter-spacing: 0.25em;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Subtitle green when scrolled */
+        header.scrolled .logo-subtitle {
+            color: var(--accent);
+        }
+
+        /* Subtitle green on hover */
+        .logo:hover .logo-subtitle {
+            color: var(--accent);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 32px;
             font-size: 13px;
-            text-transform: uppercase;
+            text-transform: capitalize;
         }
 
         .nav-link {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
-            letter-spacing: 0.08em;
-            transition: var(--transition);
-            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Nav links brighter when scrolled */
+        header.scrolled .nav-link {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .nav-link:hover {
@@ -220,19 +331,29 @@
             margin-left: 16px;
             padding: 10px 22px;
             font-size: 12px;
+            font-weight: 600;
         }
 
         /* MOBILE HEADER OVERRIDES */
         @media (max-width: 767px) {
             .nav-container {
-                min-height: 60px; /* Smaller on mobile */
-                padding: 4px 16px;
+                min-height: 60px;
+                padding: 8px 16px;
             }
-            .logo-mark {
-                height: 48px; /* Smaller on mobile */
+            .logo-img {
+                height: 32px;
+            }
+            .logo-subtitle {
+                font-size: 7px;
             }
             .nav-links {
-                display: none; /* Hide standard nav on mobile */
+                display: none;
+            }
+            .preloader-logo {
+                font-size: 36px;
+            }
+            .preloader-bar {
+                width: 200px;
             }
         }
 
@@ -314,16 +435,47 @@
         }
 
         .hero-content {
-            position: relative; z-index: 2; text-align: center; padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-coordinates {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            opacity: 0.6;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 12px;
+            letter-spacing: 0.3em;
+            margin-bottom: 8px;
+            opacity: 0.8;
         }
 
         .hero-sub {
-            display: block; margin-bottom: 32px; font-size: 14px; letter-spacing: 0.1em;
-            text-transform: uppercase; color: var(--accent);
+            display: block;
+            margin-bottom: 24px;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
 
+
         .hero-lead {
-            margin: 0 auto 40px auto; max-width: 700px; color: var(--text-muted); font-size: 16px; line-height: 1.6;
+            margin: 0 auto 40px auto;
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 17px;
+            line-height: 1.7;
+            padding-top: 24px;
+            border-top: 1px solid rgba(206, 254, 70, 0.15);
+            font-weight: 400;
         }
 
         .hero-actions {
@@ -1077,17 +1229,31 @@
 </head>
 <body>
 
-    <header>
+    <!-- PRELOADER (Like Houseboats) -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">KARTEL</div>
+            <div class="preloader-subtitle">EST. 1992 · Саратов</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress" id="preloader-progress"></div>
+            </div>
+            <div class="preloader-percent" id="preloader-percent">ЗАГРУЗКА 0%</div>
+        </div>
+    </div>
+
+    <header id="main-header">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="images/logo/logo-kartel-boats.svg" alt="KARTEL Boats" class="logo-mark">
+                <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="logo-img">
+                <span class="logo-subtitle mono">EST. 1992 · Саратов</span>
             </a>
             <nav class="nav-links">
-                <a href="#lineup_selector" class="nav-link">Модели</a>
-                <a href="#shipyard_modal" class="nav-link">Технологии</a>
-                <a href="#geography_map" class="nav-link">Маршруты</a>
-                <!-- Link directly to ID -->
-                <a href="#testdrive_modal" class="btn btn-primary nav-cta">Тест-драйв</a>
+                <a href="#lineup_selector" class="nav-link">Наследие</a>
+                <a href="#engineering_dna" class="nav-link">О Бренде</a>
+                <a href="#shipyard_modal" class="nav-link">Концепция</a>
+                <a href="#geography_map" class="nav-link">Интерьер</a>
+                <a href="#route_stories" class="nav-link">Спецификация</a>
+                <a href="#testdrive_modal" class="btn btn-primary nav-cta">Связаться с верфью</a>
             </nav>
         </div>
     </header>
@@ -1104,12 +1270,14 @@
             </div>
             <div class="hero-overlay"></div>
             <div class="container hero-content">
+                <div class="hero-coordinates mono">51°32'N 46°02'E</div>
+                <div class="hero-subtitle mono">KARTEL BOATS</div>
                 <span class="hero-sub mono">T-Rex · Aluminum Expedition Yachts</span>
-                <h1>Право на свободу<br>маршрута</h1>
-                <p class="hero-lead">Премиальные алюминиевые катера KARTEL Boats линейки T-Rex. Сделаны на Волге, настроены под дальние маршруты и тяжёлую воду.</p>
+                <h1>Право на<br>Свободу Маршрута</h1>
+                <p class="hero-lead">Автономные катера T-Rex для покорения российских широт. Корпус АМГ5М, дальние маршруты и тяжёлая вода. Ваша личная свобода там, где заканчивается цивилизация.</p>
                 <div class="hero-actions">
                     <a href="#lineup_selector" class="btn btn-primary">Выбрать T-Rex</a>
-                    <a href="#route_stories" class="btn btn-secondary hero-cta-secondary">Истории маршрутов</a>
+                    <a href="#route_stories" class="btn btn-secondary hero-cta-secondary">Истории РГО</a>
                 </div>
             </div>
         </section>
@@ -1410,7 +1578,7 @@
                     <a href="#footer_cta" class="btn btn-secondary">Закрыть</a>
                 </div>
                 <div class="kb-note mono" style="color:#555; margin-top:14px;">
-                    // Нажимая “Отправить”, вы соглашаетесь на обратную связь от KARTEL Boats.
+                    // Нажимая "Отправить", вы соглашаетесь на обратную связь от KARTEL Boats.
                 </div>
             </form>
         </div>
@@ -1441,8 +1609,8 @@
                 </div>
                 <div class="modal__content">
                     <div class="modal__block"><div class="mono">// Материалы</div><p>Авиационный алюминий и честная сборка. В отделке — натуральные породы дерева (дуб/тик) и тактильные материалы без компромиссов.</p></div>
-                    <div class="modal__block"><div class="mono">// Силовая часть</div><p>Киль и борт — как у боевого катера. Силовой набор рассчитан на “тяжёлую воду” и дальние переходы, а не на витрину.</p></div>
-                    <div class="modal__block"><div class="mono">// Оборудование</div><p>Навигация, электрика и комплектующие — от проверенных мировых производителей. Ставим то, что работает в реальных условиях, а не “для галочки”.</p></div>
+                    <div class="modal__block"><div class="mono">// Силовая часть</div><p>Киль и борт — как у боевого катера. Силовой набор рассчитан на "тяжёлую воду" и дальние переходы, а не на витрину.</p></div>
+                    <div class="modal__block"><div class="mono">// Оборудование</div><p>Навигация, электрика и комплектующие — от проверенных мировых производителей. Ставим то, что работает в реальных условиях, а не "для галочки".</p></div>
                     <div class="modal__block"><div class="mono">// Русская душа</div><p>Корпус сделан на Волге. Это про характер, про маршрут и про уважение к металлу — спокойно, точно, навсегда.</p></div>
                     <div class="modal__content-actions" style="margin-top: 32px; border-top: 1px solid #333; padding-top: 24px;">
                         <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; justify-content: center;">Перейти на сайт Корабельной Артели →</a>
@@ -1792,6 +1960,50 @@
             <a href="#cruiser_img1" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
         </div>
     </div>
+
+    <!-- Preloader + Header Scroll Script -->
+    <script>
+        // PRELOADER (Like Houseboats)
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const progress = document.getElementById('preloader-progress');
+            const percent = document.getElementById('preloader-percent');
+            
+            let currentProgress = 0;
+            const targetProgress = 100;
+            const duration = 2000; // 2 seconds
+            const interval = 20; // Update every 20ms
+            const increment = (targetProgress / duration) * interval;
+            
+            const progressInterval = setInterval(function() {
+                currentProgress += increment;
+                
+                if (currentProgress >= targetProgress) {
+                    currentProgress = targetProgress;
+                    clearInterval(progressInterval);
+                    
+                    // Hide preloader after completion
+                    setTimeout(function() {
+                        preloader.classList.add('hidden');
+                    }, 300);
+                }
+                
+                progress.style.width = currentProgress + '%';
+                percent.textContent = 'ЗАГРУЗКА ' + Math.floor(currentProgress) + '%';
+            }, interval);
+        });
+
+        // HEADER SCROLL EFFECT (Transparent → Solid)
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 
 </body>
 </html>
