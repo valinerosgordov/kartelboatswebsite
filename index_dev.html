@@ -6,8 +6,27 @@
     <title>KARTEL BOATS | T-Rex · Brutal Luxury</title>
     <meta name="description" content="KARTEL Boats: алюминиевые экспедиционные яхты класса Brutal Luxury линейки T-Rex. Производство в Саратове, офис в Москве.">
     
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kartelboats.ru/">
+    <meta property="og:title" content="KARTEL BOATS | T-Rex · Brutal Luxury">
+    <meta property="og:description" content="Алюминиевые экспедиционные яхты класса Brutal Luxury. Производство в Саратове, офис в Москве.">
+    <meta property="og:image" content="https://www.kartelboats.ru/hero-t-rex.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KARTEL BOATS | T-Rex · Brutal Luxury">
+    <meta name="twitter:description" content="Алюминиевые экспедиционные яхты класса Brutal Luxury.">
+    <meta name="twitter:image" content="https://www.kartelboats.ru/hero-t-rex.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.kartelboats.ru/">
+    
+    <!-- Favicon (placeholder - replace with actual favicon) -->
+    <link rel="icon" type="image/svg+xml" href="logo-kartel-boats.svg">
+    
     <style>
-        /* KARTEL BOATS DESIGN SYSTEM v1.0 */
+        /* KARTEL BOATS DESIGN SYSTEM v2.0 (Hybrid: Classic Desktop + Super Mobile) */
 
         :root {
             --bg-main: #000000;
@@ -26,6 +45,14 @@
             --transition: all 0.3s ease;
         }
 
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-section: 80px;
+                --spacing-card: 16px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +66,10 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            /* Padding for mobile bottom nav */
+            padding-bottom: 0; 
         }
+        @media (max-width: 767px) { body { padding-bottom: 70px; } }
 
         h1, h2, h3, h4, .btn-text {
             text-transform: uppercase;
@@ -48,13 +78,13 @@
         }
 
         h1 {
-            font-size: clamp(32px, 5vw, 64px);
+            font-size: clamp(36px, 6vw, 64px);
             line-height: 1.1;
             margin-bottom: 24px;
         }
 
         h2 {
-            font-size: clamp(24px, 3vw, 40px);
+            font-size: clamp(28px, 4vw, 40px);
             margin-bottom: 16px;
             color: var(--text-main);
         }
@@ -103,6 +133,7 @@
             cursor: pointer;
             font-size: 14px;
             border-radius: 0;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -125,7 +156,7 @@
             color: var(--accent);
         }
 
-        /* HEADER UPDATED: Semi-transparent gradient background */
+        /* HEADER (Restored Original Sizes) */
         header {
             position: fixed;
             top: 0;
@@ -141,16 +172,15 @@
             border-bottom: var(--border-thin);
         }
 
-        /* UPDATED NAV CONTAINER: Reduced visual height */
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 72px;   /* Comfortable desktop height */
-            padding: 4px 20px;  /* Reduced vertical padding */
+            /* Restored Desktop Height */
+            min-height: 80px; 
+            padding: 4px 20px;
         }
 
-        /* LOGO STYLES */
         .logo {
             display: inline-flex;
             align-items: center;
@@ -159,14 +189,13 @@
             margin: 0;
         }
         
-        /* LOGO SIZE (KEPT LARGE) */
         .logo-mark {
             display: block;
-            height: 104px; /* Large desktop size */
+            /* Restored Desktop Logo Size */
+            height: 104px; 
             width: auto;
         }
 
-        /* NAVIGATION STYLES UPDATED */
         .nav-links {
             display: flex;
             align-items: center;
@@ -193,6 +222,53 @@
             font-size: 12px;
         }
 
+        /* MOBILE HEADER OVERRIDES */
+        @media (max-width: 767px) {
+            .nav-container {
+                min-height: 60px; /* Smaller on mobile */
+                padding: 4px 16px;
+            }
+            .logo-mark {
+                height: 48px; /* Smaller on mobile */
+            }
+            .nav-links {
+                display: none; /* Hide standard nav on mobile */
+            }
+        }
+
+        /* MOBILE BOTTOM NAV (From Your Request) */
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .mobile-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(10,10,10,0.95);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid #333;
+                z-index: 2000;
+                padding: 12px 0;
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
+            }
+            .mob-link {
+                color: #888;
+                text-decoration: none;
+                font-size: 10px;
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+            }
+            .mob-link.active { color: var(--accent); }
+        }
+
         #hero_video {
             height: 100vh;
             min-height: 600px;
@@ -204,131 +280,65 @@
             overflow: hidden;
         }
 
-        /* HERO LAYERING & OVERLAY STYLES */
         .hero-bg-layer {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            z-index: 0;
+            position: absolute; inset: 0; overflow: hidden; z-index: 0;
         }
 
-        /* HERO OVERLAY UPDATED: Lighter gradient */
         .hero-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: radial-gradient(
-                circle at top,
-                rgba(0, 0, 0, 0.03) 0%,
-                rgba(0, 0, 0, 0.18) 55%,
-                rgba(0, 0, 0, 0.35) 100%
-            );
+            position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(circle at top, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0.35) 100%);
             z-index: 1;
         }
 
-        /* HERO SLIDER STYLES */
         .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
         }
 
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            animation: fadeSlide 15s infinite ease-in-out;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            opacity: 0; animation: fadeSlide 15s infinite ease-in-out;
         }
 
-        /* Slide Images */
-        .slide-1 {
-            background-image: url('hero-t-rex.jpg');
-            animation-delay: 0s;
-        }
-        .slide-2 {
-            background-image: url('hero-t-rex-2.jpg');
-            animation-delay: 5s;
-        }
-        .slide-3 {
-            background-image: url('hero-t-rex-3.jpg');
-            animation-delay: 10s;
-        }
+        .slide-1 { background-image: url('hero-t-rex.jpg'); animation-delay: 0s; }
+        .slide-2 { background-image: url('hero-t-rex-2.jpg'); animation-delay: 5s; }
+        .slide-3 { background-image: url('hero-t-rex-3.jpg'); animation-delay: 10s; }
 
-        /* Keeping the subtle darken overlay on slider itself as fallback/base */
         .hero-slider::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); z-index: 1;
         }
 
         @keyframes fadeSlide {
-            0% { opacity: 0; }
-            6% { opacity: 1; }  /* Fast fade in */
-            33% { opacity: 1; } /* Stay visible */
-            39% { opacity: 0; } /* Fade out */
-            100% { opacity: 0; }
+            0% { opacity: 0; } 6% { opacity: 1; } 33% { opacity: 1; } 39% { opacity: 0; } 100% { opacity: 0; }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2; /* Ensure content is above overlay */
-            text-align: center;
-            padding: 0 20px;
+            position: relative; z-index: 2; text-align: center; padding: 0 20px;
         }
 
         .hero-sub {
-            display: block;
-            margin-bottom: 32px;
-            font-size: 14px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
+            display: block; margin-bottom: 32px; font-size: 14px; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--accent);
         }
 
-        /* HERO TEXT STYLE RESET (Clean text, no glass) */
         .hero-lead {
-            margin: 0 auto 40px auto;
-            max-width: 700px;
-            color: var(--text-muted);
-            font-size: 16px;
-            line-height: 1.6;
+            margin: 0 auto 40px auto; max-width: 700px; color: var(--text-muted); font-size: 16px; line-height: 1.6;
         }
 
         .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-actions {
-                justify-content: center; /* Center on desktop too for hero balance */
-            }
+            display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 32px;
         }
 
         .hero-cta-secondary {
-            border-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3); color: #fff;
         }
         
         .hero-cta-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            border-color: var(--accent); color: var(--accent);
         }
 
+        /* --- BENTO GRID RESTORED (CLASSIC PROPORTIONS) --- */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -346,7 +356,7 @@
             position: relative;
             text-decoration: none;
             transition: var(--transition);
-            min-height: 300px;
+            min-height: 300px; /* Restored original min-height */
             overflow: hidden;
         }
 
@@ -356,59 +366,36 @@
             background-color: var(--bg-card-hover);
         }
 
-        .card-large {
-            grid-column: span 12;
-        }
+        .card-large { grid-column: span 12; }
+        .card-medium { grid-column: span 12; }
         
         @media (min-width: 900px) {
+            /* Restored Asymmetric Grid */
             .card-large { grid-column: span 7; }
             .card-medium { grid-column: span 5; }
-            .card-small { grid-column: span 12; display: flex; flex-direction: row; align-items: center; justify-content: space-between; min-height: 200px;}
         }
 
         .card-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            transition: var(--transition);
-            z-index: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; 
+            background-position: center; /* Ensures content fits well */
+            opacity: 0.3; /* Restored original opacity */
+            transition: var(--transition); z-index: 0;
         }
         
         .card:hover .card-bg { opacity: 0.5; transform: scale(1.02); }
 
-        /* UPDATED CARD BACKGROUNDS WITH REAL IMAGES */
         .bg-flybridge { 
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15)),
-                url('t-rex-flybridge-card.jpg'); 
-            background-size: cover;
-            background-position: center;
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15)), url('t-rex-flybridge-card.jpg');
             opacity: 0.9;
-            transition: var(--transition);
         }
         
         .bg-cruiser { 
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15)),
-                url('t-rex-cruiser-card.jpg'); 
-            background-size: cover;
-            background-position: center;
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15)), url('t-rex-cruiser-card.jpg'); 
             opacity: 0.9;
-            transition: var(--transition);
         }
         
-        .bg-concept { background: repeating-linear-gradient(45deg, #111, #111 10px, #222 10px, #222 20px); }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
+        .card-content { position: relative; z-index: 2; }
 
         .badge {
             display: inline-block;
@@ -422,11 +409,10 @@
             border: 1px solid rgba(206, 254, 70, 0.2);
         }
 
-        /* NEW STYLE FOR MODEL LABELS (PILL TABS) */
         .model-label {
             display: inline-block;
             padding: 6px 14px;
-            background-color: #b36bff; /* Specific violet color requested */
+            background-color: #b36bff;
             color: #000000;
             font-weight: 700;
             font-size: 12px;
@@ -438,692 +424,267 @@
 
         .card-large .badge { background-color: var(--accent); color: #000; }
 
-        /* CONCEPT BANNER SLIDER STYLES (FIXED HEIGHT) */
+        /* CONCEPT BANNER */
         .concept-ego-preview {
-            margin-top: 32px;
-            border: var(--border-thin);
-            background-color: #000;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 16 / 9; /* Fixed height ratio for banner */
-            width: 100%;
+            margin-top: 32px; border: var(--border-thin); background-color: #000;
+            overflow: hidden; position: relative; aspect-ratio: 16 / 9; width: 100%;
         }
 
-        .concept-ego-slider {
-            position: absolute;
-            inset: 0;
-        }
+        .concept-ego-slider { position: absolute; inset: 0; }
 
         .concept-ego-slide {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0;
-            animation: egoFade 15s infinite;
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block; opacity: 0; animation: egoFade 15s infinite;
         }
 
-        /* Default first slide visible */
-        .concept-ego-slide:nth-child(1) { opacity: 1; }
-
-        .concept-ego-slide:nth-child(1) { animation-delay: 0s; }
+        .concept-ego-slide:nth-child(1) { animation-delay: 0s; opacity: 1; }
         .concept-ego-slide:nth-child(2) { animation-delay: 5s; }
         .concept-ego-slide:nth-child(3) { animation-delay: 10s; }
 
         @keyframes egoFade {
-            0%   { opacity: 0; }
-            8%   { opacity: 1; }
-            33%  { opacity: 1; }
-            41%  { opacity: 0; }
-            100% { opacity: 0; }
+            0% { opacity: 0; } 8% { opacity: 1; } 33% { opacity: 1; } 41% { opacity: 0; } 100% { opacity: 0; }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .concept-ego-slide { animation: none; opacity: 0; }
-            .concept-ego-slide:nth-child(1) { opacity: 1; }
-        }
-
-        /* NEW CONCEPT PLATFORM STYLES */
+        /* CONCEPT PLATFORM */
         .concept-platform {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: var(--border-thin);
+            margin-top: 32px; padding-top: 24px; border-top: var(--border-thin);
         }
 
         .concept-platform > p {
-            margin-top: 8px;
-            margin-bottom: 20px;
-            max-width: 640px;
+            margin-top: 8px; margin-bottom: 20px; max-width: 640px;
         }
 
         .concept-grid {
-            display: grid;
-            gap: 24px;
-            grid-template-columns: 1fr;
+            display: grid; gap: 24px; grid-template-columns: 1fr;
         }
 
         @media (min-width: 900px) {
-            .concept-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .concept-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .concept-card {
-            background-color: var(--bg-card);
-            border: var(--border-thin);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            background-color: var(--bg-card); border: var(--border-thin);
+            padding: 20px; display: flex; flex-direction: column; gap: 8px;
         }
 
-        .concept-card h3 {
-            margin-bottom: 4px;
-        }
-
-        .concept-card p {
-            max-width: 100%;
-        }
+        .concept-card h3 { margin-bottom: 4px; }
+        .concept-card p { max-width: 100%; }
 
         .badge-concept {
             background-color: rgba(206, 254, 70, 0.06);
             border-color: rgba(206, 254, 70, 0.3);
-            color: var(--accent);
-            width: fit-content;
+            color: var(--accent); width: fit-content;
         }
 
-        /* CONCEPT MEDIA GALLERY STYLES (NEW) */
+        /* CONCEPT MEDIA */
         .concept-media {
-            position: relative;
-            margin-top: 8px;
-            margin-bottom: 10px;
-            border: var(--border-thin);
-            background: #000;
-            overflow: hidden;
-            aspect-ratio: 16 / 10; /* аккуратная высота для карточек */
+            position: relative; margin-top: 8px; margin-bottom: 10px;
+            border: var(--border-thin); background: #000;
+            overflow: hidden; aspect-ratio: 16 / 10;
         }
 
-        .concept-media input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .concept-media-viewport {
-            position: absolute;
-            inset: 0;
-        }
+        .concept-media input { position: absolute; opacity: 0; pointer-events: none; }
+        .concept-media-viewport { position: absolute; inset: 0; }
 
         .concept-media-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0;
-            transition: opacity 0.35s ease;
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block; opacity: 0; transition: opacity 0.35s ease;
         }
 
-        /* по умолчанию первое фото видно */
         .concept-media-img.img-1 { opacity: 1; }
-
-        /* переключение по радио */
         .concept-media input:nth-of-type(1):checked ~ .concept-media-viewport .img-1 { opacity: 1; }
         .concept-media input:nth-of-type(1):checked ~ .concept-media-viewport .img-2 { opacity: 0; }
-
         .concept-media input:nth-of-type(2):checked ~ .concept-media-viewport .img-1 { opacity: 0; }
         .concept-media input:nth-of-type(2):checked ~ .concept-media-viewport .img-2 { opacity: 1; }
 
         .concept-media-controls {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            pointer-events: none; /* включим на стрелках отдельно */
-            padding: 10px;
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between;
+            pointer-events: none; padding: 10px;
         }
 
         .concept-arrow {
-            pointer-events: auto;
-            width: 34px;
-            height: 34px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: var(--border-thin);
-            background: rgba(0,0,0,0.55);
-            color: var(--accent);
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            user-select: none;
-            transition: var(--transition);
+            pointer-events: auto; width: 34px; height: 34px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border: var(--border-thin); background: rgba(0,0,0,0.55);
+            color: var(--accent); font-size: 18px; font-weight: 700;
+            cursor: pointer; user-select: none; transition: var(--transition);
         }
 
         .concept-arrow:hover {
-            border-color: var(--accent);
-            background: rgba(0,0,0,0.75);
+            border-color: var(--accent); background: rgba(0,0,0,0.75);
         }
 
-        /* на мобильных стрелки чуть крупнее */
-        @media (max-width: 520px) {
-            .concept-arrow { width: 38px; height: 38px; }
-        }
-
+        /* SPLIT SCREEN */
         .split-screen {
-            display: flex;
-            flex-direction: column;
-            border: var(--border-thin);
+            display: flex; flex-direction: column; border: var(--border-thin);
         }
 
         @media (min-width: 768px) {
             .split-screen { flex-direction: row; }
         }
 
-        .split-media, .split-content {
-            flex: 1;
-        }
+        .split-media, .split-content { flex: 1; }
 
-        /* UPDATED SPLIT MEDIA FOR VIDEO */
         .split-media {
-            background-color: #000;
-            min-height: 400px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: #000; min-height: 400px;
+            position: relative; display: flex; align-items: center; justify-content: center;
             overflow: hidden;
         }
         
         .dna-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0.95;
+            width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.95;
         }
 
         .split-content {
-            padding: 64px 48px;
-            background-color: var(--bg-card);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 64px 48px; background-color: var(--bg-card);
+            display: flex; flex-direction: column; justify-content: center;
         }
+        /* Mobile padding adjustment */
+        @media (max-width: 767px) { .split-content { padding: 40px 20px; } }
 
         .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 32px 0;
-            border-top: 1px solid #333;
-            padding-top: 24px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            margin: 32px 0; border-top: 1px solid #333; padding-top: 24px;
         }
 
         .stat-item span {
-            display: block;
-            font-size: 24px;
-            color: var(--text-main);
-            font-weight: 700;
+            display: block; font-size: 24px; color: var(--text-main); font-weight: 700;
         }
 
         .stat-item label {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
+            font-size: 12px; color: var(--text-muted); text-transform: uppercase;
         }
 
-        /* ROUTE STORIES STYLES */
+        /* ROUTE STORIES */
         .route-stories {
-            margin-top: 48px;
-            display: grid;
-            gap: 24px;
-            grid-template-columns: 1fr;
-            text-align: left;
+            margin-top: 48px; display: grid; gap: 24px;
+            grid-template-columns: 1fr; text-align: left;
         }
 
         @media (min-width: 900px) {
-            .route-stories {
-                grid-template-columns: 1fr 1fr;
-            }
+            .route-stories { grid-template-columns: 1fr 1fr; }
         }
 
         .route-card {
-            background-color: var(--bg-card);
-            border: var(--border-thin);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            background-color: var(--bg-card); border: var(--border-thin);
+            padding: 24px; display: flex; flex-direction: column; gap: 16px;
         }
 
-        .route-meta {
-            font-size: 11px;
-            color: var(--accent);
-            letter-spacing: 0.05em;
-        }
-
-        .route-card h3 {
-            margin-bottom: 4px;
-            font-size: 18px;
-        }
-
-        .route-card p {
-            max-width: 100%;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
+        .route-meta { font-size: 11px; color: var(--accent); letter-spacing: 0.05em; }
+        .route-card h3 { margin-bottom: 4px; font-size: 18px; }
+        .route-card p { max-width: 100%; font-size: 14px; margin-bottom: 8px; }
 
         .route-video {
-            width: 100%;
-            border-radius: 4px;
-            border: 1px solid #333;
-            background-color: #000;
-            aspect-ratio: 16 / 9;
+            width: 100%; border-radius: 4px; border: 1px solid #333;
+            background-color: #000; aspect-ratio: 16 / 9;
         }
 
         footer {
-            padding: 40px 0;
-            background-color: #000;
-            border-top: 1px solid #222;
-            text-align: center;
+            padding: 80px 0 40px; background-color: var(--bg-card);
+            border-top: 1px solid #333; text-align: center;
         }
         
-        .footer-cta-block {
-            margin-bottom: 60px;
-        }
+        .footer-cta-block { margin-bottom: 60px; }
         
         .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--text-muted);
+            display: flex; justify-content: center; gap: 32px;
+            font-size: 12px; text-transform: uppercase; color: var(--text-muted);
+        }
+        /* Mobile footer adjustment */
+        @media (max-width: 767px) {
+            .footer-links { flex-wrap: wrap; gap: 16px; }
         }
         
         .footer-links a { color: var(--text-muted); text-decoration: none; }
         .footer-links a:hover { color: var(--accent); }
 
-        /* CONTACTS SECTION STYLES (NEW) */
-        .contacts-hub {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        @media (min-width: 1024px) {
-            .contacts-hub {
-                grid-template-columns: 400px 1fr;
-            }
-        }
-
-        .contacts-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            border: var(--border-thin);
-            padding: 24px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-card:hover {
-            border-color: var(--accent);
-            background: var(--bg-card-hover);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--accent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .contact-card:hover::before {
-            opacity: 1;
-        }
-
-        .contact-role {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .contact-city {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .contact-address {
-            font-size: 14px;
-            color: #ccc;
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
-
-        .contact-phone {
-            font-size: 18px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .contact-note {
-            font-size: 12px;
-            color: #666;
-            font-style: italic;
-            border-top: 1px solid #333;
-            padding-top: 12px;
-            margin-top: 12px;
-        }
-
-        /* RADAR MAP STYLES */
-        .radar-map-container {
-            position: relative;
-            background: #080808;
-            border: var(--border-thin);
-            min-height: 400px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .radar-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('kartel-explorer-map.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            filter: grayscale(100%) contrast(1.5);
-        }
-
-        .radar-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: 1;
-        }
-
-        .radar-sweep {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 100%; height: 100%;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(206, 254, 70, 0.1) 60deg, transparent 60deg);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: radarSpin 4s linear infinite;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        @keyframes radarSpin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Map Points (Approximate visual placement based on Russia map logic) */
-        .map-point {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            z-index: 10;
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .map-point::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        .map-point-label {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.8);
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 10px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            border: 1px solid #333;
-            pointer-events: none;
-        }
-
-        /* Moscow approx pos (Left-Topish - Adjusted West) */
-        .point-msk { top: 40%; left: 10%; }
-        
-        /* Saratov approx pos (Lower-Right relative to Msk - Adjusted West) */
-        .point-srt { top: 52%; left: 14%; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 767px) {
-            .nav-container {
-                gap: 12px;
-                min-height: 60px; /* Reduced mobile height */
-                padding: 4px 16px;
-            }
-            
-            /* Stack navigation or hide on mobile (simple stack for now) */
-            .nav-links {
-                display: none; /* Hide nav links on mobile for simplicity in this iteration */
-            }
-            
-            /* Show CTA on mobile if needed, or keep hidden */
-            
-            .btn {
-                padding: 10px 18px;
-                font-size: 11px;
-            }
-            .section {
-                padding: 80px 0;
-            }
-            
-            /* Mobile logo adjustment */
-            .logo-mark {
-                height: 48px; /* Final mobile size */
-            }
-            
-            .radar-map-container {
-                min-height: 250px;
-            }
-        }
-
         /* MODAL STYLES */
         .modal {
-            position: fixed; inset: 0; z-index: 2000;
-            display: none;
+            position: fixed; inset: 0; z-index: 2000; display: none;
         }
-        /* UNIVERSAL MODAL OPENER */
         .modal:target { display: block; }
 
         .modal__overlay {
             position: absolute; inset: 0;
-            background: rgba(0,0,0,0.72);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.72); backdrop-filter: blur(10px);
         }
 
         .modal__dialog {
             position: relative;
             width: min(1080px, calc(100% - 32px));
             max-height: calc(100% - 48px);
-            margin: 24px auto;
-            background: #0b0b0b;
-            border: var(--border-thin);
-            overflow: auto;
-            padding: 24px;
+            margin: 24px auto; background: #0b0b0b;
+            border: var(--border-thin); overflow: auto; padding: 24px;
         }
 
-        .modal__header{
-            display:flex; align-items:center; justify-content:space-between;
-            margin-bottom: 10px;
+        .modal__header {
+            display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px;
         }
 
-        .modal__close{
+        .modal__close {
             display:inline-flex; align-items:center; justify-content:center;
-            width: 36px; height: 36px;
-            border: var(--border-thin);
-            color: var(--text-main);
-            text-decoration: none;
-            background: rgba(0,0,0,0.4);
-            transition: var(--transition);
+            width: 36px; height: 36px; border: var(--border-thin);
+            color: var(--text-main); text-decoration: none;
+            background: rgba(0,0,0,0.4); transition: var(--transition);
         }
         .modal__close:hover { border-color: var(--accent); color: var(--accent); }
 
-        .modal__grid{
-            margin-top: 18px;
-            display: grid;
-            gap: 24px;
-            grid-template-columns: 1fr;
+        .modal__grid {
+            margin-top: 18px; display: grid; gap: 24px; grid-template-columns: 1fr;
         }
         @media (min-width: 900px){
             .modal__grid{ grid-template-columns: 1.05fr 0.95fr; }
         }
 
-        .modal__gallery{
-            display: grid;
-            gap: 12px;
-            grid-template-columns: repeat(3, 1fr);
+        .modal__gallery {
+            display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr);
         }
         
-        .modal__thumb{
-            width:100%;
-            aspect-ratio:4/3;
-            object-fit:cover;
-            display:block;
-            border: var(--border-thin);
-            background:#000;
-            transition: var(--transition);
+        .modal__thumb {
+            width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+            border: var(--border-thin); background:#000; transition: var(--transition);
         }
 
-        .modal__thumb:hover{
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-        
-        .modal__thumbLink {
-            display: block;
-            text-decoration: none;
-        }
-
-        .modal__block{ margin-bottom: 16px; }
-        .modal__block p{ max-width: 100%; }
+        .modal__thumb:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .modal__thumbLink { display: block; text-decoration: none; }
+        .modal__block { margin-bottom: 16px; }
+        .modal__block p { max-width: 100%; }
         
         /* MEDIA LIGHTBOX STYLES */
         .modal--media .modal__dialog {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-            width: auto;
-            max-width: 1100px;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative; /* For absolute children */
+            background: transparent; border: none; box-shadow: none;
+            padding: 0; width: auto; max-width: 1100px; max-height: 90vh;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; position: relative;
         }
         
         .modal__media {
-            width: 100%;
-            height: auto;
-            max-height: 80vh;
-            object-fit: contain;
-            border: 1px solid #333;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            background: #000;
+            width: 100%; height: auto; max-height: 80vh; object-fit: contain;
+            border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); background: #000;
         }
         
         .modal__close--media {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #333;
-            width: 40px;
-            height: 40px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 20px;
-            transition: 0.3s ease;
-            z-index: 10;
+            position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.6);
+            border: 1px solid #333; width: 40px; height: 40px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none; font-size: 20px;
+            transition: 0.3s ease; z-index: 10;
         }
         .modal__close--media:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(0,0,0,0.8);
+            border-color: var(--accent); color: var(--accent); background: rgba(0,0,0,0.8);
         }
 
         /* MEDIA NAVIGATION ARROWS */
         .media-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #333;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: 700;
-            transition: 0.3s ease;
-            z-index: 10;
-            pointer-events: auto;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px; background: rgba(0,0,0,0.6);
+            border: 1px solid #333; display: inline-flex; align-items: center;
+            justify-content: center; color: #fff; text-decoration: none;
+            font-size: 24px; font-weight: 700; transition: 0.3s ease;
+            z-index: 10; pointer-events: auto;
         }
         .media-nav:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(0,0,0,0.8);
+            border-color: var(--accent); color: var(--accent); background: rgba(0,0,0,0.8);
         }
         .media-nav--prev { left: 16px; }
         .media-nav--next { right: 16px; }
@@ -1136,538 +697,380 @@
         }
 
         /* Form styles */
-        .kb-form{ margin-top: 18px; }
+        .kb-form { margin-top: 18px; }
 
-        .kb-grid{
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
-            margin-top: 14px;
+        .kb-grid {
+            display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px;
         }
         @media (min-width: 900px){
-            .kb-grid{ grid-template-columns: 1fr 1fr; gap: 16px; }
-            .kb-span-2{ grid-column: span 2; }
+            .kb-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .kb-span-2 { grid-column: span 2; }
         }
 
-        .kb-field label{
-            display:block;
-            font-size:12px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            letter-spacing: 0.06em;
+        .kb-field label {
+            display:block; font-size:12px; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.06em;
         }
 
-        .kb-field input,
-        .kb-field select{
-            width: 100%;
-            padding: 14px 14px;
-            background: #060606;
-            color: var(--text-main);
-            border: var(--border-thin);
-            outline: none;
-            font-size: 14px;
+        .kb-field input, .kb-field select {
+            width: 100%; padding: 14px 14px; background: #060606;
+            color: var(--text-main); border: var(--border-thin);
+            outline: none; font-size: 14px;
         }
 
-        .kb-field input:focus,
-        .kb-field select:focus{
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(206,254,70,0.12);
+        .kb-field input:focus, .kb-field select:focus {
+            border-color: var(--accent); box-shadow: 0 0 0 3px rgba(206,254,70,0.12);
         }
 
-        .kb-radio{
-            display:flex;
-            flex-wrap: wrap;
-            gap: 10px 16px;
-            padding: 10px 12px;
-            border: var(--border-thin);
-            background: rgba(0,0,0,0.25);
+        .kb-radio {
+            display:flex; flex-wrap: wrap; gap: 10px 16px; padding: 10px 12px;
+            border: var(--border-thin); background: rgba(0,0,0,0.25);
         }
 
-        .kb-radio label{
-            display:flex;
-            align-items:center;
-            gap: 8px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--text-main);
-            letter-spacing: 0.04em;
+        .kb-radio label {
+            display:flex; align-items:center; gap: 8px; font-size: 12px;
+            text-transform: uppercase; color: var(--text-main); letter-spacing: 0.04em;
         }
 
-        .kb-actions{
-            display:flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 18px;
+        .kb-actions {
+            display:flex; gap: 12px; flex-wrap: wrap; margin-top: 18px;
         }
 
         /* NEW SPECS LIST STYLE */
         .spec-list {
-            list-style: none;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 13px;
-            color: #aaa;
+            list-style: none; padding: 0; font-family: 'Courier New', Courier, monospace;
+            font-size: 13px; color: #aaa;
         }
         .spec-list li {
-            margin-bottom: 8px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 4px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            margin-bottom: 8px; border-bottom: 1px solid #222;
+            padding-bottom: 4px; display: flex; justify-content: space-between; flex-wrap: wrap;
         }
-        .spec-list li strong { 
-            color: #fff; 
-            margin-right: 8px; 
-        }
+        .spec-list li strong { color: #fff; margin-right: 8px; }
         
         /* BROCHURE BUTTON STYLES */
         .btn-brochure {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 20px;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; padding: 12px 20px;
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: var(--transition);
-            /* Removed global width: 100% per request */
-            width: auto; 
+            color: #fff; text-decoration: none; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            transition: var(--transition); width: auto; 
         }
 
         .btn-brochure:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-            color: #fff;
-            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.1); border-color: var(--accent);
+            color: #fff; transform: translateY(-2px);
         }
 
         .pdf-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 700;
-            background: #fff;
-            color: #000;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-right: 4px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; background: #fff; color: #000;
+            padding: 2px 6px; border-radius: 4px; margin-right: 4px;
         }
         
         .modal__content-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 24px;
+            display: flex; flex-direction: column; gap: 12px; margin-top: 24px;
         }
         
-        /* New Styles for brochure button in gallery */
-        .modal__media-actions{
-          margin-top: 14px;
-          display:flex;
-          justify-content:flex-start;
+        .modal__media-actions {
+          margin-top: 14px; display:flex; justify-content:flex-start;
         }
 
-        .btn-brochure--gallery{
-          width: auto;                /* НЕ 100% */
-          padding: 12px 18px;
-          border: 1px solid rgba(255,255,255,0.18);
-          background: rgba(0,0,0,0.35);
+        .btn-brochure--gallery {
+          width: auto; padding: 12px 18px;
+          border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35);
         }
 
-        .btn-brochure--gallery:hover{
-          border-color: var(--accent);
-          transform: translateY(-2px);
+        .btn-brochure--gallery:hover {
+          border-color: var(--accent); transform: translateY(-2px);
         }
 
-        .btn-brochure .pdf-size{
-          margin-left: 10px;
-          color:#888;
-          font-size:11px;
-        }
+        .btn-brochure .pdf-size { margin-left: 10px; color:#888; font-size:11px; }
         
-        /* ИСПРАВЛЕНО: Кнопка стоимости снова широкая и заметная */
-        .modal__content-actions .btn { 
-            width: 100%; 
-            max-width: 420px;
-            justify-content: center;
-        }
-        
-        /* Explicitly target only the primary button in content actions for full width */
-        .modal__content-actions .btn-primary { 
-            width: 100%; 
-        }
+        .modal__content-actions .btn { width: 100%; max-width: 420px; justify-content: center; }
+        .modal__content-actions .btn-primary { width: 100%; }
 
-        /* Mobile adjustment for brochure button */
         @media (min-width: 600px) {
-           .btn-brochure {
-               width: auto;
-           }
-           .modal__content-actions {
-               flex-direction: row;
-               align-items: center;
-           }
+           .btn-brochure { width: auto; }
+           .modal__content-actions { flex-direction: row; align-items: center; }
         }
 
-        /* EXPERT CARD STYLES */
-        .expert-grid {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: 1fr;
-        }
-        @media(min-width: 768px) {
-            .expert-grid { grid-template-columns: 1fr 1fr; }
-        }
-        
-        .expert-card {
-            background: #111;
-            border: var(--border-thin);
-            padding: 20px;
-        }
-        .expert-card h4 {
-            color: var(--accent);
-            margin-bottom: 4px;
-            font-size: 14px;
-        }
-        .expert-card .role {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #666;
-            margin-bottom: 12px;
-            display: block;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .expert-card p {
-            font-size: 14px;
-            color: #ddd;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-        .expert-card .source {
-            font-size: 11px;
-            color: #555;
-            text-decoration: none;
-            border-bottom: 1px dotted #555;
-        }
-        .expert-card .source:hover { color: #888; border-color: #888; }
-        
-        /* --- RGO SECTION REDESIGN v2.0 (DEEP RESEARCH PATCH) --- */
-
-        /* 1. GPU Acceleration Hack for Safari Blur */
-        .gpu-accelerated {
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-
-        /* 2. Brutal Glass Panel Style */
+        /* RGO SECTION (Restored) */
         .glass-panel-rgo {
             background: rgba(15, 15, 15, 0.75);
-            /* WebKit prefix first is critical for legacy Safari */
-            -webkit-backdrop-filter: blur(16px) saturate(120%);
             backdrop-filter: blur(16px) saturate(120%);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-left: 3px solid var(--accent);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9);
-            position: relative;
-            overflow: hidden;
-            padding: 32px 40px;
-            border-radius: 2px;
-            transition: var(--transition);
+            position: relative; overflow: hidden;
+            padding: 24px; border-radius: 2px; transition: var(--transition);
         }
+        @media(min-width: 768px) { .glass-panel-rgo { padding: 32px 40px; } }
         
-        .glass-panel-rgo:hover {
-            transform: translateY(-4px);
-        }
+        .glass-panel-rgo:hover { transform: translateY(-4px); }
 
-        /* 3. Noise Texture Overlay (Prevents banding on glass) */
         .glass-panel-rgo::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            opacity: 0.05;
+            content: ""; position: absolute; inset: 0; opacity: 0.05;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: -1;
+            pointer-events: none; z-index: -1;
         }
 
-        /* RGO Section Structure */
         #geography_map {
-            position: relative;
-            min-height: 85vh;
-            background-color: #050505;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 20px;
+            position: relative; min-height: 85vh; background-color: #050505;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            padding: 60px 20px;
         }
 
-        .map-bg-layer {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
+        .map-bg-layer { position: absolute; inset: 0; z-index: 0; }
         .map-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            filter: grayscale(100%) contrast(1.25);
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.6; filter: grayscale(100%) contrast(1.25);
         }
 
-        /* Gradients for text readability */
         .map-gradient-overlay {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to right, #000 0%, transparent 50%, #000 100%);
         }
         .map-gradient-bottom {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to top, #000 0%, transparent 40%);
         }
 
         .map-content-wrapper {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: var(--container-width);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
+            position: relative; z-index: 10; width: 100%;
+            max-width: var(--container-width); display: flex;
+            flex-direction: column; justify-content: flex-end; align-items: flex-end;
         }
 
         @media (min-width: 900px) {
             .map-content-wrapper {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-end;
+                flex-direction: row; justify-content: space-between; align-items: flex-end;
             }
         }
 
-        .map-label {
-            display: none;
-        }
+        .map-label { display: none; }
         
         @media (min-width: 900px) {
-            .map-label {
-                display: block;
-                margin-bottom: 32px;
-            }
-            .map-label h3 {
-                color: rgba(255,255,255,0.4);
-                font-size: 14px;
-                letter-spacing: 0.3em;
-            }
+            .map-label { display: block; margin-bottom: 32px; }
+            .map-label h3 { color: rgba(255,255,255,0.4); font-size: 14px; letter-spacing: 0.3em; }
             .map-label-line {
-                height: 64px;
-                width: 1px;
-                background-color: rgba(255,255,255,0.2);
-                margin-top: 16px;
+                height: 64px; width: 1px; background-color: rgba(255,255,255,0.2); margin-top: 16px;
             }
         }
 
-        .rgo-panel-wrapper {
-            width: 100%;
-            max-width: 640px;
-        }
+        .rgo-panel-wrapper { width: 100%; max-width: 640px; }
 
         .rgo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
         }
 
-        .rgo-badge {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+        .rgo-badge { display: flex; align-items: center; gap: 16px; }
 
-        /* NEW LOGO STYLE FOR MAP PANEL */
         .rgo-logo-small {
-            height: 52px;
-            width: auto;
-            display: block;
-            /* Monochromatic filter for brutal look, remove if color preferred */
-            filter: grayscale(1) brightness(1.2); 
-            transition: var(--transition);
+            height: 40px; width: auto; display: block;
+            filter: grayscale(1) brightness(1.2); transition: var(--transition);
         }
+        @media(min-width: 768px) { .rgo-logo-small { height: 52px; } }
         
-        .rgo-logo-small:hover {
-            filter: grayscale(0) brightness(1);
-        }
+        .rgo-logo-small:hover { filter: grayscale(0) brightness(1); }
 
         .rgo-status-text {
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            color: var(--accent); font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
         }
+        @media(min-width: 768px) { .rgo-status-text { font-size: 12px; } }
 
         .rgo-est {
-            color: rgba(255,255,255,0.3);
-            font-family: monospace;
-            font-size: 12px;
+            color: rgba(255,255,255,0.3); font-family: monospace; font-size: 12px;
         }
 
         .rgo-title-large {
-            font-size: clamp(28px, 4vw, 42px);
-            line-height: 1;
-            margin-bottom: 16px;
-            color: #fff;
+            font-size: clamp(24px, 5vw, 42px); line-height: 1; margin-bottom: 16px; color: #fff;
         }
 
         .rgo-desc {
-            color: #d1d5db;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 32px;
-            border-left: 1px solid rgba(255,255,255,0.1);
-            padding-left: 16px;
+            color: #d1d5db; font-weight: 300; line-height: 1.6; margin-bottom: 32px;
+            border-left: 1px solid rgba(255,255,255,0.1); padding-left: 16px; font-size: 14px;
         }
+        @media(min-width: 768px) { .rgo-desc { font-size: 16px; } }
 
-        .rgo-actions-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+        .rgo-actions-row { display: flex; flex-wrap: wrap; gap: 16px; }
+        .rgo-actions-row .btn { flex: 1; text-align: center; }
+        @media(min-width: 600px) { .rgo-actions-row .btn { flex: initial; } }
 
-        /* Modal Animation Helpers */
+        /* Animation Helpers */
         @keyframes modalEnter {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
-        
-        .animate-modal-enter {
-            animation: modalEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .animate-modal-enter { animation: modalEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         /* RGO Modal Specifics */
         .rgo-modal-dialog {
-            background: #111;
-            width: 100%;
-            max-width: 1024px;
-            height: 90vh; /* Fixed height for scroll inside */
-            border: 1px solid #333;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            background: #111; width: 100%; max-width: 1024px;
+            height: 90vh; border: 1px solid #333; display: flex;
+            flex-direction: column; overflow: hidden;
         }
-        
-        @media (min-width: 900px) {
-            .rgo-modal-dialog {
-                height: auto;
-                max-height: 85vh;
-            }
-        }
+        @media (min-width: 900px) { .rgo-modal-dialog { height: auto; max-height: 85vh; } }
 
         .rgo-modal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            height: 100%;
-            overflow-y: auto;
+            display: grid; grid-template-columns: 1fr; height: 100%; overflow-y: auto;
         }
-
         @media (min-width: 900px) {
-            .rgo-modal-grid {
-                grid-template-columns: 5fr 7fr;
-                overflow: hidden;
-            }
-            .rgo-col-left {
-                border-right: 1px solid #333;
-                overflow-y: auto;
-            }
-            .rgo-col-right {
-                overflow-y: auto;
-            }
+            .rgo-modal-grid { grid-template-columns: 5fr 7fr; overflow: hidden; }
+            .rgo-col-left { border-right: 1px solid #333; overflow-y: auto; }
+            .rgo-col-right { overflow-y: auto; }
         }
 
-        .rgo-col-left {
-            background: #161616;
-            padding: 32px;
-        }
-        .rgo-col-right {
-            background: #0a0a0a;
-            padding: 32px;
-        }
+        .rgo-col-left { background: #161616; padding: 24px; }
+        .rgo-col-right { background: #0a0a0a; padding: 24px; }
+        @media(min-width: 768px) { .rgo-col-left, .rgo-col-right { padding: 32px; } }
 
-        .rgo-dl {
-            display: grid;
-            gap: 12px;
-            font-size: 14px;
-        }
+        .rgo-dl { display: grid; gap: 12px; font-size: 14px; }
         .rgo-dl-row {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #222;
-            padding-bottom: 8px;
+            display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 8px;
         }
         .rgo-dt { color: #888; }
         .rgo-dd { color: #fff; font-weight: 500; text-align: right; }
         .rgo-dd-accent { color: var(--accent); }
 
         .rgo-quote {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid #333;
-            margin-bottom: 32px;
-            transition: border-color 0.3s;
+            position: relative; padding-left: 20px; border-left: 2px solid #333;
+            margin-bottom: 32px; transition: border-color 0.3s;
         }
         .rgo-quote:hover { border-left-color: var(--accent); }
         .rgo-quote p { font-style: italic; color: #ccc; margin-bottom: 12px; font-size: 15px;}
         
-        .rgo-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .rgo-author { display: flex; align-items: center; gap: 12px; }
         
-        /* UX STYLED AVATAR (NO IMAGE) */
         .rgo-author-avatar {
-            width: 36px; 
-            height: 36px; 
-            background: transparent; 
-            border: 1px solid #444;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            width: 36px; height: 36px; background: transparent; border: 1px solid #444;
+            color: var(--accent); display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
             font-family: 'Courier New', Courier, monospace;
         }
 
         .rgo-author-name { color: #fff; font-weight: 700; font-size: 14px; line-height: 1.2; }
         .rgo-author-role { color: #666; font-size: 10px; text-transform: uppercase; }
 
-        /* Custom Scrollbar for inner modal */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #111; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* CONTACTS SECTION STYLES (Restored Visuals) */
+        .contacts-hub {
+            display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 40px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #111; 
+        @media (min-width: 1024px) {
+            .contacts-hub { grid-template-columns: 400px 1fr; }
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #333; 
+
+        .contacts-list { display: flex; flex-direction: column; gap: 24px; }
+
+        .contact-card {
+            background: var(--bg-card); border: var(--border-thin); padding: 24px;
+            transition: var(--transition); position: relative; overflow: hidden;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #555; 
+
+        .contact-card:hover {
+            border-color: var(--accent); background: var(--bg-card-hover);
+        }
+
+        .contact-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: var(--accent); opacity: 0; transition: var(--transition);
+        }
+
+        .contact-card:hover::before { opacity: 1; }
+
+        .contact-role {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--accent); margin-bottom: 8px; display: block;
+        }
+
+        .contact-city {
+            font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; text-transform: uppercase;
+        }
+
+        .contact-address {
+            font-size: 14px; color: #ccc; line-height: 1.5; margin-bottom: 16px;
+        }
+
+        .contact-phone {
+            font-size: 18px; color: #fff; text-decoration: none; font-weight: 700; display: block; margin-bottom: 8px;
+        }
+        
+        .contact-note {
+            font-size: 12px; color: #666; font-style: italic; border-top: 1px solid #333; padding-top: 12px; margin-top: 12px;
+        }
+
+        /* RADAR MAP STYLES (Restored Visuals + New Positions) */
+        .radar-map-container {
+            position: relative; background: #080808; border: var(--border-thin);
+            min-height: 400px; overflow: hidden; display: flex;
+            align-items: center; justify-content: center;
+        }
+        @media(max-width: 768px) { .radar-map-container { min-height: 300px; } }
+
+        .radar-bg {
+            position: absolute; inset: 0; background-image: url('kartel-explorer-map.jpg');
+            background-size: cover; background-position: 30% center; 
+            background-repeat: no-repeat; opacity: 0.4; filter: grayscale(100%) contrast(1.2);
+        }
+
+        .radar-grid {
+            position: absolute; inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: 1;
+        }
+
+        .radar-sweep {
+            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(206, 254, 70, 0.1) 60deg, transparent 60deg);
+            border-radius: 50%; transform: translate(-50%, -50%);
+            animation: radarSpin 4s linear infinite; z-index: 2; pointer-events: none;
+        }
+
+        @keyframes radarSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .map-point {
+            position: absolute; width: 12px; height: 12px;
+            background: var(--accent); border-radius: 50%; z-index: 10;
+            cursor: pointer; box-shadow: 0 0 10px var(--accent);
+        }
+
+        .map-point::after {
+            content: ''; position: absolute; inset: -6px; border: 1px solid var(--accent);
+            border-radius: 50%; opacity: 0.5; animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(2); opacity: 0; }
+        }
+
+        .map-point-label {
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.8); color: #fff; padding: 4px 8px;
+            font-size: 10px; text-transform: uppercase; white-space: nowrap;
+            border: 1px solid #333; pointer-events: none;
+        }
+
+        /* Moscow & Saratov positions */
+        .point-msk { top: 35%; left: 20%; }
+        .point-srt { top: 52%; left: 28%; }
+
+        /* GPU Acceleration Helper */
+        .gpu-accelerated {
+            transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
     </style>
@@ -1681,17 +1084,17 @@
             </a>
             <nav class="nav-links">
                 <a href="#lineup_selector" class="nav-link">Модели</a>
-                <a href="#engineering_dna" class="nav-link">Технологии</a>
+                <a href="#shipyard_modal" class="nav-link">Технологии</a>
                 <a href="#geography_map" class="nav-link">Маршруты</a>
+                <!-- Link directly to ID -->
                 <a href="#testdrive_modal" class="btn btn-primary nav-cta">Тест-драйв</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- HERO VIDEO BLOCK (UPDATED) -->
+        <!-- HERO VIDEO BLOCK -->
         <section id="hero_video">
-            <!-- Background Layer with Slider -->
             <div class="hero-bg-layer">
                 <div class="hero-slider">
                     <div class="slide slide-1"></div>
@@ -1699,18 +1102,11 @@
                     <div class="slide slide-3"></div>
                 </div>
             </div>
-            
-            <!-- Dark Overlay for Readability -->
             <div class="hero-overlay"></div>
-
             <div class="container hero-content">
                 <span class="hero-sub mono">T-Rex · Aluminum Expedition Yachts</span>
                 <h1>Право на свободу<br>маршрута</h1>
-                
-                <p class="hero-lead">
-                    Премиальные алюминиевые катера KARTEL Boats линейки T-Rex. Сделаны на Волге, настроены под дальние маршруты и тяжёлую воду.
-                </p>
-                
+                <p class="hero-lead">Премиальные алюминиевые катера KARTEL Boats линейки T-Rex. Сделаны на Волге, настроены под дальние маршруты и тяжёлую воду.</p>
                 <div class="hero-actions">
                     <a href="#lineup_selector" class="btn btn-primary">Выбрать T-Rex</a>
                     <a href="#route_stories" class="btn btn-secondary hero-cta-secondary">Истории маршрутов</a>
@@ -1718,15 +1114,12 @@
             </div>
         </section>
 
-        <!-- T-REX LINEUP SELECTOR (UPDATED) -->
+        <!-- T-REX LINEUP SELECTOR -->
         <section id="lineup_selector" class="section">
             <div class="container">
                 <div class="mono" style="margin-bottom: 20px;">// Модельный ряд T-Rex</div>
                 <h2>Витрина T-Rex</h2>
-                <p style="margin-bottom: 40px;">
-                    Две готовые лодки на одном алюминиевом корпусе и новая платформа 2026. 
-                    Flybridge — для открытого ветра и панорамных видов. Cruiser — для длинных маршрутов: высокий борт, защищённый кокпит и тяжёлая вода.
-                </p>
+                <p style="margin-bottom: 40px;">Две готовые лодки на одном алюминиевом корпусе и новая платформа 2026. Flybridge — для открытого ветра и панорамных видов. Cruiser — для длинных маршрутов: высокий борт, защищённый кокпит и тяжёлая вода.</p>
                 
                 <div class="bento-grid">
                     <a href="#flybridge_modal" class="card card-large">
@@ -1748,12 +1141,12 @@
                     </a>
                 </div>
 
-                <!-- NEW CONCEPT EGO BANNER WITH SLIDER (FIXED) -->
+                <!-- NEW CONCEPT EGO BANNER -->
                 <div class="concept-ego-preview">
                     <div class="concept-ego-slider">
-                        <img src="t-rex-ego-concept.jpg" alt="T-Rex Ego — кадр 1" class="concept-ego-slide">
-                        <img src="t-rex-ego-concept-2.jpg" alt="T-Rex Ego — кадр 2" class="concept-ego-slide">
-                        <img src="t-rex-ego-concept-3.jpg" alt="T-Rex Ego — кадр 3" class="concept-ego-slide">
+                        <img src="t-rex-ego-concept.jpg" alt="T-Rex Ego — кадр 1" class="concept-ego-slide" loading="lazy">
+                        <img src="t-rex-ego-concept-2.jpg" alt="T-Rex Ego — кадр 2" class="concept-ego-slide" loading="lazy">
+                        <img src="t-rex-ego-concept-3.jpg" alt="T-Rex Ego — кадр 3" class="concept-ego-slide" loading="lazy">
                     </div>
                 </div>
 
@@ -1769,15 +1162,13 @@
                             <div class="concept-media concept-media--egoist">
                                 <input type="radio" name="egoist" id="egoist-1" checked>
                                 <input type="radio" name="egoist" id="egoist-2">
-
                                 <div class="concept-media-viewport">
-                                    <img src="concept-egoist-1.jpg" alt="T-Rex Egoist — кадр 1" class="concept-media-img img-1">
-                                    <img src="concept-egoist-2.jpg" alt="T-Rex Egoist — кадр 2" class="concept-media-img img-2">
+                                    <img src="concept-egoist-1.jpg" alt="T-Rex Egoist — кадр 1" class="concept-media-img img-1" loading="lazy">
+                                    <img src="concept-egoist-2.jpg" alt="T-Rex Egoist — кадр 2" class="concept-media-img img-2" loading="lazy">
                                 </div>
-
                                 <div class="concept-media-controls">
-                                    <label for="egoist-1" class="concept-arrow concept-arrow--prev" aria-label="Предыдущее фото">‹</label>
-                                    <label for="egoist-2" class="concept-arrow concept-arrow--next" aria-label="Следующее фото">›</label>
+                                    <label for="egoist-1" class="concept-arrow concept-arrow--prev">‹</label>
+                                    <label for="egoist-2" class="concept-arrow concept-arrow--next">›</label>
                                 </div>
                             </div>
                             <p>Для драйва, скорости и личной свободы владельца.</p>
@@ -1789,15 +1180,13 @@
                             <div class="concept-media concept-media--family">
                                 <input type="radio" name="family" id="family-1" checked>
                                 <input type="radio" name="family" id="family-2">
-
                                 <div class="concept-media-viewport">
-                                    <img src="concept-family-1.jpg" alt="T-Rex Family — кадр 1" class="concept-media-img img-1">
-                                    <img src="concept-family-2.jpg" alt="T-Rex Family — кадр 2" class="concept-media-img img-2">
+                                    <img src="concept-family-1.jpg" alt="T-Rex Family — кадр 1" class="concept-media-img img-1" loading="lazy">
+                                    <img src="concept-family-2.jpg" alt="T-Rex Family — кадр 2" class="concept-media-img img-2" loading="lazy">
                                 </div>
-
                                 <div class="concept-media-controls">
-                                    <label for="family-1" class="concept-arrow concept-arrow--prev" aria-label="Предыдущее фото">‹</label>
-                                    <label for="family-2" class="concept-arrow concept-arrow--next" aria-label="Следующее фото">›</label>
+                                    <label for="family-1" class="concept-arrow concept-arrow--prev">‹</label>
+                                    <label for="family-2" class="concept-arrow concept-arrow--next">›</label>
                                 </div>
                             </div>
                             <p>Для безопасных семейных маршрутов, детей и долгих стоянок на воде.</p>
@@ -1809,15 +1198,13 @@
                             <div class="concept-media concept-media--specialist">
                                 <input type="radio" name="specialist" id="specialist-1" checked>
                                 <input type="radio" name="specialist" id="specialist-2">
-
                                 <div class="concept-media-viewport">
-                                    <img src="concept-specialist-1.jpg" alt="T-Rex Specialist — кадр 1" class="concept-media-img img-1">
-                                    <img src="concept-specialist-2.jpg" alt="T-Rex Specialist — кадр 2" class="concept-media-img img-2">
+                                    <img src="concept-specialist-1.jpg" alt="T-Rex Specialist — кадр 1" class="concept-media-img img-1" loading="lazy">
+                                    <img src="concept-specialist-2.jpg" alt="T-Rex Specialist — кадр 2" class="concept-media-img img-2" loading="lazy">
                                 </div>
-
                                 <div class="concept-media-controls">
-                                    <label for="specialist-1" class="concept-arrow concept-arrow--prev" aria-label="Предыдущее фото">‹</label>
-                                    <label for="specialist-2" class="concept-arrow concept-arrow--next" aria-label="Следующее фото">›</label>
+                                    <label for="specialist-1" class="concept-arrow concept-arrow--prev">‹</label>
+                                    <label for="specialist-2" class="concept-arrow concept-arrow--next">›</label>
                                 </div>
                             </div>
                             <p>Рабочий инструмент для служб, спасателей и профессиональных задач в тяжёлых условиях.</p>
@@ -1827,7 +1214,7 @@
             </div>
         </section>
 
-        <!-- ENGINEERING DNA (UPDATED WITH VIDEO) -->
+        <!-- ENGINEERING DNA -->
         <section id="engineering_dna" class="section">
             <div class="container">
                 <div class="split-screen">
@@ -1839,69 +1226,43 @@
                     <div class="split-content">
                         <span class="mono" style="margin-bottom: 16px;">// DNA</span>
                         <h2>Танк во фраке</h2>
-                        <p>
-                            Мы не полируем пластик. Мы варим авиационный алюминий АМГ5М.
-                            Киль 12 мм, борт 5 мм, силовой набор как у боевого катера.
-                            Внутри — тишина и комфорт, достойные пятизвёздочного отеля.
-                        </p>
-                        
+                        <p>Мы не полируем пластик. Мы варим авиационный алюминий АМГ5М. Киль 12 мм, борт 5 мм, силовой набор как у боевого катера. Внутри — тишина и комфорт, достойные пятизвёздочного отеля.</p>
                         <div class="stat-grid">
-                            <div class="stat-item">
-                                <span>12 мм</span> <label>Киль</label>
-                            </div>
-                            <div class="stat-item">
-                                <span>АМГ5М</span> <label>Сплав</label>
-                            </div>
+                            <div class="stat-item"><span>12 мм</span> <label>Киль</label></div>
+                            <div class="stat-item"><span>АМГ5М</span> <label>Сплав</label></div>
                         </div>
-
-                        <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary">Технологии верфи</a>
+                        <a href="#shipyard_modal" class="btn btn-secondary">Технологии верфи</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- GEOGRAPHY MAP REDESIGN (OPTION C: COMMAND CENTER) -->
+        <!-- GEOGRAPHY MAP REDESIGN -->
         <section id="geography_map">
-            <!-- Background Layers -->
             <div class="map-bg-layer">
-                <img src="kartel-explorer-map.jpg" class="map-img" alt="Карта экспедиций">
+                <img src="kartel-explorer-map.jpg" class="map-img" alt="Карта экспедиций" loading="lazy">
                 <div class="map-gradient-overlay"></div>
                 <div class="map-gradient-bottom"></div>
             </div>
-
             <div class="map-content-wrapper">
-                <!-- Decorative Label -->
                 <div class="map-label">
                     <h3>GEOGRAPHY</h3>
                     <div class="map-label-line"></div>
                 </div>
-
-                <!-- Floating Glass Panel -->
                 <div class="rgo-panel-wrapper">
                     <div class="glass-panel-rgo gpu-accelerated">
                         <div class="rgo-header">
                             <div class="rgo-badge">
-                                <!-- UPDATED: REAL RGO LOGO -->
-                                <img src="assets/partners/rgo/rgo-logo.png" alt="РГО" class="rgo-logo-small">
+                                <img src="assets/partners/rgo/rgo-logo.png" alt="РГО" class="rgo-logo-small" loading="lazy">
                                 <span class="rgo-status-text">Стратегическое Партнерство</span>
                             </div>
                             <div class="rgo-est">EST. 1845</div>
                         </div>
-
                         <h2 class="rgo-title-large">ФЛАГМАН «СИБИРСКИЙ ИССЛЕДОВАТЕЛЬ»</h2>
-                        
-                        <p class="rgo-desc">
-                            18-метровый стальной титан класса «река-море». Создан на тех же стапелях, что и флот KARTEL, для выполнения миссий Русского географического общества в высоких широтах Арктики.
-                        </p>
-
+                        <p class="rgo-desc">18-метровый стальной титан класса «река-море». Создан на тех же стапелях, что и флот KARTEL, для выполнения миссий Русского географического общества в высоких широтах Арктики.</p>
                         <div class="rgo-actions-row">
-                            <a href="#rgo_modal_full" class="btn btn-primary" style="font-size: 12px; letter-spacing: 0.08em;">
-                                ОТКРЫТЬ ДОСЬЕ МИССИИ
-                            </a>
-                            
-                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff;">
-                                RGO.RU
-                            </a>
+                            <a href="#rgo_modal_full" class="btn btn-primary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
+                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff;">RGO.RU</a>
                         </div>
                     </div>
                 </div>
@@ -1911,7 +1272,6 @@
         <section style="padding: 40px 0; border-bottom: 1px solid #111;">
             <div class="container">
                 <a href="#route_stories" class="btn btn-secondary">Истории маршрутов</a>
-                <!-- NEW ROUTE STORIES BLOCK -->
                 <div id="route_stories" class="route-stories">
                     <div class="route-card">
                         <div class="route-meta mono">// СИБИРСКИЙ МАРШРУТ</div>
@@ -1922,7 +1282,6 @@
                             Ваш браузер не поддерживает воспроизведение видео.
                         </video>
                     </div>
-
                     <div class="route-card">
                         <div class="route-meta mono">// МАРШРУТ НА ВОЛГЕ</div>
                         <h3>Маршрут «T-Rex на Волге»</h3>
@@ -1941,70 +1300,37 @@
             <div class="container">
                 <div class="mono" style="margin-bottom: 20px;">// CONTACT PERIMETER</div>
                 <h2>Базы базирования</h2>
-                
                 <div class="contacts-hub">
-                    <!-- Left: Locations List -->
                     <div class="contacts-list">
-                        <!-- Moscow -->
                         <div class="contact-card">
                             <span class="contact-role">Штаб-квартира & Продажи</span>
                             <h3 class="contact-city">МОСКВА, ЦМТ</h3>
-                            <div class="contact-address">
-                                Краснопресненская наб. 12<br>
-                                6-й подъезд, 11 этаж, офис 1148<br>
-                                Гостиница «Международная»
-                            </div>
+                            <div class="contact-address">Краснопресненская наб. 12<br>6-й подъезд, 11 этаж, офис 1148<br>Гостиница «Международная»</div>
                             <a href="tel:+74957418258" class="contact-phone">+7 (495) 741-82-58</a>
-                            <div class="contact-note">
-                                // Репрезентативный офис в центре. Встретим с кофе, вином и вниманием к деталям.
-                            </div>
+                            <div class="contact-note">// Репрезентативный офис в центре. Встретим с кофе, вином и вниманием к деталям.</div>
                         </div>
-
-                        <!-- Saratov Showroom -->
                         <div class="contact-card">
                             <span class="contact-role">Шоурум на воде</span>
                             <h3 class="contact-city">САРАТОВ, ВОЛГА</h3>
                             <div class="contact-address">
-                                <a href="https://yandex.ru/maps/?pt=46.081743,51.544010&z=17&l=map" target="_blank" rel="noopener" style="color: #fff; text-decoration: underline; text-decoration-color: var(--accent);">
-                                    г. Саратов, ул. Большая Затонская (район Затона)
-                                </a>
-                                <br>
-                                <span style="font-size: 12px; color: #888; font-family: monospace;">51.544010, 46.081743</span>
+                                <a href="https://yandex.ru/maps/?pt=46.081743,51.544010&z=17&l=map" target="_blank" rel="noopener" style="color: #fff; text-decoration: underline; text-decoration-color: var(--accent);">г. Саратов, ул. Большая Затонская (район Затона)</a>
+                                <br><span style="font-size: 12px; color: #888; font-family: monospace;">51.544010, 46.081743</span>
                             </div>
-                            <div class="contact-note">
-                                // Тест-драйв в реальных условиях. Почувствуйте корпус на воде перед покупкой.
-                            </div>
+                            <div class="contact-note">// Тест-драйв в реальных условиях. Почувствуйте корпус на воде перед покупкой.</div>
                         </div>
-
-                        <!-- Saratov Shipyard -->
                         <div class="contact-card">
                             <span class="contact-role">Производство & Heritage</span>
                             <h3 class="contact-city">КОРАБЕЛЬНАЯ АРТЕЛЬ</h3>
-                            <div class="contact-address">
-                                г. Саратов, Производственная база<br>
-                                Историческая верфь
-                            </div>
-                            <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 12px; font-size: 11px;">
-                                История верфи →
-                            </a>
+                            <div class="contact-address">г. Саратов, Производственная база<br>Историческая верфь</div>
+                            <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 12px; font-size: 11px;">История верфи →</a>
                         </div>
                     </div>
-
-                    <!-- Right: Radar Map Interface -->
                     <div class="radar-map-container">
                         <div class="radar-bg"></div>
                         <div class="radar-grid"></div>
                         <div class="radar-sweep"></div>
-                        
-                        <!-- Moscow Point -->
-                        <div class="map-point point-msk" title="Москва">
-                            <div class="map-point-label">MSK / HQ</div>
-                        </div>
-
-                        <!-- Saratov Point -->
-                        <div class="map-point point-srt" title="Саратов">
-                            <div class="map-point-label">SRT / BASE</div>
-                        </div>
+                        <div class="map-point point-msk" title="Москва"><div class="map-point-label">MSK / HQ</div></div>
+                        <div class="map-point point-srt" title="Саратов"><div class="map-point-label">SRT / BASE</div></div>
                     </div>
                 </div>
             </div>
@@ -2020,81 +1346,106 @@
                 <p style="margin: 0 auto 32px auto;">Офис в Москве, верфь в Саратове. Тест-драйвы и осмотр корпуса по записи.</p>
                 <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
             </div>
-            
             <div class="footer-links">
-                <!-- Updated Links as requested -->
                 <a href="#contacts">Контакты</a>
                 <a href="https://k-artel.pro/" target="_blank" rel="noopener">О верфи</a>
                 <a href="#lineup_selector">Модельный ряд</a>
             </div>
-            <div class="mono" style="margin-top: 32px; color: #333;">© 2025 KARTEL BOATS</div>
+            <div class="mono" style="margin-top: 32px; color: #333;">© 2026 KARTEL BOATS</div>
         </div>
     </footer>
 
-    <!-- ANCHOR FOR TEST DRIVE MODAL -->
-    <a id="testdrive_modal" class="anchor"></a>
-    
-    <!-- ANCHORS FOR RGO MODALS -->
-    <a id="rgo_routes_modal" class="anchor"></a>
-    <a id="rgo_experts_modal" class="anchor"></a>
+    <!-- MOBILE BOTTOM NAV (From Your Request) -->
+    <div class="mobile-nav">
+        <a href="#lineup_selector" class="mob-link"><span>МОДЕЛИ</span></a>
+        <a href="#testdrive_modal" class="mob-link active"><span>ТЕСТ-ДРАЙВ</span></a>
+        <a href="#contacts" class="mob-link"><span>КОНТАКТЫ</span></a>
+    </div>
 
-    <!-- MODAL -->
+    <!-- ANCHOR FOR TEST DRIVE MODAL (FIXED POSITION) -->
+    <div id="testdrive_modal" class="modal">
+        <a href="#footer_cta" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Запрос на тест-драйв">
+            <div class="modal__header">
+                <div class="mono">// TEST DRIVE REQUEST</div>
+                <a href="#footer_cta" class="modal__close" aria-label="Закрыть">✕</a>
+            </div>
+            <h2>Запрос на тест-драйв</h2>
+            <p>Оставьте контакты — мы свяжемся и согласуем модель, локацию и удобное время. Быстро. По делу. Без спама.</p>
+            <form class="kb-form" action="https://formsubmit.co/REPLACE_ME" method="POST">
+                <input type="hidden" name="_subject" value="KARTEL | Запрос на тест-драйв">
+                <input type="hidden" name="_template" value="table">
+                <div class="kb-grid">
+                    <div class="kb-field">
+                        <label for="kb_phone">Телефон</label>
+                        <input id="kb_phone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+                    </div>
+                    <div class="kb-field">
+                        <label for="kb_email">Email</label>
+                        <input id="kb_email" name="email" type="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="kb-field kb-span-2">
+                        <label for="kb_model">Интересующая модель</label>
+                        <select id="kb_model" name="model" required>
+                            <option value="" disabled selected>Выберите модель</option>
+                            <option>T-Rex Flybridge</option>
+                            <option>T-Rex Cruiser</option>
+                            <option>T-Rex Egoist</option>
+                            <option>T-Rex Family</option>
+                            <option>T-Rex Specialist</option>
+                        </select>
+                    </div>
+                    <div class="kb-field kb-span-2">
+                        <label>Способ связи</label>
+                        <div class="kb-radio">
+                            <label><input type="radio" name="contact_method" value="Звонок" checked> Звонок</label>
+                            <label><input type="radio" name="contact_method" value="WhatsApp"> WhatsApp</label>
+                            <label><input type="radio" name="contact_method" value="Telegram"> Telegram</label>
+                            <label><input type="radio" name="contact_method" value="Email"> Email</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="kb-actions">
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                    <a href="#footer_cta" class="btn btn-secondary">Закрыть</a>
+                </div>
+                <div class="kb-note mono" style="color:#555; margin-top:14px;">
+                    // Нажимая “Отправить”, вы соглашаетесь на обратную связь от KARTEL Boats.
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- MODAL (SHIPYARD RESTORED) -->
     <div id="shipyard_modal" class="modal">
         <a href="#engineering_dna" class="modal__overlay" aria-label="Закрыть"></a>
-
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Технологии верфи">
             <div class="modal__header">
                 <div class="mono">// SHIPYARD TECH</div>
                 <a href="#engineering_dna" class="modal__close" aria-label="Закрыть">✕</a>
             </div>
-
             <h2>Технологии верфи</h2>
             <p>Инженерный премиум без глянца. Снаружи — силовая геометрия и тяжёлая вода. Внутри — тишина, тепло и материалы, которые стареют красиво.</p>
-
             <div class="modal__grid">
                 <div class="modal__media">
                     <div class="modal__gallery">
-                        <a href="#shipyard_img_1" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_salon_goldenhour_06_4K.jpg" alt="Салон: панорамный свет, тёплый маршрут">
-                        </a>
-                        <a href="#shipyard_img_2" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44_salon_helm_warm-route_07_4K.jpg" alt="Пост управления: навигация и контроль">
-                        </a>
-                        <a href="#shipyard_img_3" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Нижняя каюта: уют и тишина">
-                        </a>
-                        <a href="#shipyard_img_4" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44_guest_bathroom_spa-details_02_4K.jpg" alt="Санузел: детали и материалы">
-                        </a>
-                        <a href="#shipyard_img_5" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_shower_zone_12_4K.jpg" alt="Душевая зона: камень, металл, тепло">
-                        </a>
-                        <a href="#shipyard_img_6" class="modal__thumbLink">
-                            <img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_engine-room_clean_13_4K.jpg" alt="Техотсек: аккуратная силовая сборка">
-                        </a>
+                        <a href="#shipyard_img_1" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_salon_goldenhour_06_4K.jpg" alt="Салон: панорамный свет, тёплый маршрут" loading="lazy"></a>
+                        <a href="#shipyard_img_2" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44_salon_helm_warm-route_07_4K.jpg" alt="Пост управления: навигация и контроль" loading="lazy"></a>
+                        <a href="#shipyard_img_3" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Нижняя каюта: уют и тишина" loading="lazy"></a>
+                        <a href="#shipyard_img_4" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44_guest_bathroom_spa-details_02_4K.jpg" alt="Санузел: детали и материалы" loading="lazy"></a>
+                        <a href="#shipyard_img_5" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_shower_zone_12_4K.jpg" alt="Душевая зона: камень, металл, тепло" loading="lazy"></a>
+                        <a href="#shipyard_img_6" class="modal__thumbLink"><img class="modal__thumb" src="images/shipyard/T-Rex44Cruiser_engine-room_clean_13_4K.jpg" alt="Техотсек: аккуратная силовая сборка" loading="lazy"></a>
                     </div>
                     <div class="mono" style="margin-top:12px; color:#666;">// interior / details / production</div>
                 </div>
-
                 <div class="modal__content">
-                    <div class="modal__block">
-                        <div class="mono">// Материалы</div>
-                        <p>Авиационный алюминий и честная сборка. В отделке — натуральные породы дерева (дуб/тик) и тактильные материалы без компромиссов.</p>
-                    </div>
-
-                    <div class="modal__block">
-                        <div class="mono">// Силовая часть</div>
-                        <p>Киль и борт — как у боевого катера. Силовой набор рассчитан на “тяжёлую воду” и дальние переходы, а не на витрину.</p>
-                    </div>
-
-                    <div class="modal__block">
-                        <div class="mono">// Оборудование</div>
-                        <p>Навигация, электрика и комплектующие — от проверенных мировых производителей. Ставим то, что работает в реальных условиях, а не “для галочки”.</p>
-                    </div>
-
-                    <div class="modal__block">
-                        <div class="mono">// Русская душа</div>
-                        <p>Корпус сделан на Волге. Это про характер, про маршрут и про уважение к металлу — спокойно, точно, навсегда.</p>
+                    <div class="modal__block"><div class="mono">// Материалы</div><p>Авиационный алюминий и честная сборка. В отделке — натуральные породы дерева (дуб/тик) и тактильные материалы без компромиссов.</p></div>
+                    <div class="modal__block"><div class="mono">// Силовая часть</div><p>Киль и борт — как у боевого катера. Силовой набор рассчитан на “тяжёлую воду” и дальние переходы, а не на витрину.</p></div>
+                    <div class="modal__block"><div class="mono">// Оборудование</div><p>Навигация, электрика и комплектующие — от проверенных мировых производителей. Ставим то, что работает в реальных условиях, а не “для галочки”.</p></div>
+                    <div class="modal__block"><div class="mono">// Русская душа</div><p>Корпус сделан на Волге. Это про характер, про маршрут и про уважение к металлу — спокойно, точно, навсегда.</p></div>
+                    <div class="modal__content-actions" style="margin-top: 32px; border-top: 1px solid #333; padding-top: 24px;">
+                        <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; justify-content: center;">Перейти на сайт Корабельной Артели →</a>
                     </div>
                 </div>
             </div>
@@ -2104,70 +1455,46 @@
     <!-- FLYBRIDGE MODAL -->
     <div id="flybridge_modal" class="modal">
         <a href="#lineup_selector" class="modal__overlay" aria-label="Закрыть"></a>
-
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="T-Rex 44 Flybridge">
             <div class="modal__header">
                 <div class="mono">// MODEL OVERVIEW</div>
                 <a href="#lineup_selector" class="modal__close" aria-label="Закрыть">✕</a>
             </div>
-
             <h2>T-Rex 44 Flybridge</h2>
             <p>Броня снаружи, люкс внутри. Флагман экспедиционной серии с верхней палубой для полного контроля над горизонтом.</p>
-
             <div class="modal__grid">
-                <!-- Gallery Column -->
                 <div class="modal__media">
                     <div class="modal__gallery">
-                        <a href="#flybridge_img1" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_FRONT_RUNNING_LUX.jpg" alt="Front Running"></a>
-                        <a href="#flybridge_img2" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_01_STERN_LUX_MARINA_16x9_4K.jpg" alt="Stern Marina"></a>
-                        <a href="#flybridge_img3" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_04_GOLDEN_STORM_CHARGE.jpg" alt="Storm Charge"></a>
-                        <a href="#flybridge_img4" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_master-cabin_boutique-suite_03_4K.jpg" alt="Master Cabin"></a>
-                        <a href="#flybridge_img5" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Lower Cabin"></a>
-                        <a href="#flybridge_img6" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_bathroom_shower-comfort_01_4K.jpg" alt="Bathroom"></a>
+                        <a href="#flybridge_img1" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_FRONT_RUNNING_LUX.jpg" alt="Front Running" loading="lazy"></a>
+                        <a href="#flybridge_img2" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_01_STERN_LUX_MARINA_16x9_4K.jpg" alt="Stern Marina" loading="lazy"></a>
+                        <a href="#flybridge_img3" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44Fly_04_GOLDEN_STORM_CHARGE.jpg" alt="Storm Charge" loading="lazy"></a>
+                        <a href="#flybridge_img4" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_master-cabin_boutique-suite_03_4K.jpg" alt="Master Cabin" loading="lazy"></a>
+                        <a href="#flybridge_img5" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Lower Cabin" loading="lazy"></a>
+                        <a href="#flybridge_img6" class="modal__thumbLink"><img class="modal__thumb" src="images/flybridge/T-Rex44_bathroom_shower-comfort_01_4K.jpg" alt="Bathroom" loading="lazy"></a>
                     </div>
                     <div class="mono" style="margin-top:12px; color:#666;">// Exterior / Interior</div>
-                    
                     <div class="modal__media-actions">
                         <a href="assets/brochures/flybridge/t-rex-fly-44.pdf" target="_blank" rel="noopener" class="btn-brochure btn-brochure--gallery">
                             <span class="pdf-badge">PDF</span> Скачать буклет <span class="pdf-size">~5 МБ</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Text/Specs Column -->
                 <div class="modal__content">
-                    
                     <div class="modal__block">
                         <div class="mono" style="margin-bottom: 8px;">// ТТХ: Военная спецификация</div>
                         <ul class="spec-list">
-                            <li>
-                                <strong>Габариты:</strong> 13.3 × 3.67 м | Осадка 0.8 м
-                            </li>
-                            <li>
-                                <strong>Броня (АМГ5М):</strong> Киль 12мм, Днище 6мм, Борт 5мм, Транец 16мм
-                            </li>
-                            <li>
-                                <strong>Вместимость:</strong> 12 человек | Спальных мест: 6 (2 каюты)
-                            </li>
-                            <li>
-                                <strong>Автономность:</strong> Топливо 1200л | Вода 250л | Генератор 5кВт
-                            </li>
-                            <li>
-                                <strong>Комфорт:</strong> 2 гальюна + душ, Полная кухня, Бойлер 30л, Отопитель 8кВт
-                            </li>
-                            <li>
-                                <strong>Флайбридж:</strong> Второй пост / Солярий / Платформа для солнечных панелей
-                            </li>
-                            <li style="border-bottom: none;">
-                                <strong>Мощность:</strong> Подвесные двигатели суммарно до 1200 л.с.
-                            </li>
+                            <li><strong>Габариты:</strong> 13.3 × 3.67 м | Осадка 0.8 м</li>
+                            <li><strong>Броня (АМГ5М):</strong> Киль 12мм, Днище 6мм, Борт 5мм, Транец 16мм</li>
+                            <li><strong>Вместимость:</strong> 12 человек | Спальных мест: 6 (2 каюты)</li>
+                            <li><strong>Автономность:</strong> Топливо 1200л | Вода 250л | Генератор 5кВт</li>
+                            <li><strong>Комфорт:</strong> 2 гальюна + душ, Полная кухня, Бойлер 30л, Отопитель 8кВт</li>
+                            <li><strong>Флайбридж:</strong> Второй пост / Солярий / Платформа для солнечных панелей</li>
+                            <li style="border-bottom: none;"><strong>Мощность:</strong> Подвесные двигатели суммарно до 1200 л.с.</li>
                         </ul>
                     </div>
-
                     <div class="modal__content-actions">
                         <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -2176,44 +1503,31 @@
     <!-- CRUISER MODAL -->
     <div id="cruiser_modal" class="modal">
         <a href="#lineup_selector" class="modal__overlay" aria-label="Закрыть"></a>
-
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="T-Rex 44 Cruiser">
             <div class="modal__header">
                 <div class="mono">// Круизная платформа T-Rex</div>
                 <a href="#lineup_selector" class="modal__close" aria-label="Закрыть">✕</a>
             </div>
-
             <h2>T-Rex 44 Cruiser</h2>
-            <p>
-                Мы не полируем пластик — мы строим катера для маршрутов. <br>
-                T-Rex 44 Cruiser создан на базе флагманского корпуса, усилен для тяжелой воды и дальних переходов. <br>
-                Морской алюминий АМГ5М, независимое отопление и кондиционирование, три каюты и до 10 спальных мест. <br>
-                Он одинаково уверен в штиле и шторме — универсальный перехватчик для семьи, команды или одиночных путешествий.
-            </p>
-
+            <p>Мы не полируем пластик — мы строим катера для маршрутов. <br>T-Rex 44 Cruiser создан на базе флагманского корпуса, усилен для тяжелой воды и дальних переходов. <br>Морской алюминий АМГ5М, независимое отопление и кондиционирование, три каюты и до 10 спальных мест. <br>Он одинаково уверен в штиле и шторме — универсальный перехватчик для семьи, команды или одиночных путешествий.</p>
             <div class="modal__grid">
-                <!-- Gallery Column -->
                 <div class="modal__media">
                     <div class="modal__gallery">
-                        <a href="#cruiser_img1" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_01_Aft_Terrace_Sunset.jpg" alt="Aft Terrace"></a>
-                        <a href="#cruiser_img2" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_02_Marina_Lounge.jpg" alt="Marina Lounge"></a>
-                        <a href="#cruiser_img3" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_cockpit_river-view_03_4K.jpg" alt="Cockpit View"></a>
-                        <a href="#cruiser_img4" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_mastercabin_evening_05_4K.jpg" alt="Master Cabin"></a>
-                        <a href="#cruiser_img5" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_bathroom_portlights_09_4K.jpg" alt="Bathroom"></a>
-                        <a href="#cruiser_img6" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_07_Stealth_Storm_Run.jpg" alt="Storm Run"></a>
+                        <a href="#cruiser_img1" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_01_Aft_Terrace_Sunset.jpg" alt="Aft Terrace" loading="lazy"></a>
+                        <a href="#cruiser_img2" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_02_Marina_Lounge.jpg" alt="Marina Lounge" loading="lazy"></a>
+                        <a href="#cruiser_img3" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_cockpit_river-view_03_4K.jpg" alt="Cockpit View" loading="lazy"></a>
+                        <a href="#cruiser_img4" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_mastercabin_evening_05_4K.jpg" alt="Master Cabin" loading="lazy"></a>
+                        <a href="#cruiser_img5" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/T-Rex44Cruiser_bathroom_portlights_09_4K.jpg" alt="Bathroom" loading="lazy"></a>
+                        <a href="#cruiser_img6" class="modal__thumbLink"><img class="modal__thumb" src="images/cruiser/TRex44CR_07_Stealth_Storm_Run.jpg" alt="Storm Run" loading="lazy"></a>
                     </div>
                     <div class="mono" style="margin-top:12px; color:#666;">// Exterior / Interior</div>
-
                     <div class="modal__media-actions">
                         <a href="assets/brochures/cruiser/t-rex-cruiser-44.pdf" target="_blank" rel="noopener" class="btn-brochure btn-brochure--gallery">
                             <span class="pdf-badge">PDF</span> Скачать буклет <span class="pdf-size">~5 МБ</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Text/Specs Column -->
                 <div class="modal__content">
-                    
                     <div class="modal__block">
                         <div class="mono" style="margin-bottom: 8px;">// ТТХ: Крейсерская спецификация</div>
                         <ul class="spec-list">
@@ -2228,11 +1542,9 @@
                             <li style="border-bottom: none;"><strong>Оборудование:</strong> Vetus, Osculati, Mastervolt, Victron, Dometic, Webasto, Quick</li>
                         </ul>
                     </div>
-
                     <div class="modal__content-actions">
                         <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -2241,30 +1553,22 @@
     <!-- NEW RGO MISSION MODAL (From Report) -->
     <div id="rgo_modal_full" class="modal">
         <a href="#geography_map" class="modal__overlay" aria-label="Закрыть"></a>
-        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none" style="z-index: 2001; position: fixed;">
-            <div class="rgo-modal-dialog pointer-events-auto animate-modal-enter" style="margin: 24px auto;">
-                
-                <!-- Modal Header -->
-                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-800 bg-[#0A0A0A] px-4 py-3" style="display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; border-bottom: 1px solid #222; padding: 16px 24px;">
-                    <div class="flex items-center gap-2" style="display: flex; gap: 12px; align-items: center;">
+        <div style="position: fixed; inset: 0; z-index: 2001; display: flex; align-items: center; justify-content: center; padding: 16px; pointer-events: none;">
+            <div class="rgo-modal-dialog animate-modal-enter" style="margin: 24px auto; pointer-events: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; border-bottom: 1px solid #222; padding: 16px 24px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
                         <span style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
                         <span style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Mission Status: <span style="color: #fff;">Active</span></span>
                     </div>
                     <a href="#geography_map" class="modal__close" aria-label="Закрыть">✕</a>
                 </div>
-
-                <!-- Modal Grid Content -->
                 <div class="rgo-modal-grid">
-                    
-                    <!-- Left Col: Ship Data -->
                     <div class="rgo-col-left custom-scrollbar">
                         <div class="aspect-video bg-gray-900 mb-6 relative overflow-hidden group" style="position: relative; margin-bottom: 24px;">
-                            <img src="assets/projects/rgo/rgo-hero.jpg" style="width: 100%; height: auto; display: block; border: 1px solid #333;" alt="Сибирский Исследователь">
+                            <img src="assets/projects/rgo/rgo-hero.jpg" style="width: 100%; height: auto; display: block; border: 1px solid #333;" alt="Сибирский Исследователь" loading="lazy">
                             <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.8); color: var(--accent); padding: 4px 8px; font-size: 10px; text-transform: uppercase;">River-Sea Class</div>
                         </div>
-
                         <h4 style="color: #fff; font-size: 18px; margin-bottom: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; text-transform: uppercase;">ТТХ ОБЪЕКТА</h4>
-                        
                         <dl class="rgo-dl">
                             <div class="rgo-dl-row"><dt class="rgo-dt">Верфь</dt> <dd class="rgo-dd">Корабельная артель (Саратов)</dd></div>
                             <div class="rgo-dl-row"><dt class="rgo-dt">Длина / Материал</dt> <dd class="rgo-dd">18 м / Сталь 09Г2С</dd></div>
@@ -2272,17 +1576,13 @@
                             <div class="rgo-dl-row"><dt class="rgo-dt">Усиление</dt> <dd class="rgo-dd rgo-dd-accent">Двойной киль (Ice Resistant)</dd></div>
                             <div class="rgo-dl-row"><dt class="rgo-dt">Назначение</dt> <dd class="rgo-dd">Гидрография, Экология, БПЛА</dd></div>
                         </dl>
-
                         <div style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.4); border: 1px solid #333; font-size: 12px; color: #888; line-height: 1.5;">
                             <strong style="color: #fff; display: block; margin-bottom: 4px;">Справка оператора:</strong>
                             Судно используется для комплексных экспедиций «Преображение Таймыра», включая археологическую разведку и экологический мониторинг с применением БПЛА.
                         </div>
                     </div>
-
-                    <!-- Right Col: Experts -->
                     <div class="rgo-col-right custom-scrollbar">
                         <h4 style="color: #fff; font-size: 18px; margin-bottom: 24px; border-bottom: 1px solid #333; padding-bottom: 8px; text-transform: uppercase;">ЭКСПЕРТНЫЙ СОВЕТ</h4>
-
                         <div class="rgo-quotes">
                             <blockquote class="rgo-quote">
                                 <p>«Запуск "Сибирского исследователя" — это уникальный проект, аналогов которому не было десятилетиями. Команда продумала мельчайшие детали, объединив науку и комфорт».</p>
@@ -2294,7 +1594,6 @@
                                     </div>
                                 </footer>
                             </blockquote>
-
                             <blockquote class="rgo-quote">
                                 <p>«Особенность судна — защитные накладки, усиливающие киль вдвое. Это позволяет работать в условиях сложной навигации, недоступных для обычных яхт».</p>
                                 <footer class="rgo-author">
@@ -2305,7 +1604,6 @@
                                     </div>
                                 </footer>
                             </blockquote>
-
                             <blockquote class="rgo-quote">
                                 <p>«Уникальное судно, балансирующее между низкими эксплуатационными расходами и высокой исследовательской емкостью. Построено так, чтобы сохранить экипаж в самых непредсказуемых водах Федерации».</p>
                                 <footer class="rgo-author">
@@ -2317,79 +1615,181 @@
                                 </footer>
                             </blockquote>
                         </div>
-
                         <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center;">
                             <span style="color: #555; font-size: 12px;">Оператор маршрутов: ООО «СЭТА»</span>
                             <a href="https://www.sibexplorer.ru/" target="_blank" style="color: var(--accent); font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase;">Забронировать экспедицию →</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TEST DRIVE MODAL (FIXED - MOVED TO END & UPDATED ID) -->
-    <div id="testdrive_modal" class="modal">
-        <a href="#footer_cta" class="modal__overlay" aria-label="Закрыть"></a>
+    <!-- LIGHTBOX MODALS FOR SHIPYARD IMAGES -->
+    <div id="shipyard_img_1" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_6" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44Cruiser_salon_goldenhour_06_4K.jpg" alt="Салон: панорамный свет, тёплый маршрут" loading="lazy">
+            <a href="#shipyard_img_2" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="shipyard_img_2" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_1" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44_salon_helm_warm-route_07_4K.jpg" alt="Пост управления: навигация и контроль" loading="lazy">
+            <a href="#shipyard_img_3" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="shipyard_img_3" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_2" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Нижняя каюта: уют и тишина" loading="lazy">
+            <a href="#shipyard_img_4" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="shipyard_img_4" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_3" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44_guest_bathroom_spa-details_02_4K.jpg" alt="Санузел: детали и материалы" loading="lazy">
+            <a href="#shipyard_img_5" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="shipyard_img_5" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_4" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44Cruiser_shower_zone_12_4K.jpg" alt="Душевая зона: камень, металл, тепло" loading="lazy">
+            <a href="#shipyard_img_6" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="shipyard_img_6" class="modal modal--media">
+        <a href="#shipyard_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#shipyard_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#shipyard_img_5" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/shipyard/T-Rex44Cruiser_engine-room_clean_13_4K.jpg" alt="Техотсек: аккуратная силовая сборка" loading="lazy">
+            <a href="#shipyard_img_1" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
 
-        <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Запрос на тест-драйв">
-            <div class="modal__header">
-                <div class="mono">// TEST DRIVE REQUEST</div>
-                <a href="#footer_cta" class="modal__close" aria-label="Закрыть">✕</a>
-            </div>
+    <!-- LIGHTBOX MODALS FOR FLYBRIDGE IMAGES -->
+    <div id="flybridge_img1" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img6" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44Fly_FRONT_RUNNING_LUX.jpg" alt="Front Running" loading="lazy">
+            <a href="#flybridge_img2" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="flybridge_img2" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img1" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44Fly_01_STERN_LUX_MARINA_16x9_4K.jpg" alt="Stern Marina" loading="lazy">
+            <a href="#flybridge_img3" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="flybridge_img3" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img2" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44Fly_04_GOLDEN_STORM_CHARGE.jpg" alt="Storm Charge" loading="lazy">
+            <a href="#flybridge_img4" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="flybridge_img4" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img3" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44_master-cabin_boutique-suite_03_4K.jpg" alt="Master Cabin" loading="lazy">
+            <a href="#flybridge_img5" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="flybridge_img5" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img4" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44_lower-cabin_family-cozy_04_4K.jpg" alt="Lower Cabin" loading="lazy">
+            <a href="#flybridge_img6" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="flybridge_img6" class="modal modal--media">
+        <a href="#flybridge_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#flybridge_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#flybridge_img5" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/flybridge/T-Rex44_bathroom_shower-comfort_01_4K.jpg" alt="Bathroom" loading="lazy">
+            <a href="#flybridge_img1" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
 
-            <h2>Запрос на тест-драйв</h2>
-            <p>Оставьте контакты — мы свяжемся и согласуем модель, локацию и удобное время. Быстро. По делу. Без спама.</p>
-
-            <!-- FORM (UI) -->
-            <form class="kb-form" action="https://formsubmit.co/REPLACE_ME" method="POST">
-                <input type="hidden" name="_subject" value="KARTEL | Запрос на тест-драйв">
-                <input type="hidden" name="_template" value="table">
-
-                <div class="kb-grid">
-                    <div class="kb-field">
-                        <label for="kb_phone">Телефон</label>
-                        <input id="kb_phone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
-                    </div>
-
-                    <div class="kb-field">
-                        <label for="kb_email">Email</label>
-                        <input id="kb_email" name="email" type="email" placeholder="name@example.com" required>
-                    </div>
-
-                    <div class="kb-field kb-span-2">
-                        <label for="kb_model">Интересующая модель</label>
-                        <select id="kb_model" name="model" required>
-                            <option value="" disabled selected>Выберите модель</option>
-                            <option>T-Rex Flybridge</option>
-                            <option>T-Rex Cruiser</option>
-                            <option>T-Rex Egoist</option>
-                            <option>T-Rex Family</option>
-                            <option>T-Rex Specialist</option>
-                        </select>
-                    </div>
-
-                    <div class="kb-field kb-span-2">
-                        <label>Способ связи</label>
-                        <div class="kb-radio">
-                            <label><input type="radio" name="contact_method" value="Звонок" checked> Звонок</label>
-                            <label><input type="radio" name="contact_method" value="WhatsApp"> WhatsApp</label>
-                            <label><input type="radio" name="contact_method" value="Telegram"> Telegram</label>
-                            <label><input type="radio" name="contact_method" value="Email"> Email</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="kb-actions">
-                    <button type="submit" class="btn btn-primary">Отправить</button>
-                    <a href="#footer_cta" class="btn btn-secondary">Закрыть</a>
-                </div>
-
-                <div class="kb-note mono" style="color:#555; margin-top:14px;">
-                    // Нажимая “Отправить”, вы соглашаетесь на обратную связь от KARTEL Boats.
-                </div>
-            </form>
+    <!-- LIGHTBOX MODALS FOR CRUISER IMAGES -->
+    <div id="cruiser_img1" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img6" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/TRex44CR_01_Aft_Terrace_Sunset.jpg" alt="Aft Terrace" loading="lazy">
+            <a href="#cruiser_img2" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="cruiser_img2" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img1" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/TRex44CR_02_Marina_Lounge.jpg" alt="Marina Lounge" loading="lazy">
+            <a href="#cruiser_img3" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="cruiser_img3" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img2" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/T-Rex44Cruiser_cockpit_river-view_03_4K.jpg" alt="Cockpit View" loading="lazy">
+            <a href="#cruiser_img4" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="cruiser_img4" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img3" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/T-Rex44Cruiser_mastercabin_evening_05_4K.jpg" alt="Master Cabin" loading="lazy">
+            <a href="#cruiser_img5" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="cruiser_img5" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img4" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/T-Rex44Cruiser_bathroom_portlights_09_4K.jpg" alt="Bathroom" loading="lazy">
+            <a href="#cruiser_img6" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
+        </div>
+    </div>
+    <div id="cruiser_img6" class="modal modal--media">
+        <a href="#cruiser_modal" class="modal__overlay" aria-label="Закрыть"></a>
+        <div class="modal__dialog modal__dialog--media">
+            <a href="#cruiser_modal" class="modal__close--media" aria-label="Закрыть">✕</a>
+            <a href="#cruiser_img5" class="media-nav media-nav--prev" aria-label="Предыдущее фото">‹</a>
+            <img class="modal__media" src="images/cruiser/TRex44CR_07_Stealth_Storm_Run.jpg" alt="Storm Run" loading="lazy">
+            <a href="#cruiser_img1" class="media-nav media-nav--next" aria-label="Следующее фото">›</a>
         </div>
     </div>
 
