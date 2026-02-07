@@ -525,6 +525,29 @@
             border-color: var(--accent); color: var(--accent);
         }
 
+        /* LINEUP SECTION PREMIUM BACKGROUND */
+        #lineup_selector {
+            position: relative;
+            background: linear-gradient(175deg, #050505 0%, #0a0a0a 40%, #060608 100%);
+            overflow: hidden;
+        }
+
+        #lineup_selector::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 600px 400px at 10% 20%, rgba(206, 254, 70, 0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 90% 80%, rgba(206, 254, 70, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #lineup_selector > .container {
+            position: relative;
+            z-index: 1;
+        }
+
         /* --- BENTO GRID RESTORED (CLASSIC PROPORTIONS) --- */
         .bento-grid {
             display: grid;
@@ -717,16 +740,27 @@
         }
 
         .concept-grid {
-            display: grid; gap: 24px; grid-template-columns: 1fr;
+            display: grid; gap: 28px; grid-template-columns: 1fr;
         }
 
         @media (min-width: 900px) {
-            .concept-grid { grid-template-columns: repeat(3, 1fr); }
+            .concept-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .concept-card {
-            background-color: var(--bg-card); border: var(--border-thin);
-            padding: 20px; display: flex; flex-direction: column; gap: 8px;
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .concept-card:hover {
+            border-color: rgba(206, 254, 70, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
 
         .concept-card h3 { margin-bottom: 4px; }
@@ -866,34 +900,28 @@
             inset: 0;
             z-index: 2000;
             display: none;
-            animation: fadeIn 0.3s ease;
         }
         .modal:target {
             display: block;
         }
 
+        /* Animations only for content modals, NOT lightboxes */
+        .modal:not(.modal--media) {
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal:not(.modal--media):target .modal__dialog {
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal:target .modal__dialog {
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal__overlay {
@@ -942,7 +970,7 @@
             color: rgba(255, 255, 255, 0.7);
             font-weight: 300;
             margin-bottom: 28px;
-            max-width: 700px;
+            max-width: 100%;
         }
 
         .modal__header {
@@ -1043,6 +1071,19 @@
             background: rgba(206, 254, 70, 0.02);
             border-left: 2px solid rgba(206, 254, 70, 0.15);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal__block::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .03) 25%, rgba(255, 255, 255, .03) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .03) 75%, rgba(255, 255, 255, .03) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .03) 25%, rgba(255, 255, 255, .03) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .03) 75%, rgba(255, 255, 255, .03) 76%, transparent 77%, transparent);
+            background-size: 30px 30px;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 0;
         }
         
         .modal__block:hover {
@@ -1158,86 +1199,81 @@
         .spec-list {
             list-style: none;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.65);
-            font-weight: 300;
+            font-weight: 400;
         }
         
-        .spec-list li {
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 10px 0 10px 28px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            line-height: 1.7;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards;
-        }
-        
-        /* Stagger animation for list items */
-        .spec-list li:nth-child(1) { animation-delay: 0.1s; }
-        .spec-list li:nth-child(2) { animation-delay: 0.2s; }
-        .spec-list li:nth-child(3) { animation-delay: 0.3s; }
-        .spec-list li:nth-child(4) { animation-delay: 0.4s; }
-        .spec-list li:nth-child(5) { animation-delay: 0.5s; }
-        .spec-list li:nth-child(6) { animation-delay: 0.6s; }
-        .spec-list li:nth-child(7) { animation-delay: 0.7s; }
-        .spec-list li:nth-child(8) { animation-delay: 0.8s; }
-        .spec-list li:nth-child(9) { animation-delay: 0.9s; }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Icon indicators before list items */
+        /* Icon indicators before list items - TECH LINE STYLE */
         .spec-list li::before {
-            content: '';
+            content: '>';
             position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            border: 1px solid rgba(206, 254, 70, 0.3);
-            background: rgba(206, 254, 70, 0.05);
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            width: auto;
+            height: auto;
+            background: none;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .spec-list li:hover {
-            border-bottom-color: rgba(206, 254, 70, 0.3);
-            padding-left: 32px;
-            background: rgba(206, 254, 70, 0.02);
+            border-bottom-color: rgba(206, 254, 70, 0.2);
+            padding-left: 22px;
+            background: linear-gradient(90deg, rgba(206, 254, 70, 0.04) 0%, transparent 60%);
         }
         
         .spec-list li:hover::before {
-            background: rgba(206, 254, 70, 0.2);
-            border-color: var(--accent);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 0 12px rgba(206, 254, 70, 0.4);
+            transform: translateY(-50%) translateX(2px);
+            text-shadow: 0 0 6px rgba(206, 254, 70, 0.6);
         }
         
-        .spec-list li strong {
-            color: rgba(255, 255, 255, 0.95);
-            margin-right: 8px;
-            font-weight: 500;
+        .spec-list li {
+            margin-bottom: 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding: 8px 0 8px 18px;
+            display: block;
+            line-height: 1.8;
             position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: fadeInUp 0.4s ease-out forwards;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            z-index: 1;
         }
         
-        /* Progress bar effect for numeric values */
-        .spec-list li:hover strong {
+        /* Stagger animation for list items */
+        .spec-list li:nth-child(1) { animation-delay: 0.05s; }
+        .spec-list li:nth-child(2) { animation-delay: 0.1s; }
+        .spec-list li:nth-child(3) { animation-delay: 0.15s; }
+        .spec-list li:nth-child(4) { animation-delay: 0.2s; }
+        .spec-list li:nth-child(5) { animation-delay: 0.25s; }
+        .spec-list li:nth-child(6) { animation-delay: 0.3s; }
+        .spec-list li:nth-child(7) { animation-delay: 0.35s; }
+        .spec-list li:nth-child(8) { animation-delay: 0.4s; }
+        .spec-list li:nth-child(9) { animation-delay: 0.45s; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .spec-list li strong {
             color: var(--accent);
+            margin-right: 6px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        
+        .spec-list li:hover strong {
+            color: #fff;
         }
         
         /* BROCHURE BUTTON STYLES */
@@ -1702,7 +1738,7 @@
                 <!-- NEW CONCEPT PLATFORM BLOCK -->
                 <div class="concept-platform">
                     <div class="mono">// Платформа T-Rex 2026</div>
-                    <p>Единый алюминиевый корпус и три направления: Egoist, Family и Specialist — одна платформа, три сценария использования.</p>
+                    <p>Единый алюминиевый корпус и два направления: Egoist и Specialist — одна платформа, два сценария использования.</p>
 
                     <div class="concept-grid">
                         <div class="concept-card">
@@ -1721,24 +1757,6 @@
                                 </div>
                             </div>
                             <p>Для драйва, скорости и личной свободы владельца.</p>
-                        </div>
-
-                        <div class="concept-card">
-                            <span class="badge badge-concept">Family</span>
-                            <h3>T-Rex Family</h3>
-                            <div class="concept-media concept-media--family">
-                                <input type="radio" name="family" id="family-1" checked>
-                                <input type="radio" name="family" id="family-2">
-                                <div class="concept-media-viewport">
-                                    <img src="images/concepts/family/concept-family-1.jpg" alt="T-Rex Family — кадр 1" class="concept-media-img img-1" loading="lazy">
-                                    <img src="images/concepts/family/concept-family-2.jpg" alt="T-Rex Family — кадр 2" class="concept-media-img img-2" loading="lazy">
-                                </div>
-                                <div class="concept-media-controls">
-                                    <label for="family-1" class="concept-arrow concept-arrow--prev">‹</label>
-                                    <label for="family-2" class="concept-arrow concept-arrow--next">›</label>
-                                </div>
-                            </div>
-                            <p>Для безопасных семейных маршрутов, детей и долгих стоянок на воде.</p>
                         </div>
 
                         <div class="concept-card">
