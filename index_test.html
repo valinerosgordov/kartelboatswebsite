@@ -530,6 +530,7 @@
             position: relative;
             background: linear-gradient(175deg, #050505 0%, #0a0a0a 40%, #060608 100%);
             overflow: hidden;
+            padding: 0;
         }
 
         #lineup_selector::before {
@@ -537,15 +538,82 @@
             position: absolute;
             inset: 0;
             background: 
-                radial-gradient(ellipse 600px 400px at 10% 20%, rgba(206, 254, 70, 0.03) 0%, transparent 70%),
-                radial-gradient(ellipse 500px 350px at 90% 80%, rgba(206, 254, 70, 0.02) 0%, transparent 70%);
+                radial-gradient(ellipse 800px 500px at 10% 20%, rgba(206, 254, 70, 0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 600px 400px at 90% 80%, rgba(206, 254, 70, 0.02) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
-        #lineup_selector > .container {
+        /* Grain texture — matching О KARTEL */
+        #lineup_selector::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Wide container — matching brand-wide (1600px) */
+        .lineup-wide {
             position: relative;
             z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 clamp(20px, 4vw, 80px) 80px;
+        }
+
+        /* Lineup header — premium style */
+        .lineup-header {
+            padding: 100px 0 48px;
+            text-align: center;
+        }
+
+        .lineup-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .lineup-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .lineup-title .year-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .lineup-divider {
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto 24px;
+        }
+
+        .lineup-lead {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .lineup-lead strong {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
         }
 
         /* --- BENTO GRID RESTORED (CLASSIC PROPORTIONS) --- */
@@ -559,15 +627,33 @@
         .card {
             background-color: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 40px;
+            padding: 48px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             position: relative;
             text-decoration: none;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 400px;
+            min-height: 500px;
             overflow: hidden;
+        }
+
+        /* Accent top line */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent 60%);
+            opacity: 0.4;
+            transition: opacity 0.4s ease;
+            z-index: 3;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card:hover {
@@ -594,13 +680,13 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0.35;
+            opacity: 0.5;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
         }
         
         .card:hover .card-bg {
-            opacity: 0.55;
+            opacity: 0.65;
             transform: scale(1.05);
         }
 
@@ -676,16 +762,16 @@
             z-index: 2;
         }
 
-        /* CONCEPT BANNER */
+        /* CONCEPT BANNER — Full-width cinematic */
         .concept-ego-preview {
-            margin-top: 48px;
-            border: 2px solid rgba(206, 254, 70, 0.2);
+            margin-top: 56px;
+            border: 1px solid rgba(206, 254, 70, 0.15);
             background-color: #0a0a0a;
             overflow: hidden;
             position: relative;
-            aspect-ratio: 16 / 9;
+            height: clamp(320px, 40vw, 480px);
             width: 100%;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
         }
 
         .concept-ego-preview::before {
@@ -699,10 +785,27 @@
             color: var(--accent);
             font-weight: 600;
             font-family: 'Courier New', Courier, monospace;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 1px solid rgba(206, 254, 70, 0.3);
+        }
+
+        /* Bottom gradient overlay with specs */
+        .concept-ego-preview::after {
+            content: 'T-REX PLATFORM · АМГ5М · BRUTAL LUXURY';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            color: rgba(206, 254, 70, 0.3);
+            text-align: right;
+            padding: 20px 32px;
+            background: linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 100%);
         }
 
         .concept-ego-slider {
@@ -730,13 +833,31 @@
             0% { opacity: 0; } 8% { opacity: 1; } 33% { opacity: 1; } 41% { opacity: 0; } 100% { opacity: 0; }
         }
 
-        /* CONCEPT PLATFORM */
+        /* CONCEPT PLATFORM — wider, more premium */
         .concept-platform {
-            margin-top: 32px; padding-top: 24px; border-top: var(--border-thin);
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+
+        .concept-platform > .mono {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
 
         .concept-platform > p {
-            margin-top: 8px; margin-bottom: 20px; max-width: 640px;
+            margin-top: 12px;
+            margin-bottom: 32px;
+            max-width: 700px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
         }
 
         .concept-grid {
@@ -750,11 +871,29 @@
         .concept-card {
             background-color: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 28px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        /* Accent top line for concept cards */
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent 50%);
+            opacity: 0.3;
+            transition: opacity 0.4s ease;
+        }
+
+        .concept-card:hover::before {
+            opacity: 0.8;
         }
 
         .concept-card:hover {
@@ -763,8 +902,21 @@
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .concept-card h3 { margin-bottom: 4px; }
-        .concept-card p { max-width: 100%; }
+        .concept-card h3 {
+            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .concept-card p {
+            max-width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+            line-height: 1.6;
+        }
 
         .badge-concept {
             background-color: rgba(206, 254, 70, 0.06);
@@ -799,15 +951,17 @@
         }
 
         .concept-arrow {
-            pointer-events: auto; width: 34px; height: 34px;
+            pointer-events: auto; width: 42px; height: 42px;
             display: inline-flex; align-items: center; justify-content: center;
-            border: var(--border-thin); background: rgba(0,0,0,0.55);
-            color: var(--accent); font-size: 18px; font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(0,0,0,0.65);
+            color: var(--accent); font-size: 22px; font-weight: 700;
             cursor: pointer; user-select: none; transition: var(--transition);
+            backdrop-filter: blur(8px);
         }
 
         .concept-arrow:hover {
-            border-color: var(--accent); background: rgba(0,0,0,0.75);
+            border-color: var(--accent); background: rgba(0,0,0,0.85);
+            box-shadow: 0 0 12px rgba(206, 254, 70, 0.2);
         }
 
         /* SPLIT SCREEN */
@@ -4996,14 +5150,17 @@
         </section>
 
         <!-- T-REX LINEUP SELECTOR -->
-        <section id="lineup_selector" class="section">
-            <div class="container">
-                <div class="mono" style="margin-bottom: 20px;">// Модельный ряд T-Rex</div>
-                <h2 class="section-title">Линейка T-Rex <span class="year-badge">2026</span></h2>
-                <p class="section-lead">Два катера на базе флагманского корпуса АМГ5М. <strong>Flybridge</strong> — верхняя палуба и открытый горизонт. <strong>Cruiser</strong> — три каюты и защищённый контур для тяжёлой воды.</p>
+        <section id="lineup_selector">
+            <div class="lineup-wide">
+                <div class="lineup-header scroll-reveal">
+                    <span class="lineup-label">// Модельный ряд T-Rex</span>
+                    <h2 class="lineup-title">Линейка T-Rex <span class="year-highlight">2026</span></h2>
+                    <div class="lineup-divider"></div>
+                    <p class="lineup-lead">Два катера на базе флагманского корпуса АМГ5М. <strong>Flybridge</strong> — верхняя палуба и открытый горизонт. <strong>Cruiser</strong> — три каюты и защищённый контур для тяжёлой воды.</p>
+                </div>
                 
                 <div class="bento-grid">
-                    <a href="#flybridge_modal" class="card card-large">
+                    <a href="#flybridge_modal" class="card card-large scroll-reveal">
                         <div class="card-bg bg-flybridge"></div>
                         <div class="card-content">
                             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
@@ -5015,7 +5172,7 @@
                         </div>
                     </a>
 
-                    <a href="#cruiser_modal" class="card card-medium">
+                    <a href="#cruiser_modal" class="card card-medium scroll-reveal">
                         <div class="card-bg bg-cruiser"></div>
                         <div class="card-content">
                             <span class="badge">В НАЛИЧИИ</span>
@@ -5025,8 +5182,8 @@
                     </a>
                 </div>
 
-                <!-- NEW CONCEPT EGO BANNER -->
-                <div class="concept-ego-preview">
+                <!-- CONCEPT EGO BANNER -->
+                <div class="concept-ego-preview scroll-reveal">
                     <div class="concept-ego-slider">
                         <img src="images/concepts/ego/t-rex-ego-concept.jpg" alt="T-Rex Ego — кадр 1" class="concept-ego-slide" loading="lazy">
                         <img src="images/concepts/ego/t-rex-ego-concept-2.jpg" alt="T-Rex Ego — кадр 2" class="concept-ego-slide" loading="lazy">
@@ -5034,13 +5191,13 @@
                     </div>
                 </div>
 
-                <!-- NEW CONCEPT PLATFORM BLOCK -->
-                <div class="concept-platform">
+                <!-- CONCEPT PLATFORM BLOCK -->
+                <div class="concept-platform scroll-reveal">
                     <div class="mono">// Платформа T-Rex 2026</div>
                     <p>Единый алюминиевый корпус и два направления: Egoist и Specialist — одна платформа, два сценария использования.</p>
 
                     <div class="concept-grid">
-                        <div class="concept-card">
+                        <div class="concept-card scroll-reveal">
                             <span class="badge badge-concept">Egoist</span>
                             <h3>T-Rex Egoist</h3>
                             <div class="concept-media concept-media--egoist">
@@ -5058,7 +5215,7 @@
                             <p>Для драйва, скорости и личной свободы владельца.</p>
                         </div>
 
-                        <div class="concept-card">
+                        <div class="concept-card scroll-reveal">
                             <span class="badge badge-concept">Specialist</span>
                             <h3>T-Rex Specialist</h3>
                             <div class="concept-media concept-media--specialist">
@@ -5503,9 +5660,13 @@
             </div>
             <h2>Запрос на тест-драйв</h2>
             <p>Оставьте контакты — мы свяжемся и согласуем модель, локацию и удобное время. Быстро. По делу. Без спама.</p>
-            <form class="kb-form" action="https://formsubmit.co/REPLACE_ME" method="POST">
+            <form class="kb-form" action="https://formsubmit.co/office@kartelboats.ru" method="POST">
                 <input type="hidden" name="_subject" value="KARTEL | Запрос на тест-драйв">
                 <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://kartelboats.ru/#footer_cta">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_autoresponse" value="Спасибо за ваш запрос! Команда KARTEL Boats свяжется с вами в ближайшее время.">
+                <input type="text" name="_honey" style="display:none">
                 <div class="kb-grid">
                     <div class="kb-field">
                         <label for="kb_phone">Телефон</label>
@@ -6186,6 +6347,41 @@
             }, { threshold: 0.08 });
 
             revealEls.forEach(el => revealObserver.observe(el));
+        })();
+    </script>
+
+    <!-- Universal scroll-reveal for .scroll-reveal class -->
+    <script>
+        (function() {
+            const scrollEls = document.querySelectorAll('.scroll-reveal');
+            scrollEls.forEach(el => {
+                // Skip already handled by about_kartel observer
+                if (el.closest('#about_kartel')) return;
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(24px)';
+                el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            });
+
+            let delay = 0;
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        delay += 80;
+                        const d = delay;
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, d);
+                        scrollObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+
+            scrollEls.forEach(el => {
+                if (!el.closest('#about_kartel')) {
+                    scrollObserver.observe(el);
+                }
+            });
         })();
     </script>
 
