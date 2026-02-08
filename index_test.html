@@ -851,28 +851,102 @@
             font-size: 12px; color: var(--text-muted); text-transform: uppercase;
         }
 
-        /* ROUTE STORIES */
-        .route-stories {
-            margin-top: 48px; display: grid; gap: 24px;
-            grid-template-columns: 1fr; text-align: left;
+        /* --- Routes Section --- */
+        .routes-section {
+            padding: 80px 20px;
+            background: #050505;
+            position: relative;
         }
 
+        .routes-header {
+            max-width: var(--container-width);
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+
+        .routes-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .routes-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .routes-divider {
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto;
+        }
+
+        .route-stories {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            gap: 24px;
+            grid-template-columns: 1fr;
+            text-align: left;
+        }
         @media (min-width: 900px) {
             .route-stories { grid-template-columns: 1fr 1fr; }
         }
 
         .route-card {
-            background-color: var(--bg-card); border: var(--border-thin);
-            padding: 24px; display: flex; flex-direction: column; gap: 16px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.35s ease;
         }
 
-        .route-meta { font-size: 11px; color: var(--accent); letter-spacing: 0.05em; }
-        .route-card h3 { margin-bottom: 4px; font-size: 18px; }
-        .route-card p { max-width: 100%; font-size: 14px; margin-bottom: 8px; }
+        .route-card:hover {
+            border-color: rgba(206, 254, 70, 0.2);
+            background: rgba(206, 254, 70, 0.02);
+        }
+
+        .route-meta {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .route-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 4px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .route-card p {
+            font-family: 'Montserrat', sans-serif;
+            max-width: 100%;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+        }
 
         .route-video {
-            width: 100%; border-radius: 4px; border: 1px solid #333;
-            background-color: #000; aspect-ratio: 16 / 9;
+            width: 100%;
+            border-radius: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: #000;
+            aspect-ratio: 16 / 9;
         }
 
         footer {
@@ -2812,9 +2886,9 @@
 
         /* RGO SECTION (Restored) */
         .glass-panel-rgo {
-            background: rgba(15, 15, 15, 0.75);
-            backdrop-filter: blur(16px) saturate(120%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px) saturate(130%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-left: 3px solid var(--accent);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9);
             position: relative; overflow: hidden;
@@ -2833,7 +2907,17 @@
         #geography_map {
             position: relative; min-height: 85vh; background-color: #050505;
             overflow: hidden; display: flex; align-items: center; justify-content: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
+        }
+
+        /* Smooth gradient bridge between О бренде and Партнёрство */
+        #geography_map::before {
+            content: '';
+            position: absolute;
+            top: -80px; left: 0; right: 0; height: 160px;
+            background: linear-gradient(180deg, #070707 0%, #050505 100%);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .map-bg-layer { position: absolute; inset: 0; z-index: 0; }
@@ -2859,21 +2943,41 @@
 
         @media (min-width: 900px) {
             .map-content-wrapper {
-                flex-direction: row; justify-content: space-between; align-items: flex-end;
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: flex-end;
             }
         }
 
         .map-label { display: none; }
-        
+
         @media (min-width: 900px) {
             .map-label { display: block; margin-bottom: 32px; }
-            .map-label h3 { color: rgba(255,255,255,0.4); font-size: 14px; letter-spacing: 0.3em; }
+            .map-label h3 {
+                color: rgba(255, 255, 255, 0.5);
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 11px;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+            }
             .map-label-line {
-                height: 64px; width: 1px; background-color: rgba(255,255,255,0.2); margin-top: 16px;
+                height: 64px; width: 1px;
+                background: linear-gradient(180deg, rgba(206, 254, 70, 0.3), rgba(255,255,255,0.1));
+                margin-top: 16px;
             }
         }
 
-        .rgo-panel-wrapper { width: 100%; max-width: 640px; }
+        .rgo-panel-wrapper { 
+            width: 100%; 
+            max-width: 780px;
+        }
+
+        @media (min-width: 900px) {
+            .rgo-panel-wrapper {
+                margin-right: 0;
+                margin-left: auto;
+            }
+        }
 
         .rgo-header {
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
@@ -2900,16 +3004,410 @@
         }
 
         .rgo-title-large {
-            font-size: clamp(24px, 5vw, 42px); line-height: 1; margin-bottom: 16px; color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 5vw, 42px);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.02em;
         }
 
         .rgo-desc {
-            color: #d1d5db; font-weight: 300; line-height: 1.6; margin-bottom: 32px;
-            border-left: 1px solid rgba(255,255,255,0.1); padding-left: 16px; font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            border-left: 2px solid rgba(206, 254, 70, 0.2);
+            padding-left: 20px;
+            font-size: 14px;
         }
-        @media(min-width: 768px) { .rgo-desc { font-size: 16px; } }
+        @media(min-width: 768px) { .rgo-desc { font-size: 15px; } }
 
-        .rgo-actions-row { display: flex; flex-wrap: wrap; gap: 16px; }
+        /* RGO Visual Stats */
+        .rgo-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .rgo-stats { grid-template-columns: 1fr; }
+        }
+
+        .rgo-stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.35s ease;
+        }
+
+        .rgo-stat:hover {
+            background: rgba(206,254,70,0.03);
+            border-color: rgba(206,254,70,0.2);
+            transform: translateY(-2px);
+        }
+
+        .rgo-stat-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(206,254,70,0.1);
+            border: 1px solid rgba(206,254,70,0.25);
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.35s ease;
+        }
+
+        .rgo-stat:hover .rgo-stat-icon {
+            background: rgba(206,254,70,0.15);
+            border-color: var(--accent);
+        }
+
+        /* Icon: Ship length */
+        .rgo-icon-length::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px; height: 2px;
+            background: var(--accent);
+        }
+
+        .rgo-icon-length::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 20%;
+            transform: translateY(-50%);
+            width: 0; height: 0;
+            border-left: 4px solid var(--accent);
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+        }
+
+        /* Icon: Range/autonomy */
+        .rgo-icon-range::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px; height: 16px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            border-right-color: transparent;
+            animation: spinSlow 3s linear infinite;
+        }
+
+        @keyframes spinSlow {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Icon: Ice/double keel */
+        .rgo-icon-ice::before {
+            content: '';
+            position: absolute;
+            top: 30%; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 10px solid var(--accent);
+        }
+
+        .rgo-icon-ice::after {
+            content: '';
+            position: absolute;
+            bottom: 30%; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 10px solid var(--accent);
+        }
+
+        .rgo-stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .rgo-stat-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .rgo-stat-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* RGO feature cards (Надёжность / Статус) */
+        .rgo-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .rgo-feature {
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.35s ease;
+        }
+
+        .rgo-feature:hover {
+            border-color: rgba(206, 254, 70, 0.3);
+            background: rgba(206, 254, 70, 0.03);
+        }
+
+        .rgo-feature h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* CSS-only icons for features */
+        .rgo-feature h4::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            background: rgba(206,254,70,0.1);
+            border: 1px solid rgba(206,254,70,0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .rgo-feature:hover h4::before {
+            background: rgba(206,254,70,0.2);
+            border-color: var(--accent);
+        }
+
+        /* Shield icon for "Надёжность" */
+        .rgo-feature:first-child h4::before {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        /* Star/badge icon for "Статус" */
+        .rgo-feature:last-child h4::before {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .rgo-feature p {
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+        }
+
+        @media (max-width: 480px) {
+            .rgo-features { grid-template-columns: 1fr; }
+        }
+
+        /* RGO News card */
+        .rgo-news {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.35s ease;
+        }
+
+        .rgo-news:hover {
+            border-color: rgba(206, 254, 70, 0.25);
+        }
+
+        .rgo-news-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rgo-news-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: antennaBlink 1.5s ease-in-out infinite;
+        }
+
+        .rgo-news h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .rgo-news p {
+            font-size: 12px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .rgo-news a {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s ease;
+        }
+
+        .rgo-news a:hover { opacity: 0.7; }
+
+        /* Visual enhancements for RGO panel */
+        .glass-panel-rgo .rgo-header {
+            position: relative;
+        }
+
+        .rgo-logo-small {
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .rgo-status-text {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-status-text::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(206,254,70,0.2), transparent);
+            animation: shimmerSlow 3s infinite;
+        }
+
+        @keyframes shimmerSlow {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Animated stats counters in features */
+        .rgo-feature h4::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.5s ease;
+        }
+
+        .rgo-feature {
+            position: relative;
+        }
+
+        .rgo-feature:hover h4::before {
+            height: 100%;
+        }
+
+        /* Floating particles effect for panel */
+        .glass-panel-rgo::before {
+            content: '';
+            position: absolute;
+            top: 10%; right: 5%;
+            width: 4px; height: 4px;
+            background: rgba(206,254,70,0.3);
+            border-radius: 50%;
+            animation: floatParticle1 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes floatParticle1 {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            25% { transform: translate(20px, -30px); opacity: 0.6; }
+            50% { transform: translate(-15px, -60px); opacity: 0.3; }
+            75% { transform: translate(10px, -30px); opacity: 0.6; }
+        }
+
+        /* Info icon animations */
+        .rgo-news-dot {
+            position: relative;
+        }
+
+        .rgo-news-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            animation: pingEffect 2s ease-out infinite;
+        }
+
+        @keyframes pingEffect {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Title highlight effect */
+        .rgo-title-large {
+            position: relative;
+            background: linear-gradient(90deg, #fff 0%, #fff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .glass-panel-rgo:hover .rgo-title-large {
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 50%, #fff 100%);
+            background-size: 200% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: titleGradient 2s ease-in-out;
+        }
+
+        @keyframes titleGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* EST badge pulse */
+        .rgo-est {
+            position: relative;
+            animation: estPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes estPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .rgo-actions-row { display: flex; flex-wrap: wrap; gap: 12px; }
         .rgo-actions-row .btn { flex: 1; text-align: center; }
         @media(min-width: 600px) { .rgo-actions-row .btn { flex: initial; } }
 
@@ -2922,51 +3420,642 @@
 
         /* RGO Modal Specifics */
         .rgo-modal-dialog {
-            background: #111; width: 100%; max-width: 1024px;
-            height: 90vh; border: 1px solid #333; display: flex;
-            flex-direction: column; overflow: hidden;
+            background: linear-gradient(160deg, #0d0d0d 0%, #111 40%, #0a0a0a 100%);
+            width: 100%;
+            max-width: 1280px;
+            height: 90vh;
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
         }
+
+        .rgo-modal-dialog::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated decorative corners */
+        .rgo-modal-dialog::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 80px; height: 80px;
+            border-top: 2px solid rgba(206,254,70,0.15);
+            border-left: 2px solid rgba(206,254,70,0.15);
+            z-index: 1;
+            pointer-events: none;
+            animation: cornerPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Floating particles in modal */
+        .rgo-modal-grid::before,
+        .rgo-modal-grid::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(206,254,70,0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .rgo-modal-grid::before {
+            top: 15%;
+            left: 10%;
+            animation: floatModal1 10s ease-in-out infinite;
+        }
+
+        .rgo-modal-grid::after {
+            bottom: 20%;
+            right: 15%;
+            animation: floatModal2 12s ease-in-out infinite;
+        }
+
+        @keyframes floatModal1 {
+            0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+            25% { transform: translate(30px, -40px); opacity: 0.7; }
+            50% { transform: translate(-20px, -80px); opacity: 0.4; }
+            75% { transform: translate(20px, -40px); opacity: 0.7; }
+        }
+
+        @keyframes floatModal2 {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            33% { transform: translate(-40px, 30px); opacity: 0.6; }
+            66% { transform: translate(20px, 60px); opacity: 0.3; }
+        }
+
         @media (min-width: 900px) { .rgo-modal-dialog { height: auto; max-height: 85vh; } }
 
-        .rgo-modal-grid {
-            display: grid; grid-template-columns: 1fr; height: 100%; overflow-y: auto;
+        /* Modal header bar */
+        .rgo-modal-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 14px 24px;
+            position: relative;
+            z-index: 1;
         }
+
+        .rgo-modal-bar-left {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .rgo-modal-status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: antennaBlink 1.5s ease-in-out infinite;
+        }
+
+        .rgo-modal-status-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(255,255,255,0.4);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .rgo-modal-status-text span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .rgo-modal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100%;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
         @media (min-width: 900px) {
             .rgo-modal-grid { grid-template-columns: 5fr 7fr; overflow: hidden; }
-            .rgo-col-left { border-right: 1px solid #333; overflow-y: auto; }
+            .rgo-col-left { border-right: 1px solid rgba(255,255,255,0.06); overflow-y: auto; }
             .rgo-col-right { overflow-y: auto; }
         }
 
-        .rgo-col-left { background: #161616; padding: 24px; }
-        .rgo-col-right { background: #0a0a0a; padding: 24px; }
+        .rgo-col-left {
+            background: rgba(22, 22, 22, 0.6);
+            padding: 24px;
+        }
+
+        .rgo-col-right {
+            background: rgba(5, 5, 5, 0.5);
+            padding: 24px;
+        }
+
         @media(min-width: 768px) { .rgo-col-left, .rgo-col-right { padding: 32px; } }
 
-        .rgo-dl { display: grid; gap: 12px; font-size: 14px; }
-        .rgo-dl-row {
-            display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 8px;
+        /* Hero image in modal */
+        .rgo-hero-wrap {
+            position: relative;
+            margin-bottom: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
         }
-        .rgo-dt { color: #888; }
-        .rgo-dd { color: #fff; font-weight: 500; text-align: right; }
+
+        .rgo-hero-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(206,254,70,0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .rgo-hero-wrap:hover::before {
+            opacity: 1;
+        }
+
+        .rgo-hero-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .rgo-hero-wrap:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .rgo-hero-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(12px);
+            color: var(--accent);
+            padding: 5px 14px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(206,254,70,0.2);
+            animation: badgeSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+            z-index: 2;
+        }
+
+        @keyframes badgeSlideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .rgo-hero-class {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(12px);
+            color: rgba(255,255,255,0.6);
+            padding: 5px 14px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            animation: badgeSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+            z-index: 2;
+        }
+
+        /* Section titles in modal */
+        .rgo-section-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-section-title::before {
+            content: '';
+            width: 3px;
+            height: 14px;
+            background: var(--accent);
+            flex-shrink: 0;
+            animation: barGrow 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        @keyframes barGrow {
+            from { height: 0; }
+            to { height: 14px; }
+        }
+
+        .rgo-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            animation: lineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+
+        @keyframes lineExpand {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        /* Spec list */
+        .rgo-dl { display: grid; gap: 0; font-size: 13px; }
+
+        .rgo-dl-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-dl-row::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .rgo-dl-row:hover::before {
+            width: 100%;
+        }
+
+        .rgo-dl-row:hover {
+            background: rgba(206, 254, 70, 0.03);
+            padding-left: 8px;
+        }
+
+        .rgo-dl-row:nth-child(odd) {
+            background: rgba(255,255,255,0.01);
+        }
+
+        .rgo-dt {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .rgo-dd {
+            color: #fff;
+            font-weight: 500;
+            text-align: right;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+
         .rgo-dd-accent { color: var(--accent); }
 
-        .rgo-quote {
-            position: relative; padding-left: 20px; border-left: 2px solid #333;
-            margin-bottom: 32px; transition: border-color 0.3s;
-        }
-        .rgo-quote:hover { border-left-color: var(--accent); }
-        .rgo-quote p { font-style: italic; color: #ccc; margin-bottom: 12px; font-size: 15px;}
-        
-        .rgo-author { display: flex; align-items: center; gap: 12px; }
-        
-        .rgo-author-avatar {
-            width: 36px; height: 36px; background: transparent; border: 1px solid #444;
-            color: var(--accent); display: flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
-            font-family: 'Courier New', Courier, monospace;
+        /* Operator note */
+        .rgo-operator-note {
+            margin-top: 24px;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(206, 254, 70, 0.03), rgba(206, 254, 70, 0.01));
+            border: 1px solid rgba(206, 254, 70, 0.1);
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
         }
 
-        .rgo-author-name { color: #fff; font-weight: 700; font-size: 14px; line-height: 1.2; }
-        .rgo-author-role { color: #666; font-size: 10px; text-transform: uppercase; }
+        .rgo-operator-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.4;
+        }
+
+        .rgo-operator-note::after {
+            content: '⚙';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 32px;
+            opacity: 0.04;
+            color: var(--accent);
+        }
+
+        .rgo-operator-note strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .rgo-operator-note strong::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: antennaBlink 2s ease-in-out infinite;
+        }
+
+        /* Expert quotes */
+        .rgo-quotes { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+
+        .rgo-quote {
+            position: relative;
+            padding: 16px 16px 16px 24px;
+            border-left: 2px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.01);
+            transition: all 0.4s ease;
+            margin-bottom: 0;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: quoteSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .rgo-quote:nth-child(1) { animation-delay: 0.1s; }
+        .rgo-quote:nth-child(2) { animation-delay: 0.2s; }
+        .rgo-quote:nth-child(3) { animation-delay: 0.3s; }
+        .rgo-quote:nth-child(4) { animation-delay: 0.4s; }
+        .rgo-quote:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes quoteSlideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .rgo-quote::before {
+            content: '"';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 40px;
+            line-height: 1;
+            color: rgba(206,254,70,0.08);
+            font-family: Georgia, serif;
+            pointer-events: none;
+        }
+
+        .rgo-quote:hover {
+            border-left-color: var(--accent);
+            background: rgba(206, 254, 70, 0.03);
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(206,254,70,0.06);
+        }
+
+        .rgo-quote:hover::before {
+            color: rgba(206,254,70,0.15);
+        }
+
+        .rgo-quote p {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 14px;
+            font-size: 13px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .rgo-author { display: flex; align-items: center; gap: 12px; }
+
+        .rgo-author-avatar {
+            width: 38px;
+            height: 38px;
+            background: rgba(206, 254, 70, 0.06);
+            border: 1px solid rgba(206, 254, 70, 0.2);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            font-family: 'Courier New', Courier, monospace;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-author-avatar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(206,254,70,0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .rgo-quote:hover .rgo-author-avatar {
+            transform: scale(1.1) rotate(5deg);
+            border-color: var(--accent);
+            background: rgba(206,254,70,0.12);
+        }
+
+        .rgo-quote:hover .rgo-author-avatar::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .rgo-author-name {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+
+        .rgo-author-role {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(255,255,255,0.35);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* Expert source tag */
+        .rgo-expert-source {
+            margin-top: 20px;
+            padding: 14px 18px;
+            background: rgba(0, 71, 187, 0.06);
+            border: 1px solid rgba(0, 71, 187, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-expert-source::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #0047BB;
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .rgo-expert-source:hover::before {
+            transform: scaleY(1);
+        }
+
+        .rgo-expert-source:hover {
+            border-color: rgba(0, 71, 187, 0.35);
+            background: rgba(0, 71, 187, 0.1);
+            transform: translateX(4px);
+        }
+
+        .rgo-expert-source-icon {
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(0, 71, 187, 0.35);
+            color: #0047BB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .rgo-expert-source:hover .rgo-expert-source-icon {
+            background: rgba(0, 71, 187, 0.15);
+            transform: rotate(360deg);
+        }
+
+        .rgo-expert-source a {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .rgo-expert-source a:hover { color: var(--accent); }
+
+        /* CTA footer in modal */
+        .rgo-modal-footer {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .rgo-modal-footer {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .rgo-modal-operator {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(255,255,255,0.3);
+            font-size: 11px;
+            letter-spacing: 0.05em;
+        }
+
+        .rgo-modal-cta {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 24px;
+            border: 1px solid rgba(206, 254, 70, 0.25);
+            background: rgba(206, 254, 70, 0.04);
+            transition: all 0.35s;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rgo-modal-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(206,254,70,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .rgo-modal-cta:hover::before {
+            left: 100%;
+        }
+
+        .rgo-modal-cta:hover {
+            background: rgba(206, 254, 70, 0.1);
+            border-color: rgba(206, 254, 70, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(206,254,70,0.15);
+        }
 
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #111; }
@@ -3113,8 +4202,8 @@
                 <a href="#lineup_selector" class="nav-link">Наследие</a>
                 <a href="#about_kartel" class="nav-link">О Бренде</a>
                 <a href="#shipyard_modal" class="nav-link">Концепция</a>
-                <a href="#geography_map" class="nav-link">Интерьер</a>
-                <a href="#route_stories" class="nav-link">Спецификация</a>
+                <a href="#geography_map" class="nav-link">Партнёрство</a>
+                <a href="#route_stories" class="nav-link">Маршруты</a>
                 <a href="#testdrive_modal" class="btn btn-primary nav-cta">Связаться с верфью</a>
             </nav>
         </div>
@@ -3378,11 +4467,11 @@
             </div>
             <div class="map-content-wrapper">
                 <div class="map-label">
-                    <h3>GEOGRAPHY</h3>
+                    <h3>Стратегическое партнёрство</h3>
                     <div class="map-label-line"></div>
                 </div>
                 <div class="rgo-panel-wrapper">
-                    <div class="glass-panel-rgo gpu-accelerated">
+                    <div class="glass-panel-rgo gpu-accelerated scroll-reveal">
                         <div class="rgo-header">
                             <div class="rgo-badge">
                                 <img src="assets/partners/rgo/rgo-logo.png" alt="РГО" class="rgo-logo-small" loading="lazy">
@@ -3392,37 +4481,83 @@
                         </div>
                         <h2 class="rgo-title-large">ФЛАГМАН «СИБИРСКИЙ ИССЛЕДОВАТЕЛЬ»</h2>
                         <p class="rgo-desc">18-метровый стальной титан класса «река-море». Создан на тех же стапелях, что и флот KARTEL, для выполнения миссий Русского географического общества в высоких широтах Арктики.</p>
+
+                        <!-- Visual stats -->
+                        <div class="rgo-stats">
+                            <div class="rgo-stat">
+                                <div class="rgo-stat-icon rgo-icon-length"></div>
+                                <div class="rgo-stat-info">
+                                    <div class="rgo-stat-value" data-target="18">0</div>
+                                    <div class="rgo-stat-label">метров длина</div>
+                                </div>
+                            </div>
+                            <div class="rgo-stat">
+                                <div class="rgo-stat-icon rgo-icon-range"></div>
+                                <div class="rgo-stat-info">
+                                    <div class="rgo-stat-value" data-target="1300">0</div>
+                                    <div class="rgo-stat-label">миль автономность</div>
+                                </div>
+                            </div>
+                            <div class="rgo-stat">
+                                <div class="rgo-stat-icon rgo-icon-ice"></div>
+                                <div class="rgo-stat-info">
+                                    <div class="rgo-stat-value" data-target="2">0</div>
+                                    <div class="rgo-stat-label">x усиление киля</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rgo-features">
+                            <div class="rgo-feature">
+                                <h4>Надёжность</h4>
+                                <p>Технологии, одобренные РГО для Крайнего Севера.</p>
+                            </div>
+                            <div class="rgo-feature">
+                                <h4>Статус</h4>
+                                <p>Владение судном экспедиционного класса, а не просто яхтой.</p>
+                            </div>
+                        </div>
+
                         <div class="rgo-actions-row">
                             <a href="#rgo_modal_full" class="btn btn-primary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
                             <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff;">RGO.RU</a>
+                        </div>
+
+                        <div class="rgo-news">
+                            <div class="rgo-news-label"><span class="rgo-news-dot"></span> Дневник экспедиции</div>
+                            <h4>«Сибирский исследователь» встал на зимовку</h4>
+                            <p>Экспедиционное судно, ставшее прообразом наших проектов, завершило навигацию. Мы гордимся причастностью к исследованиям РГО и продолжаем строить суда, готовые к таким же суровым испытаниям.</p>
+                            <a href="https://rgo.ru/activity/redaction/news/sibirskiy-issledovatel-vstal-na-zimovku/" target="_blank" rel="noopener">Читать на сайте РГО →</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section style="padding: 40px 0; border-bottom: 1px solid #111;">
-            <div class="container">
-                <a href="#route_stories" class="btn btn-secondary">Истории маршрутов</a>
-                <div id="route_stories" class="route-stories">
-                    <div class="route-card">
-                        <div class="route-meta mono">// СИБИРСКИЙ МАРШРУТ</div>
-                        <h3>Маршрут «Сибирский исследователь»</h3>
-                        <p>Экспедиционный корпус, построенный для географического общества. Холодная вода, длинные переходы и режим, где важны запас прочности, автономность и доверие к железу.</p>
-                        <video class="route-video" controls preload="none">
-                            <source src="videos/route-siberian-explorer.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает воспроизведение видео.
-                        </video>
-                    </div>
-                    <div class="route-card">
-                        <div class="route-meta mono">// МАРШРУТ НА ВОЛГЕ</div>
-                        <h3>Маршрут «T-Rex на Волге»</h3>
-                        <p>Частный T-Rex на своей домашней акватории. Маршрут, где Волга превращается в личную трассу: быстрые переходы, стоянки в тихих бухтах и жизнь на борту вместо берега.</p>
-                        <video class="route-video" controls preload="none">
-                            <source src="videos/route-trex-volga.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает воспроизведение видео.
-                        </video>
-                    </div>
+        <section id="route_stories" class="routes-section">
+            <div class="routes-header scroll-reveal">
+                <div class="routes-label">// Экспедиции и акватории</div>
+                <h2 class="routes-title">Истории маршрутов</h2>
+                <div class="routes-divider"></div>
+            </div>
+            <div class="route-stories">
+                <div class="route-card scroll-reveal">
+                    <div class="route-meta">// СИБИРСКИЙ МАРШРУТ</div>
+                    <h3>Маршрут «Сибирский исследователь»</h3>
+                    <p>Экспедиционный корпус, построенный для географического общества. Холодная вода, длинные переходы и режим, где важны запас прочности, автономность и доверие к железу.</p>
+                    <video class="route-video" controls preload="none">
+                        <source src="videos/route-siberian-explorer.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает воспроизведение видео.
+                    </video>
+                </div>
+                <div class="route-card scroll-reveal">
+                    <div class="route-meta">// МАРШРУТ НА ВОЛГЕ</div>
+                    <h3>Маршрут «T-Rex на Волге»</h3>
+                    <p>Частный T-Rex на своей домашней акватории. Маршрут, где Волга превращается в личную трассу: быстрые переходы, стоянки в тихих бухтах и жизнь на борту вместо берега.</p>
+                    <video class="route-video" controls preload="none">
+                        <source src="videos/route-trex-volga.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает воспроизведение видео.
+                    </video>
                 </div>
             </div>
         </section>
@@ -3785,39 +4920,59 @@
         </div>
     </div>
 
-    <!-- NEW RGO MISSION MODAL (From Report) -->
+    <!-- RGO MISSION DOSSIER MODAL — Premium Redesign -->
     <div id="rgo_modal_full" class="modal">
         <a href="#geography_map" class="modal__overlay" aria-label="Закрыть"></a>
         <div style="position: fixed; inset: 0; z-index: 2001; display: flex; align-items: center; justify-content: center; padding: 16px; pointer-events: none;">
             <div class="rgo-modal-dialog animate-modal-enter" style="margin: 24px auto; pointer-events: auto;">
-                <div style="display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; border-bottom: 1px solid #222; padding: 16px 24px;">
-                    <div style="display: flex; gap: 12px; align-items: center;">
-                        <span style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
-                        <span style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Mission Status: <span style="color: #fff;">Active</span></span>
+
+                <!-- Modal Header Bar -->
+                <div class="rgo-modal-bar">
+                    <div class="rgo-modal-bar-left">
+                        <span class="rgo-modal-status-dot"></span>
+                        <span class="rgo-modal-status-text">Mission Status: <span>Active</span></span>
                     </div>
                     <a href="#geography_map" class="modal__close" aria-label="Закрыть">✕</a>
                 </div>
+
                 <div class="rgo-modal-grid">
+
+                    <!-- LEFT COLUMN: Photo + Specs -->
                     <div class="rgo-col-left custom-scrollbar">
-                        <div class="aspect-video bg-gray-900 mb-6 relative overflow-hidden group" style="position: relative; margin-bottom: 24px;">
-                            <img src="assets/projects/rgo/rgo-hero.jpg" style="width: 100%; height: auto; display: block; border: 1px solid #333;" alt="Сибирский Исследователь" loading="lazy">
-                            <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.8); color: var(--accent); padding: 4px 8px; font-size: 10px; text-transform: uppercase;">River-Sea Class</div>
+
+                        <!-- Hero photo -->
+                        <div class="rgo-hero-wrap">
+                            <img src="assets/projects/rgo/rgo-hero.jpg" alt="Сибирский Исследователь" loading="lazy">
+                            <div class="rgo-hero-badge">River-Sea Class</div>
+                            <div class="rgo-hero-class">18m / Steel 09Г2С</div>
                         </div>
-                        <h4 style="color: #fff; font-size: 18px; margin-bottom: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; text-transform: uppercase;">ТТХ ОБЪЕКТА</h4>
+
+                        <!-- TTX Section -->
+                        <h4 class="rgo-section-title">ТТХ объекта</h4>
                         <dl class="rgo-dl">
                             <div class="rgo-dl-row"><dt class="rgo-dt">Верфь</dt> <dd class="rgo-dd">Корабельная артель (Саратов)</dd></div>
+                            <div class="rgo-dl-row"><dt class="rgo-dt">Постройка</dt> <dd class="rgo-dd">5 лет проектирования и строительства</dd></div>
                             <div class="rgo-dl-row"><dt class="rgo-dt">Длина / Материал</dt> <dd class="rgo-dd">18 м / Сталь 09Г2С</dd></div>
-                            <div class="rgo-dl-row"><dt class="rgo-dt">Автономность</dt> <dd class="rgo-dd">1300 миль (4 суток)</dd></div>
+                            <div class="rgo-dl-row"><dt class="rgo-dt">Автономность</dt> <dd class="rgo-dd">1 300 миль (4 суток)</dd></div>
                             <div class="rgo-dl-row"><dt class="rgo-dt">Усиление</dt> <dd class="rgo-dd rgo-dd-accent">Двойной киль (Ice Resistant)</dd></div>
                             <div class="rgo-dl-row"><dt class="rgo-dt">Назначение</dt> <dd class="rgo-dd">Гидрография, Экология, БПЛА</dd></div>
+                            <div class="rgo-dl-row"><dt class="rgo-dt">Научное оборудование</dt> <dd class="rgo-dd">Современные системы навигации и связи</dd></div>
+                            <div class="rgo-dl-row"><dt class="rgo-dt">БПЛА</dt> <dd class="rgo-dd rgo-dd-accent">Борт. платформа для беспилотников</dd></div>
                         </dl>
-                        <div style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.4); border: 1px solid #333; font-size: 12px; color: #888; line-height: 1.5;">
-                            <strong style="color: #fff; display: block; margin-bottom: 4px;">Справка оператора:</strong>
-                            Судно используется для комплексных экспедиций «Преображение Таймыра», включая археологическую разведку и экологический мониторинг с применением БПЛА.
+
+                        <!-- Operator note -->
+                        <div class="rgo-operator-note">
+                            <strong>// Справка оператора</strong>
+                            Судно используется для комплексных экспедиций «Преображение Таймыра», включая обследование Арктической территории Красноярского края, акватории Енисея и его притоков, береговой линии Карского моря и моря Лаптевых. Использование БПЛА с борта значительно расширяет возможности наблюдений и сокращает расходы на вертолётные работы.
                         </div>
+
                     </div>
+
+                    <!-- RIGHT COLUMN: Expert Opinions + CTA -->
                     <div class="rgo-col-right custom-scrollbar">
-                        <h4 style="color: #fff; font-size: 18px; margin-bottom: 24px; border-bottom: 1px solid #333; padding-bottom: 8px; text-transform: uppercase;">ЭКСПЕРТНЫЙ СОВЕТ</h4>
+
+                        <h4 class="rgo-section-title">Экспертный совет</h4>
+
                         <div class="rgo-quotes">
                             <blockquote class="rgo-quote">
                                 <p>«Запуск "Сибирского исследователя" — это уникальный проект, аналогов которому не было десятилетиями. Команда продумала мельчайшие детали, объединив науку и комфорт».</p>
@@ -3829,6 +4984,18 @@
                                     </div>
                                 </footer>
                             </blockquote>
+
+                            <blockquote class="rgo-quote">
+                                <p>«Новейшее экспедиционное судно построено на верфи в Саратове и торжественно отправлено в Красноярск. 18-метровое стальное судно класса река-море возводили 5 лет. Это уникальный вклад в российскую науку и географию».</p>
+                                <footer class="rgo-author">
+                                    <div class="rgo-author-avatar">ЭК</div>
+                                    <div>
+                                        <div class="rgo-author-name">Экспертный клуб</div>
+                                        <div class="rgo-author-role">Экспертная оценка проекта</div>
+                                    </div>
+                                </footer>
+                            </blockquote>
+
                             <blockquote class="rgo-quote">
                                 <p>«Особенность судна — защитные накладки, усиливающие киль вдвое. Это позволяет работать в условиях сложной навигации, недоступных для обычных яхт».</p>
                                 <footer class="rgo-author">
@@ -3839,8 +5006,9 @@
                                     </div>
                                 </footer>
                             </blockquote>
+
                             <blockquote class="rgo-quote">
-                                <p>«Уникальное судно, балансирующее между низкими эксплуатационными расходами и высокой исследовательской емкостью. Построено так, чтобы сохранить экипаж в самых непредсказуемых водах Федерации».</p>
+                                <p>«Уникальное судно, балансирующее между низкими эксплуатационными расходами и высокой исследовательской ёмкостью. Построено так, чтобы сохранить экипаж в самых непредсказуемых водах Федерации».</p>
                                 <footer class="rgo-author">
                                     <div class="rgo-author-avatar">ИЕ</div>
                                     <div>
@@ -3849,11 +5017,31 @@
                                     </div>
                                 </footer>
                             </blockquote>
+
+                            <blockquote class="rgo-quote">
+                                <p>«Специалисты РГО будут работать над проектами по обследованию Арктики, акватории Енисея, а также разрабатывать новые маршруты и развивать водный туризм на территории Красноярского края».</p>
+                                <footer class="rgo-author">
+                                    <div class="rgo-author-avatar">РГО</div>
+                                    <div>
+                                        <div class="rgo-author-name">Русское географическое общество</div>
+                                        <div class="rgo-author-role">Официальная позиция</div>
+                                    </div>
+                                </footer>
+                            </blockquote>
                         </div>
-                        <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="color: #555; font-size: 12px;">Оператор маршрутов: ООО «СЭТА»</span>
-                            <a href="https://www.sibexplorer.ru/" target="_blank" style="color: var(--accent); font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase;">Забронировать экспедицию →</a>
+
+                        <!-- Source reference -->
+                        <div class="rgo-expert-source">
+                            <div class="rgo-expert-source-icon">i</div>
+                            <a href="https://expert-club.online/news/v-krasnoyarsk-iz-saratova-pribudet-unikalnoe-ekspeditsionnoe-sudno" target="_blank" rel="noopener">Экспертный клуб: полная публикация →</a>
                         </div>
+
+                        <!-- Footer CTA -->
+                        <div class="rgo-modal-footer">
+                            <span class="rgo-modal-operator">Оператор маршрутов: ООО «СЭТА»</span>
+                            <a href="https://www.sibexplorer.ru/" target="_blank" rel="noopener" class="rgo-modal-cta">Забронировать экспедицию →</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -4134,6 +5322,39 @@
             }, { threshold: 0.08 });
 
             revealEls.forEach(el => revealObserver.observe(el));
+        })();
+    </script>
+
+    <!-- RGO Panel: Animated Stats -->
+    <script>
+        (function() {
+            function animateRGOStat(el) {
+                const target = parseInt(el.dataset.target);
+                if (isNaN(target)) return;
+                const duration = 2000;
+                const start = performance.now();
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const ease = 1 - Math.pow(2, -10 * progress);
+                    el.textContent = Math.round(target * ease);
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target;
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const rgoStats = document.querySelectorAll('.rgo-stat-value[data-target]');
+            const rgoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateRGOStat(entry.target);
+                        rgoObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            rgoStats.forEach(stat => rgoObserver.observe(stat));
         })();
     </script>
 
