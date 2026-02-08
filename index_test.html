@@ -1362,6 +1362,600 @@
            .modal__content-actions { flex-direction: row; align-items: center; }
         }
 
+        /* ====== ABOUT KARTEL SECTION ====== */
+        #about_kartel {
+            position: relative;
+            background: linear-gradient(180deg, #050505 0%, #0a0a0a 40%, #070707 100%);
+            overflow: hidden;
+            padding: 0;
+        }
+
+        #about_kartel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 900px 600px at 75% 20%, rgba(206, 254, 70, 0.025) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 400px at 10% 80%, rgba(206, 254, 70, 0.015) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #about_kartel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Wide container for brand section */
+        .brand-wide {
+            position: relative;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 clamp(20px, 4vw, 80px);
+        }
+
+        /* Header row */
+        .brand-header {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .brand-est {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(206, 254, 70, 0.2);
+        }
+
+        .brand-logo-wrap {
+            margin-bottom: 28px;
+        }
+
+        .brand-logo-img {
+            height: clamp(48px, 7vw, 80px);
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: filter 0.4s ease;
+        }
+
+        .brand-logo-wrap:hover .brand-logo-img {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
+        }
+
+        .brand-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Two-column main layout */
+        .brand-main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        @media (min-width: 960px) {
+            .brand-main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Left column: philosophy */
+        .brand-left {
+            padding: 60px clamp(20px, 4vw, 80px) 60px;
+        }
+
+        .brand-left h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-left > p {
+            font-size: 15px;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .brand-quote {
+            border-left: 3px solid var(--accent);
+            padding: 24px 28px;
+            margin: 0 0 36px;
+            background: rgba(206, 254, 70, 0.025);
+            font-style: italic;
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            position: relative;
+        }
+
+        .brand-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            font-size: 52px;
+            color: var(--accent);
+            opacity: 0.35;
+            font-style: normal;
+            line-height: 1;
+        }
+
+        .brand-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .brand-value-card {
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.35s ease;
+        }
+
+        .brand-value-card:hover {
+            border-color: rgba(206, 254, 70, 0.3);
+            transform: translateY(-2px);
+            background: rgba(206, 254, 70, 0.03);
+        }
+
+        .brand-value-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .brand-value-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 300;
+        }
+
+        /* Right column: DNA / Танк во фраке */
+        .brand-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dna-video-wrap {
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-height: 350px;
+        }
+
+        .dna-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
+        }
+
+        .dna-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(5, 5, 5, 0.95) 100%);
+            pointer-events: none;
+        }
+
+        .dna-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px clamp(24px, 3vw, 48px);
+            z-index: 2;
+        }
+
+        .dna-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .dna-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .dna-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            margin-bottom: 24px;
+            max-width: 540px;
+        }
+
+        /* Animated counters row */
+        .dna-counters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(5, 5, 5, 0.9);
+        }
+
+        .counter-item {
+            padding: 28px 20px;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.3s ease;
+        }
+
+        .counter-item:last-child {
+            border-right: none;
+        }
+
+        .counter-item:hover {
+            background: rgba(206, 254, 70, 0.03);
+        }
+
+        .counter-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .counter-suffix {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .counter-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        /* Shipyard row */
+        .brand-shipyard-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        @media (min-width: 960px) {
+            .brand-shipyard-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .brand-shipyard {
+            padding: 56px clamp(20px, 4vw, 80px);
+        }
+
+        .brand-shipyard h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-shipyard > p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .fleet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+        }
+
+        .fleet-item {
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .fleet-item:hover {
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 8px;
+        }
+
+        .fleet-item::before {
+            content: '>';
+            color: var(--accent);
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .fleet-item:hover::before {
+            transform: translateX(3px);
+        }
+
+        .fleet-item strong {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .fleet-item span {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Materials grid - right side of shipyard row */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            border-left: none;
+        }
+
+        @media (min-width: 960px) {
+            .materials-grid {
+                border-left: 1px solid rgba(255, 255, 255, 0.06);
+            }
+        }
+
+        .material-card {
+            padding: 0;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.01);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .material-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+
+        .material-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Visual area — top half of card */
+        .mat-visual {
+            position: relative;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .material-card:hover .mat-visual {
+            background: rgba(206, 254, 70, 0.04);
+        }
+
+        /* Card text area — bottom half */
+        .mat-info {
+            padding: 20px 16px 24px;
+        }
+
+        .material-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        .material-card:hover h4 {
+            color: var(--accent);
+        }
+
+        .material-card p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        /* --- Individual card visuals (CSS-only) --- */
+
+        /* АМГ5М — Hexagonal molecule / alloy pattern */
+        .mat-alloy {
+            width: 56px;
+            height: 56px;
+            border: 2px solid rgba(206, 254, 70, 0.5);
+            transform: rotate(45deg);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .mat-alloy::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(206, 254, 70, 0.25);
+        }
+        .mat-alloy::after {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            background: rgba(206, 254, 70, 0.08);
+            border: 1px solid rgba(206, 254, 70, 0.15);
+        }
+        .material-card:hover .mat-alloy {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(206, 254, 70, 0.15);
+            transform: rotate(45deg) scale(1.08);
+        }
+
+        /* Дуб и Тик — Wood grain lines */
+        .mat-wood {
+            width: 64px;
+            height: 48px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .mat-wood span {
+            display: block;
+            height: 2px;
+            border-radius: 4px;
+            background: rgba(180, 140, 80, 0.5);
+            transition: all 0.5s ease;
+        }
+        .mat-wood span:nth-child(1) { width: 100%; }
+        .mat-wood span:nth-child(2) { width: 85%; margin-left: 8%; }
+        .mat-wood span:nth-child(3) { width: 95%; margin-left: 2%; }
+        .mat-wood span:nth-child(4) { width: 80%; margin-left: 12%; }
+        .mat-wood span:nth-child(5) { width: 90%; margin-left: 4%; }
+        .mat-wood span:nth-child(6) { width: 75%; margin-left: 10%; }
+        .material-card:hover .mat-wood span {
+            background: rgba(210, 170, 100, 0.8);
+        }
+
+        /* Made in Russia — Centered flag icon */
+        .mat-flag {
+            width: 56px;
+            height: 38px;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+        .mat-flag span {
+            flex: 1;
+        }
+        .mat-flag-w { background: #fff; }
+        .mat-flag-b { background: #0039A6; }
+        .mat-flag-r { background: #D52B1E; }
+        .material-card:hover .mat-flag {
+            transform: scale(1.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 30+ лет — Circular progress / clock motif */
+        .mat-years {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .mat-years::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: var(--accent);
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            transition: transform 1s ease;
+            border-radius: 1px;
+        }
+        .mat-years::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.5);
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(90deg);
+            border-radius: 1px;
+        }
+        .material-card:hover .mat-years {
+            border-color: rgba(206, 254, 70, 0.4);
+            box-shadow: 0 0 16px rgba(206, 254, 70, 0.1);
+        }
+        .material-card:hover .mat-years::before {
+            transform: translate(-50%, -100%) rotate(360deg);
+        }
+
+        @media (max-width: 767px) {
+            .brand-values {
+                grid-template-columns: 1fr;
+            }
+            .dna-counters {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .counter-item {
+                padding: 20px 12px;
+            }
+        }
+
+        @media (max-width: 959px) {
+            .brand-left {
+                padding: 40px 20px;
+            }
+            .brand-shipyard {
+                padding: 40px 20px;
+            }
+        }
+
         /* RGO SECTION (Restored) */
         .glass-panel-rgo {
             background: rgba(15, 15, 15, 0.75);
@@ -1663,7 +2257,7 @@
             </a>
             <nav class="nav-links">
                 <a href="#lineup_selector" class="nav-link">Наследие</a>
-                <a href="#engineering_dna" class="nav-link">О Бренде</a>
+                <a href="#about_kartel" class="nav-link">О Бренде</a>
                 <a href="#shipyard_modal" class="nav-link">Концепция</a>
                 <a href="#geography_map" class="nav-link">Интерьер</a>
                 <a href="#route_stories" class="nav-link">Спецификация</a>
@@ -1781,27 +2375,144 @@
             </div>
         </section>
 
-        <!-- ENGINEERING DNA -->
-        <section id="engineering_dna" class="section">
-            <div class="container">
-                <div class="split-screen">
-                    <div class="split-media">
-                        <video class="dna-video" autoplay muted loop playsinline>
-                            <source src="videos/welding-macro.mp4" type="video/mp4">
-                        </video>
+        <!-- ====== ABOUT KARTEL ====== -->
+        <section id="about_kartel">
+
+            <!-- Header -->
+            <div class="brand-wide">
+                <div class="brand-header">
+                    <div class="brand-est">EST. 1992</div>
+                    <div class="brand-logo-wrap">
+                        <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="brand-logo-img">
                     </div>
-                    <div class="split-content">
-                        <span class="mono" style="margin-bottom: 16px;">// DNA</span>
-                        <h2>Танк во фраке</h2>
-                        <p>Мы не полируем пластик. Мы варим авиационный алюминий АМГ5М. Киль 12 мм, борт 5 мм, силовой набор как у боевого катера. Внутри — тишина и комфорт, достойные пятизвёздочного отеля.</p>
-                        <div class="stat-grid">
-                            <div class="stat-item"><span>12 мм</span> <label>Киль</label></div>
-                            <div class="stat-item"><span>АМГ5М</span> <label>Сплав</label></div>
-                        </div>
-                        <a href="#shipyard_modal" class="btn btn-secondary">Технологии верфи</a>
-                    </div>
+                    <p class="brand-subtitle">Более 30 лет судостроительного опыта. От больших кораблей класса Luxury до современных экспедиционных катеров премиум-класса.</p>
                 </div>
             </div>
+
+            <!-- Two-column: Philosophy + DNA video -->
+            <div class="brand-main">
+
+                <!-- Left: Philosophy -->
+                <div class="brand-left">
+                    <h3>Философия KARTEL</h3>
+                    <p>Мы создаём новую культуру отдыха на воде. KARTEL — это не просто катера, это <strong style="color:#fff;font-weight:500;">право на свободу маршрута</strong>: доступ к эмоциям, приключениям и стилю жизни, которые невозможно купить иначе.</p>
+
+                    <blockquote class="brand-quote">
+                        Люди не покупают катер ради техники — они покупают новый сценарий жизни: свободу, уверенность и удовольствие от контроля над собственным маршрутом.
+                    </blockquote>
+
+                    <div class="brand-values">
+                        <div class="brand-value-card">
+                            <h4>Для Себя</h4>
+                            <p>Свобода выбора. Ценю своё время, отдых и максимум технических возможностей для нашего климата.</p>
+                        </div>
+                        <div class="brand-value-card">
+                            <h4>Для Своих</h4>
+                            <p>Семья, друзья, патриотизм. Единство духа с РГО и покорением Русского Севера.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Танк во фраке / DNA -->
+                <div class="brand-right">
+                    <div class="dna-video-wrap">
+                        <video autoplay muted loop playsinline>
+                            <source src="videos/welding-macro.mp4" type="video/mp4">
+                        </video>
+                        <div class="dna-video-overlay"></div>
+                        <div class="dna-content">
+                            <div class="dna-label">// DNA</div>
+                            <h3 class="dna-title">Танк во фраке</h3>
+                            <p class="dna-text">Мы не полируем пластик. Мы варим авиационный алюминий АМГ5М. Киль 12 мм, борт 5 мм, силовой набор как у боевого катера. Внутри — тишина и комфорт, достойные пятизвёздочного отеля.</p>
+                            <a href="#shipyard_modal" class="btn btn-secondary" style="font-size:12px;">Технологии верфи</a>
+                        </div>
+                    </div>
+
+                    <!-- Animated counters -->
+                    <div class="dna-counters">
+                        <div class="counter-item">
+                            <span class="counter-value"><span class="count-up" data-target="12">0</span><span class="counter-suffix"> мм</span></span>
+                            <span class="counter-label">Киль</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-value"><span class="count-up" data-target="5">0</span><span class="counter-suffix"> мм</span></span>
+                            <span class="counter-label">Борт</span>
+                        </div>
+                        <div class="counter-item">
+                            <span class="counter-value" style="font-size:clamp(18px,2.5vw,28px);letter-spacing:0.04em;">АМГ5М</span>
+                            <span class="counter-label">Авиасплав</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Shipyard + Materials row -->
+            <div class="brand-shipyard-row">
+
+                <!-- Left: Shipyard -->
+                <div class="brand-shipyard">
+                    <h3>Корабельная Артель</h3>
+                    <p>Верфь основана в <strong style="color:#fff;font-weight:500;">1992 году</strong> в Саратове на Волге. За три десятилетия мы спроектировали, построили и спустили на воду десятки уникальных судов.</p>
+
+                    <div class="fleet-list">
+                        <div class="fleet-item"><strong>Borei 62</strong> <span>— Luxury яхта река-море</span></div>
+                        <div class="fleet-item"><strong>Poseidon 90</strong> <span>— Экспедиционный корабль</span></div>
+                        <div class="fleet-item"><strong>Calypso 65</strong> <span>— Премиум круизер</span></div>
+                        <div class="fleet-item"><strong>Piligrim 65</strong> <span>— Траулер экспедиция</span></div>
+                    </div>
+
+                    <a href="https://k-artel.pro/" target="_blank" rel="noopener" class="btn btn-secondary">История верфи →</a>
+                </div>
+
+                <!-- Right: Materials 2x2 grid -->
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <div class="mat-visual">
+                            <div class="mat-alloy"></div>
+                        </div>
+                        <div class="mat-info">
+                            <h4>АМГ5М</h4>
+                            <p>Авиационный сплав для максимальной прочности</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <div class="mat-visual">
+                            <div class="mat-wood">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="mat-info">
+                            <h4>Дуб и Тик</h4>
+                            <p>Премиальные натуральные материалы</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <div class="mat-visual">
+                            <div class="mat-flag">
+                                <span class="mat-flag-w"></span>
+                                <span class="mat-flag-b"></span>
+                                <span class="mat-flag-r"></span>
+                            </div>
+                        </div>
+                        <div class="mat-info">
+                            <h4>Made in Russia</h4>
+                            <p>Полный цикл производства на Волге</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <div class="mat-visual">
+                            <div class="mat-years"></div>
+                        </div>
+                        <div class="mat-info">
+                            <h4>30+ лет</h4>
+                            <p>Опыт строительства уникальных судов</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
         <!-- GEOGRAPHY MAP REDESIGN -->
@@ -1986,11 +2697,11 @@
 
     <!-- MODAL (SHIPYARD RESTORED) -->
     <div id="shipyard_modal" class="modal">
-        <a href="#engineering_dna" class="modal__overlay" aria-label="Закрыть"></a>
+        <a href="#about_kartel" class="modal__overlay" aria-label="Закрыть"></a>
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Технологии верфи">
             <div class="modal__header">
                 <div class="mono">// SHIPYARD TECH</div>
-                <a href="#engineering_dna" class="modal__close" aria-label="Закрыть">✕</a>
+                <a href="#about_kartel" class="modal__close" aria-label="Закрыть">✕</a>
             </div>
             <h2>Технологии верфи</h2>
             <p>Инженерный премиум без глянца. Снаружи — силовая геометрия и тяжёлая вода. Внутри — тишина, тепло и материалы, которые стареют красиво.</p>
@@ -2402,6 +3113,71 @@
                 header.classList.remove('scrolled');
             }
         });
+    </script>
+
+    <!-- About Kartel: Counters + Scroll Reveal -->
+    <script>
+        (function() {
+            // ---- Animated counters ----
+            function animateCounter(el) {
+                const target = parseInt(el.dataset.target);
+                if (isNaN(target)) return;
+                const duration = 1600;
+                const start = performance.now();
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // easeOutExpo
+                    const ease = 1 - Math.pow(2, -10 * progress);
+                    el.textContent = Math.round(target * ease);
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const counters = document.querySelectorAll('.count-up');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(c => counterObserver.observe(c));
+
+            // ---- Scroll reveal ----
+            const revealEls = document.querySelectorAll(
+                '#about_kartel .brand-est, #about_kartel .brand-logo-wrap, #about_kartel .brand-subtitle, ' +
+                '#about_kartel .brand-left, #about_kartel .brand-right, ' +
+                '#about_kartel .brand-quote, #about_kartel .brand-value-card, ' +
+                '#about_kartel .brand-shipyard, #about_kartel .fleet-item, ' +
+                '#about_kartel .material-card, #about_kartel .counter-item'
+            );
+
+            revealEls.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(24px)';
+                el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            });
+
+            let stagger = 0;
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        stagger += 60;
+                        const d = stagger;
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, d);
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+
+            revealEls.forEach(el => revealObserver.observe(el));
+        })();
     </script>
 
 </body>
