@@ -856,12 +856,41 @@
             padding: 80px 20px;
             background: #050505;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle animated background pattern */
+        .routes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(90deg, 
+                    rgba(206,254,70,0.01) 0px, 
+                    transparent 1px, 
+                    transparent 80px, 
+                    rgba(206,254,70,0.01) 81px
+                ),
+                repeating-linear-gradient(0deg, 
+                    rgba(206,254,70,0.01) 0px, 
+                    transparent 1px, 
+                    transparent 80px, 
+                    rgba(206,254,70,0.01) 81px
+                );
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .routes-header {
             max-width: var(--container-width);
             margin: 0 auto 48px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .routes-label {
@@ -896,6 +925,8 @@
             gap: 24px;
             grid-template-columns: 1fr;
             text-align: left;
+            position: relative;
+            z-index: 1;
         }
         @media (min-width: 900px) {
             .route-stories { grid-template-columns: 1fr 1fr; }
@@ -908,19 +939,78 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            transition: all 0.35s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative corner */
+        .route-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-top: 2px solid rgba(206, 254, 70, 0.1);
+            border-right: 2px solid rgba(206, 254, 70, 0.1);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .route-card:hover::before {
+            opacity: 1;
+            width: 60px;
+            height: 60px;
+        }
+
+        .route-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .route-card:hover::after {
+            width: 100%;
         }
 
         .route-card:hover {
-            border-color: rgba(206, 254, 70, 0.2);
-            background: rgba(206, 254, 70, 0.02);
+            border-color: rgba(206, 254, 70, 0.25);
+            background: rgba(206, 254, 70, 0.03);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .route-meta {
             font-family: 'Courier New', Courier, monospace;
             font-size: 10px;
             color: var(--accent);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .route-meta::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: rotateMarker 3s linear infinite;
+        }
+
+        @keyframes rotateMarker {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
         }
 
         .route-card h3 {
@@ -929,6 +1019,11 @@
             font-size: 18px;
             font-weight: 500;
             color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .route-card:hover h3 {
+            color: var(--accent);
         }
 
         .route-card p {
@@ -941,12 +1036,68 @@
             font-weight: 300;
         }
 
+        /* Video with poster */
+        .route-video-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #000;
+            aspect-ratio: 16 / 9;
+            cursor: pointer;
+        }
+
         .route-video {
             width: 100%;
-            border-radius: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background-color: #000;
-            aspect-ratio: 16 / 9;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Compact play button */
+        .route-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 3px;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .route-video-wrapper:hover .route-play-btn {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+            border-color: rgba(206, 254, 70, 0.5);
+            color: var(--accent);
+        }
+
+        /* Duration badge */
+        .route-video-duration {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 4px 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
         }
 
         footer {
@@ -4545,19 +4696,27 @@
                     <div class="route-meta">// СИБИРСКИЙ МАРШРУТ</div>
                     <h3>Маршрут «Сибирский исследователь»</h3>
                     <p>Экспедиционный корпус, построенный для географического общества. Холодная вода, длинные переходы и режим, где важны запас прочности, автономность и доверие к железу.</p>
-                    <video class="route-video" controls preload="none">
-                        <source src="videos/route-siberian-explorer.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает воспроизведение видео.
-                    </video>
+                    <div class="route-video-wrapper">
+                        <video class="route-video" controls preload="metadata" poster="videos/posters/route-siberian-explorer-poster.png">
+                            <source src="videos/route-siberian-explorer.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает воспроизведение видео.
+                        </video>
+                        <div class="route-video-duration">2:14</div>
+                        <div class="route-play-btn">▶</div>
+                    </div>
                 </div>
                 <div class="route-card scroll-reveal">
                     <div class="route-meta">// МАРШРУТ НА ВОЛГЕ</div>
                     <h3>Маршрут «T-Rex на Волге»</h3>
                     <p>Частный T-Rex на своей домашней акватории. Маршрут, где Волга превращается в личную трассу: быстрые переходы, стоянки в тихих бухтах и жизнь на борту вместо берега.</p>
-                    <video class="route-video" controls preload="none">
-                        <source src="videos/route-trex-volga.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает воспроизведение видео.
-                    </video>
+                    <div class="route-video-wrapper">
+                        <video class="route-video" controls preload="metadata" poster="videos/posters/route-trex-volga-poster.png">
+                            <source src="videos/route-trex-volga.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает воспроизведение видео.
+                        </video>
+                        <div class="route-video-duration">1:42</div>
+                        <div class="route-play-btn">▶</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -5355,6 +5514,49 @@
             }, { threshold: 0.5 });
 
             rgoStats.forEach(stat => rgoObserver.observe(stat));
+        })();
+    </script>
+
+    <!-- Route Videos: Hide Play Button on Play -->
+    <script>
+        (function() {
+            const videoWrappers = document.querySelectorAll('.route-video-wrapper');
+            
+            videoWrappers.forEach(wrapper => {
+                const video = wrapper.querySelector('.route-video');
+                const playBtn = wrapper.querySelector('.route-play-btn');
+                
+                if (!video || !playBtn) return;
+
+                // Hide play button when video starts playing
+                video.addEventListener('play', () => {
+                    playBtn.style.opacity = '0';
+                    playBtn.style.pointerEvents = 'none';
+                });
+
+                // Show play button when video is paused
+                video.addEventListener('pause', () => {
+                    playBtn.style.opacity = '0.9';
+                    playBtn.style.pointerEvents = 'none';
+                });
+
+                // Show play button when video ends
+                video.addEventListener('ended', () => {
+                    playBtn.style.opacity = '0.9';
+                    playBtn.style.pointerEvents = 'none';
+                });
+
+                // Click on wrapper triggers video play
+                wrapper.addEventListener('click', (e) => {
+                    if (e.target === wrapper || e.target === playBtn) {
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    }
+                });
+            });
         })();
     </script>
 
