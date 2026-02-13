@@ -1,2 +1,5 @@
 # Игнорировать папку External_Files
 External_Files/
+
+# Claude Code
+.claude/

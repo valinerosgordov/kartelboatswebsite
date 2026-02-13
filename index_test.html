@@ -1097,37 +1097,43 @@
         }
 
         .concept-media input { position: absolute; opacity: 0; pointer-events: none; }
-        .concept-media-viewport { position: absolute; inset: 0; }
+        .concept-media-slider { position: absolute; inset: 0; }
 
-        .concept-media-img {
+        .concept-media-slide {
             position: absolute; inset: 0; width: 100%; height: 100%;
-            object-fit: cover; display: block; opacity: 0; transition: opacity 0.35s ease;
+            object-fit: cover; display: block; opacity: 0; transition: opacity 0.4s ease;
         }
 
-        .concept-media-img.img-1 { opacity: 1; }
-        .concept-media input:nth-of-type(1):checked ~ .concept-media-viewport .img-1 { opacity: 1; }
-        .concept-media input:nth-of-type(1):checked ~ .concept-media-viewport .img-2 { opacity: 0; }
-        .concept-media input:nth-of-type(2):checked ~ .concept-media-viewport .img-1 { opacity: 0; }
-        .concept-media input:nth-of-type(2):checked ~ .concept-media-viewport .img-2 { opacity: 1; }
+        /* Show active slide based on checked radio */
+        .concept-media input:nth-of-type(1):checked ~ .concept-media-slider .concept-media-slide:nth-child(1),
+        .concept-media input:nth-of-type(2):checked ~ .concept-media-slider .concept-media-slide:nth-child(2),
+        .concept-media input:nth-of-type(3):checked ~ .concept-media-slider .concept-media-slide:nth-child(3),
+        .concept-media input:nth-of-type(4):checked ~ .concept-media-slider .concept-media-slide:nth-child(4) { opacity: 1; }
 
-        .concept-media-controls {
-            position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between;
-            pointer-events: none; padding: 10px;
-        }
+        /* Navigation arrows */
+        .concept-media-nav { position: absolute; inset: 0; pointer-events: none; }
+        .concept-media-nav label { display: none; }
 
-        .concept-arrow {
-            pointer-events: auto; width: 42px; height: 42px;
+        .concept-nav-arrow {
+            width: 42px; height: 42px; position: absolute; top: 50%; transform: translateY(-50%);
             display: inline-flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(0,0,0,0.65);
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.65);
             color: var(--accent); font-size: 22px; font-weight: 700;
             cursor: pointer; user-select: none; transition: var(--transition);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px); pointer-events: auto;
         }
-
-        .concept-arrow:hover {
+        .concept-nav-arrow:hover {
             border-color: var(--accent); background: rgba(0,0,0,0.85);
-            box-shadow: 0 0 12px rgba(206, 254, 70, 0.2);
+            box-shadow: 0 0 12px rgba(206,254,70,0.2);
         }
+        .concept-nav-prev { left: 10px; }
+        .concept-nav-next { right: 10px; }
+
+        /* Show correct arrow pair for active slide */
+        .concept-media input:nth-of-type(1):checked ~ .concept-media-nav .nav-for-1,
+        .concept-media input:nth-of-type(2):checked ~ .concept-media-nav .nav-for-2,
+        .concept-media input:nth-of-type(3):checked ~ .concept-media-nav .nav-for-3,
+        .concept-media input:nth-of-type(4):checked ~ .concept-media-nav .nav-for-4 { display: inline-flex; }
 
         /* SPLIT SCREEN */
         .split-screen {
@@ -5530,36 +5536,52 @@
                             <span class="badge badge-concept">Egoist</span>
                             <h3>T-Rex Egoist</h3>
                             <div class="concept-media concept-media--egoist">
-                                <input type="radio" name="egoist" id="egoist-1" checked>
-                                <input type="radio" name="egoist" id="egoist-2">
-                                <div class="concept-media-viewport">
-                                    <img src="images/concepts/egoist/concept-egoist-1.jpg" alt="T-Rex Egoist — кадр 1" class="concept-media-img img-1" loading="lazy">
-                                    <img src="images/concepts/egoist/concept-egoist-2.jpg" alt="T-Rex Egoist — кадр 2" class="concept-media-img img-2" loading="lazy">
+                                <input type="radio" name="egoist" id="ego-1" checked>
+                                <input type="radio" name="egoist" id="ego-2">
+                                <input type="radio" name="egoist" id="ego-3">
+                                <div class="concept-media-slider">
+                                    <img src="images/concepts/egoist/egoist-1.jpg" alt="T-Rex Egoist — ракурс 1" class="concept-media-slide" loading="lazy">
+                                    <img src="images/concepts/egoist/egoist-2.jpg" alt="T-Rex Egoist — ракурс 2" class="concept-media-slide" loading="lazy">
+                                    <img src="images/concepts/egoist/egoist-3.jpg" alt="T-Rex Egoist — ракурс 3" class="concept-media-slide" loading="lazy">
                                 </div>
-                                <div class="concept-media-controls">
-                                    <label for="egoist-1" class="concept-arrow concept-arrow--prev">‹</label>
-                                    <label for="egoist-2" class="concept-arrow concept-arrow--next">›</label>
+                                <div class="concept-media-nav">
+                                    <label for="ego-3" class="concept-nav-arrow concept-nav-prev nav-for-1">&#8249;</label>
+                                    <label for="ego-2" class="concept-nav-arrow concept-nav-next nav-for-1">&#8250;</label>
+                                    <label for="ego-1" class="concept-nav-arrow concept-nav-prev nav-for-2">&#8249;</label>
+                                    <label for="ego-3" class="concept-nav-arrow concept-nav-next nav-for-2">&#8250;</label>
+                                    <label for="ego-2" class="concept-nav-arrow concept-nav-prev nav-for-3">&#8249;</label>
+                                    <label for="ego-1" class="concept-nav-arrow concept-nav-next nav-for-3">&#8250;</label>
                                 </div>
                             </div>
-                            <p>Для драйва, скорости и личной свободы владельца.</p>
+                            <p>Скорость. Драйв. Личная свобода на воде. Премиальный катер для тех, кто привык задавать маршрут.</p>
                         </div>
 
                         <div class="concept-card scroll-reveal">
                             <span class="badge badge-concept">Specialist</span>
                             <h3>T-Rex Specialist</h3>
                             <div class="concept-media concept-media--specialist">
-                                <input type="radio" name="specialist" id="specialist-1" checked>
-                                <input type="radio" name="specialist" id="specialist-2">
-                                <div class="concept-media-viewport">
-                                    <img src="images/concepts/specialist/concept-specialist-1.jpg" alt="T-Rex Specialist — кадр 1" class="concept-media-img img-1" loading="lazy">
-                                    <img src="images/concepts/specialist/concept-specialist-2.jpg" alt="T-Rex Specialist — кадр 2" class="concept-media-img img-2" loading="lazy">
+                                <input type="radio" name="specialist" id="spec-1" checked>
+                                <input type="radio" name="specialist" id="spec-2">
+                                <input type="radio" name="specialist" id="spec-3">
+                                <input type="radio" name="specialist" id="spec-4">
+                                <div class="concept-media-slider">
+                                    <img src="images/concepts/specialist/specialist-1.jpg" alt="T-Rex Specialist МЧС — кадр 1" class="concept-media-slide" loading="lazy">
+                                    <img src="images/concepts/specialist/specialist-2.jpg" alt="T-Rex Specialist МЧС — кадр 2" class="concept-media-slide" loading="lazy">
+                                    <img src="images/concepts/specialist/specialist-3.jpg" alt="T-Rex Specialist МЧС — кадр 3" class="concept-media-slide" loading="lazy">
+                                    <img src="images/concepts/specialist/specialist-4.jpg" alt="T-Rex Specialist МЧС — кадр 4" class="concept-media-slide" loading="lazy">
                                 </div>
-                                <div class="concept-media-controls">
-                                    <label for="specialist-1" class="concept-arrow concept-arrow--prev">‹</label>
-                                    <label for="specialist-2" class="concept-arrow concept-arrow--next">›</label>
+                                <div class="concept-media-nav">
+                                    <label for="spec-4" class="concept-nav-arrow concept-nav-prev nav-for-1">&#8249;</label>
+                                    <label for="spec-2" class="concept-nav-arrow concept-nav-next nav-for-1">&#8250;</label>
+                                    <label for="spec-1" class="concept-nav-arrow concept-nav-prev nav-for-2">&#8249;</label>
+                                    <label for="spec-3" class="concept-nav-arrow concept-nav-next nav-for-2">&#8250;</label>
+                                    <label for="spec-2" class="concept-nav-arrow concept-nav-prev nav-for-3">&#8249;</label>
+                                    <label for="spec-4" class="concept-nav-arrow concept-nav-next nav-for-3">&#8250;</label>
+                                    <label for="spec-3" class="concept-nav-arrow concept-nav-prev nav-for-4">&#8249;</label>
+                                    <label for="spec-1" class="concept-nav-arrow concept-nav-next nav-for-4">&#8250;</label>
                                 </div>
                             </div>
-                            <p>Рабочий инструмент для служб, спасателей и профессиональных задач в тяжёлых условиях.</p>
+                            <p>Проверен МЧС России. Профессиональный инструмент для спасательных операций и экстремальных задач в любых условиях.</p>
                         </div>
                     </div>
                 </div>
