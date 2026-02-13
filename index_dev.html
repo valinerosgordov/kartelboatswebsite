@@ -762,6 +762,132 @@
             z-index: 2;
         }
 
+        /* EXPEDITION 65 LUX BANNER — Premium cinematic, taller */
+        .expedition-preview {
+            margin-top: 56px;
+            border: 1px solid rgba(206, 254, 70, 0.15);
+            background-color: #0a0a0a;
+            overflow: hidden;
+            position: relative;
+            height: clamp(420px, 55vw, 650px);
+            width: 100%;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+        }
+
+        .expedition-preview::before {
+            content: 'EXPEDITION 65 LUX';
+            position: absolute;
+            top: 24px;
+            left: 32px;
+            z-index: 10;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border: 1px solid rgba(206, 254, 70, 0.3);
+        }
+
+        .expedition-preview::after {
+            content: '19.6M · СТАЛЬ + АМГ5М · 5 КАЮТ · АВТОНОМНОЕ СУДНО';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            color: rgba(206, 254, 70, 0.3);
+            text-align: right;
+            padding: 20px 32px;
+            background: linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 100%);
+        }
+
+        .expedition-slider {
+            position: absolute;
+            inset: 0;
+        }
+
+        .expedition-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0;
+            animation: expeditionFade 45s infinite;
+            filter: brightness(0.85) contrast(1.1);
+        }
+
+        .expedition-slide:nth-child(1) { animation-delay: 0s; opacity: 1; }
+        .expedition-slide:nth-child(2) { animation-delay: 5s; }
+        .expedition-slide:nth-child(3) { animation-delay: 10s; }
+        .expedition-slide:nth-child(4) { animation-delay: 15s; }
+        .expedition-slide:nth-child(5) { animation-delay: 20s; }
+        .expedition-slide:nth-child(6) { animation-delay: 25s; }
+        .expedition-slide:nth-child(7) { animation-delay: 30s; }
+        .expedition-slide:nth-child(8) { animation-delay: 35s; }
+        .expedition-slide:nth-child(9) { animation-delay: 40s; }
+
+        @keyframes expeditionFade {
+            0% { opacity: 0; } 2% { opacity: 1; } 11% { opacity: 1; } 13% { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        .expedition-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 32px;
+            z-index: 10;
+        }
+
+        .expedition-overlay h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(22px, 3.5vw, 36px);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .expedition-overlay p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            max-width: 480px;
+        }
+
+        .expedition-badge {
+            display: inline-block;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(206, 254, 70, 0.3);
+            padding: 4px 12px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 767px) {
+            .expedition-preview {
+                height: clamp(280px, 70vw, 420px);
+            }
+            .expedition-overlay h3 {
+                font-size: 20px;
+            }
+            .expedition-overlay {
+                bottom: 30px;
+                left: 20px;
+            }
+        }
+
         /* CONCEPT BANNER — Full-width cinematic */
         .concept-ego-preview {
             margin-top: 56px;
@@ -831,6 +957,45 @@
 
         @keyframes egoFade {
             0% { opacity: 0; } 8% { opacity: 1; } 33% { opacity: 1; } 41% { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        .concept-ego-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 32px;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .concept-ego-overlay h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(20px, 3vw, 30px);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .concept-ego-overlay p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 767px) {
+            .concept-ego-overlay {
+                bottom: 24px;
+                left: 20px;
+                max-width: 280px;
+            }
+            .concept-ego-overlay h3 {
+                font-size: 18px;
+            }
+            .concept-ego-overlay p {
+                font-size: 11px;
+            }
         }
 
         /* CONCEPT PLATFORM — wider, more premium */
@@ -5322,12 +5487,36 @@
                     </a>
                 </div>
 
+                <!-- EXPEDITION 65 LUX BANNER -->
+                <a href="https://bakl123.github.io/Houseboats-site/" target="_blank" rel="noopener" class="expedition-preview scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+                    <div class="expedition-slider">
+                        <img src="images/expedition/interior-bedroom.jpg" alt="Expedition 65 Lux — главная каюта" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-1.jpg" alt="Expedition 65 Lux — горы" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/interior-kitchen.jpg" alt="Expedition 65 Lux — камбуз" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-2.jpg" alt="Expedition 65 Lux — вечер" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/interior-cabin.jpg" alt="Expedition 65 Lux — каюта" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-3.jpg" alt="Expedition 65 Lux — зима" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/interior-bathroom.jpg" alt="Expedition 65 Lux — ванная" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/interior-corridor.jpg" alt="Expedition 65 Lux — коридор" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/interior-spa.jpg" alt="Expedition 65 Lux — спа" class="expedition-slide" loading="lazy">
+                    </div>
+                    <div class="expedition-overlay">
+                        <span class="expedition-badge">Готов к передаче</span>
+                        <h3>Expedition <span style="color: var(--accent);">65</span> Lux</h3>
+                        <p>Автономное экспедиционное судно. 19.6 м. 5 кают. Там, где заканчивается цивилизация.</p>
+                    </div>
+                </a>
+
                 <!-- CONCEPT EGO BANNER -->
                 <div class="concept-ego-preview scroll-reveal">
                     <div class="concept-ego-slider">
                         <img src="images/concepts/ego/t-rex-ego-concept.jpg" alt="T-Rex Ego — кадр 1" class="concept-ego-slide" loading="lazy">
                         <img src="images/concepts/ego/t-rex-ego-concept-2.jpg" alt="T-Rex Ego — кадр 2" class="concept-ego-slide" loading="lazy">
                         <img src="images/concepts/ego/t-rex-ego-concept-3.jpg" alt="T-Rex Ego — кадр 3" class="concept-ego-slide" loading="lazy">
+                    </div>
+                    <div class="concept-ego-overlay">
+                        <h3>T-Rex <span style="color: var(--accent);">Egoist</span> & <span style="color: var(--accent);">Specialist</span></h3>
+                        <p>Единая платформа АМГ5М — два сценария. Egoist для личной свободы на воде. Specialist для профессионалов и экстремальных задач.</p>
                     </div>
                 </div>
 
