@@ -821,22 +821,62 @@
             object-fit: cover;
             display: block;
             opacity: 0;
-            animation: expeditionFade 45s infinite;
+            transition: opacity 0.6s ease;
             filter: brightness(0.85) contrast(1.1);
         }
 
-        .expedition-slide:nth-child(1) { animation-delay: 0s; opacity: 1; }
-        .expedition-slide:nth-child(2) { animation-delay: 5s; }
-        .expedition-slide:nth-child(3) { animation-delay: 10s; }
-        .expedition-slide:nth-child(4) { animation-delay: 15s; }
-        .expedition-slide:nth-child(5) { animation-delay: 20s; }
-        .expedition-slide:nth-child(6) { animation-delay: 25s; }
-        .expedition-slide:nth-child(7) { animation-delay: 30s; }
-        .expedition-slide:nth-child(8) { animation-delay: 35s; }
-        .expedition-slide:nth-child(9) { animation-delay: 40s; }
+        .expedition-slide.active {
+            opacity: 1;
+        }
 
-        @keyframes expeditionFade {
-            0% { opacity: 0; } 2% { opacity: 1; } 11% { opacity: 1; } 13% { opacity: 0; } 100% { opacity: 0; }
+        /* Expedition arrows */
+        .expedition-nav {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            pointer-events: none;
+        }
+        .expedition-arrow {
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.55);
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            pointer-events: auto;
+        }
+        .expedition-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            border-color: var(--accent);
+        }
+        .expedition-arrow--prev { left: 16px; }
+        .expedition-arrow--next { right: 16px; }
+
+        /* Slide counter */
+        .expedition-counter {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            z-index: 15;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
         .expedition-overlay {
@@ -5541,6 +5581,14 @@
                 font-size: 11px;
                 max-width: 260px;
             }
+            .expedition-arrow {
+                width: 36px; height: 36px; font-size: 20px;
+            }
+            .expedition-arrow--prev { left: 10px; }
+            .expedition-arrow--next { right: 10px; }
+            .expedition-counter {
+                font-size: 9px; padding: 6px 10px; top: 18px; right: 16px;
+            }
 
             /* --- CONCEPT EGO BANNER --- */
             .concept-ego-preview {
@@ -5898,14 +5946,22 @@
                     <div class="expedition-slider">
                         <img src="images/expedition/interior-bedroom.jpg" alt="Expedition 65 Lux — главная каюта" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/expedition-65-1.jpg" alt="Expedition 65 Lux — горы" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-exterior-1.jpg" alt="Expedition 65 Lux — экстерьер на воде" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/interior-kitchen.jpg" alt="Expedition 65 Lux — камбуз" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/expedition-65-2.jpg" alt="Expedition 65 Lux — вечер" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-exterior-2.jpg" alt="Expedition 65 Lux — завтрак на палубе" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/interior-cabin.jpg" alt="Expedition 65 Lux — каюта" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/expedition-65-3.jpg" alt="Expedition 65 Lux — зима" class="expedition-slide" loading="lazy">
+                        <img src="images/expedition/expedition-65-exterior-3.jpg" alt="Expedition 65 Lux — ракурс с воды" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/interior-bathroom.jpg" alt="Expedition 65 Lux — ванная" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/interior-corridor.jpg" alt="Expedition 65 Lux — коридор" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/interior-spa.jpg" alt="Expedition 65 Lux — спа" class="expedition-slide" loading="lazy">
                     </div>
+                    <div class="expedition-nav">
+                        <span class="expedition-arrow expedition-arrow--prev" data-dir="-1">&#8249;</span>
+                        <span class="expedition-arrow expedition-arrow--next" data-dir="1">&#8250;</span>
+                    </div>
+                    <span class="expedition-counter"><span class="exp-current">1</span> / <span class="exp-total">9</span></span>
                     <div class="expedition-overlay">
                         <span class="expedition-badge">Готов к передаче</span>
                         <h3>Expedition <span style="color: var(--accent);">65</span> Lux</h3>
@@ -7264,6 +7320,52 @@
                 });
             });
         })();
+    </script>
+
+    <!-- KARTEL BOATS: Expedition 65 Lux Slideshow -->
+    <script>
+    (function(){
+        const container = document.querySelector('.expedition-preview');
+        if (!container) return;
+        const slides = container.querySelectorAll('.expedition-slide');
+        const counterEl = container.querySelector('.exp-current');
+        const totalEl = container.querySelector('.exp-total');
+        if (!slides.length) return;
+
+        let current = 0;
+        let autoTimer;
+        const AUTO_INTERVAL = 5000;
+
+        if (totalEl) totalEl.textContent = slides.length;
+
+        function show(idx) {
+            slides[current].classList.remove('active');
+            current = (idx + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            if (counterEl) counterEl.textContent = current + 1;
+        }
+
+        // Init first slide
+        slides[0].classList.add('active');
+
+        function startAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function(){ show(current + 1); }, AUTO_INTERVAL);
+        }
+
+        // Arrows
+        container.querySelectorAll('.expedition-arrow').forEach(function(arrow){
+            arrow.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var dir = parseInt(this.dataset.dir);
+                show(current + dir);
+                startAuto(); // reset timer
+            });
+        });
+
+        startAuto();
+    })();
     </script>
 
     <!-- KARTEL BOATS: Test-Drive Form Logic -->
