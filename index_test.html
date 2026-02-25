@@ -461,10 +461,7 @@
             filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
         }
 
-        /* Logo Green on hover */
-        .logo:hover .logo-img {
-            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
-        }
+        /* Logo hover removed — logo is escape hatch, not decorative */
 
         .logo-subtitle {
             font-size: 9px;
@@ -479,10 +476,7 @@
             color: var(--accent);
         }
 
-        /* Subtitle green on hover */
-        .logo:hover .logo-subtitle {
-            color: var(--accent);
-        }
+        /* Logo subtitle hover removed */
 
         .nav-links {
             display: flex;
@@ -636,9 +630,9 @@
         }
 
         .hero-coordinates {
-            font-size: 11px;
+            font-size: 12px;
             letter-spacing: 0.2em;
-            opacity: 0.6;
+            opacity: 0.75;
             margin-bottom: 16px;
         }
 
@@ -729,7 +723,7 @@
 
         .lineup-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -878,10 +872,10 @@
         }
 
         .badge-accent {
-            background-color: rgba(179, 107, 255, 0.15);
-            color: #b36bff;
-            border-color: #b36bff;
-            box-shadow: 0 0 20px rgba(179, 107, 255, 0.2);
+            background-color: rgba(0, 71, 187, 0.15);
+            color: #5B9BD5;
+            border-color: #5B9BD5;
+            box-shadow: 0 0 20px rgba(0, 71, 187, 0.2);
         }
 
         .model-label {
@@ -1062,14 +1056,17 @@
 
         .expedition-badge {
             display: inline-block;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 9px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--accent);
-            border: 1px solid rgba(206, 254, 70, 0.3);
-            padding: 4px 12px;
+            border: 2px solid var(--accent);
+            padding: 6px 14px;
             margin-bottom: 12px;
+            font-weight: 600;
+            background-color: rgba(206, 254, 70, 0.15);
+            box-shadow: 0 0 20px rgba(206, 254, 70, 0.2);
         }
 
         @media (max-width: 767px) {
@@ -1254,15 +1251,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .concept-card:hover::before {
-            opacity: 0.8;
-        }
-
-        .concept-card:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-        }
+        /* concept-card hover removed — cards are not clickable */
 
         .concept-card h3 {
             margin-bottom: 4px;
@@ -1281,9 +1270,10 @@
         }
 
         .badge-concept {
-            background-color: rgba(206, 254, 70, 0.06);
-            border-color: rgba(206, 254, 70, 0.3);
-            color: var(--accent); width: fit-content;
+            background-color: rgba(206, 254, 70, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+            width: fit-content;
         }
 
         /* CONCEPT MEDIA */
@@ -1417,7 +1407,7 @@
 
         .routes-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -1623,11 +1613,11 @@
         }
 
         footer {
-            padding: 80px 0 40px; background-color: var(--bg-card);
+            padding: 48px 0 32px; background-color: var(--bg-card);
             border-top: 1px solid #333; text-align: center;
         }
         
-        .footer-cta-block { margin-bottom: 60px; }
+        .footer-cta-block { margin-bottom: 40px; }
         
         .footer-links {
             display: flex; justify-content: center; gap: 32px;
@@ -2063,7 +2053,7 @@
         
         /* Icon indicators before list items - TECH LINE STYLE */
         .spec-list li::before {
-            content: '>';
+            content: '\2022';
             position: absolute;
             left: 0;
             top: 50%;
@@ -2077,16 +2067,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .spec-list li:hover {
-            border-bottom-color: rgba(206, 254, 70, 0.2);
-            padding-left: 22px;
-            background: linear-gradient(90deg, rgba(206, 254, 70, 0.04) 0%, transparent 60%);
-        }
-        
-        .spec-list li:hover::before {
-            transform: translateY(-50%) translateX(2px);
-            text-shadow: 0 0 6px rgba(206, 254, 70, 0.6);
-        }
+        /* spec-list li hover removed — static specs, not interactive */
         
         .spec-list li {
             margin-bottom: 0;
@@ -2128,9 +2109,7 @@
             font-size: 12px;
         }
         
-        .spec-list li:hover strong {
-            color: #fff;
-        }
+        /* spec-list li:hover strong removed */
         
         /* BROCHURE BUTTON STYLES */
         .btn-brochure {
@@ -3225,11 +3204,7 @@
             transition: all 0.35s ease;
         }
 
-        .brand-value-card:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            transform: translateY(-2px);
-            background: rgba(206, 254, 70, 0.03);
-        }
+        /* brand-value-card hover removed — informational cards, not clickable */
 
         .brand-value-card h4 {
             font-family: 'Montserrat', sans-serif;
@@ -3413,21 +3388,15 @@
             transition: all 0.3s ease;
         }
 
-        .fleet-item:hover {
-            color: rgba(255, 255, 255, 0.9);
-            padding-left: 8px;
-        }
+        /* fleet-item hover removed — static list, not interactive */
 
         .fleet-item::before {
-            content: '>';
+            content: '\2014';
             color: var(--accent);
             font-weight: 700;
-            transition: transform 0.3s ease;
         }
 
-        .fleet-item:hover::before {
-            transform: translateX(3px);
-        }
+        /* fleet-item::before hover removed */
 
         .fleet-item strong {
             color: var(--accent);
@@ -3481,9 +3450,7 @@
             z-index: 2;
         }
 
-        .material-card:hover::before {
-            transform: scaleX(1);
-        }
+        /* material-card hover removed — informational cards, not clickable */
 
         /* Visual area — top half of card */
         .mat-visual {
@@ -3495,9 +3462,7 @@
             overflow: hidden;
         }
 
-        .material-card:hover .mat-visual {
-            background: rgba(206, 254, 70, 0.04);
-        }
+        /* mat-visual hover removed */
 
         /* Card text area — bottom half */
         .mat-info {
@@ -3514,9 +3479,7 @@
             transition: color 0.3s ease;
         }
 
-        .material-card:hover h4 {
-            color: var(--accent);
-        }
+        /* material h4 hover removed */
 
         .material-card p {
             font-size: 11px;
@@ -3549,11 +3512,7 @@
             background: rgba(206, 254, 70, 0.08);
             border: 1px solid rgba(206, 254, 70, 0.15);
         }
-        .material-card:hover .mat-alloy {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(206, 254, 70, 0.15);
-            transform: rotate(45deg) scale(1.08);
-        }
+        /* mat-alloy hover removed */
 
         /* Дуб и Тик — Wood grain lines */
         .mat-wood {
@@ -3577,9 +3536,7 @@
         .mat-wood span:nth-child(4) { width: 80%; margin-left: 12%; }
         .mat-wood span:nth-child(5) { width: 90%; margin-left: 4%; }
         .mat-wood span:nth-child(6) { width: 75%; margin-left: 10%; }
-        .material-card:hover .mat-wood span {
-            background: rgba(210, 170, 100, 0.8);
-        }
+        /* mat-wood hover removed */
 
         /* Made in Russia — Centered flag icon */
         .mat-flag {
@@ -3598,10 +3555,7 @@
         .mat-flag-w { background: #fff; }
         .mat-flag-b { background: #0039A6; }
         .mat-flag-r { background: #D52B1E; }
-        .material-card:hover .mat-flag {
-            transform: scale(1.08);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-        }
+        /* mat-flag hover removed */
 
         /* 30+ лет — Circular progress / clock motif */
         .mat-years {
@@ -3637,13 +3591,7 @@
             transform: translate(-50%, -100%) rotate(90deg);
             border-radius: 1px;
         }
-        .material-card:hover .mat-years {
-            border-color: rgba(206, 254, 70, 0.4);
-            box-shadow: 0 0 16px rgba(206, 254, 70, 0.1);
-        }
-        .material-card:hover .mat-years::before {
-            transform: translate(-50%, -100%) rotate(360deg);
-        }
+        /* mat-years hover removed */
 
         @media (max-width: 767px) {
             .brand-values {
@@ -3743,6 +3691,7 @@
                 text-transform: uppercase;
             }
             .map-label-line {
+                display: none;
                 height: 64px; width: 1px;
                 background: linear-gradient(180deg, rgba(206, 254, 70, 0.3), rgba(255,255,255,0.1));
                 margin-top: 16px;
@@ -3829,11 +3778,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-stat:hover {
-            background: rgba(206,254,70,0.03);
-            border-color: rgba(206,254,70,0.2);
-            transform: translateY(-2px);
-        }
+        /* rgo-stat hover removed — informational, not clickable */
 
         .rgo-stat-icon {
             width: 32px;
@@ -3845,10 +3790,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-stat:hover .rgo-stat-icon {
-            background: rgba(206,254,70,0.15);
-            border-color: var(--accent);
-        }
+        /* rgo-stat-icon hover removed */
 
         /* Icon: Ship length */
         .rgo-icon-length::before {
@@ -3948,10 +3890,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-feature:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            background: rgba(206, 254, 70, 0.03);
-        }
+        /* rgo-feature hover removed — informational, not clickable */
 
         .rgo-feature h4 {
             font-family: 'Montserrat', sans-serif;
@@ -3978,10 +3917,7 @@
             transition: all 0.3s ease;
         }
 
-        .rgo-feature:hover h4::before {
-            background: rgba(206,254,70,0.2);
-            border-color: var(--accent);
-        }
+        /* rgo-feature h4 hover removed */
 
         /* Shield icon for "Надёжность" */
         .rgo-feature:first-child h4::before {
@@ -4006,11 +3942,13 @@
 
         /* RGO News card */
         .rgo-news {
+            position: relative;
             margin-top: 24px;
             padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             background: rgba(0, 0, 0, 0.3);
             transition: all 0.35s ease;
+            cursor: pointer;
         }
 
         .rgo-news:hover {
@@ -4019,7 +3957,7 @@
 
         .rgo-news-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 9px;
+            font-size: 11px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--accent);
@@ -4064,6 +4002,12 @@
         }
 
         .rgo-news a:hover { opacity: 0.7; }
+        .rgo-news a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
 
         /* Visual enhancements for RGO panel */
         .glass-panel-rgo .rgo-header {
@@ -4115,9 +4059,7 @@
             position: relative;
         }
 
-        .rgo-feature:hover h4::before {
-            height: 100%;
-        }
+        /* rgo-feature animation hover removed */
 
         /* Floating particles effect for panel */
         .glass-panel-rgo::before {
@@ -4859,7 +4801,7 @@
 
         .partners-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -4965,7 +4907,7 @@
 
         .contacts-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -5097,7 +5039,9 @@
         .contact-address {
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.75);
+            user-select: text;
+            -webkit-user-select: text;
             line-height: 1.7;
             margin-bottom: 16px;
             font-weight: 300;
@@ -6026,7 +5970,7 @@
 
     <header id="main-header">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#hero_video" class="logo">
                 <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="logo-img">
                 <span class="logo-subtitle mono">EST. 1992 · Саратов</span>
             </a>
@@ -6062,7 +6006,7 @@
                 <p class="hero-lead">Автономные катера T-Rex для покорения российских широт. Корпус АМГ5М, дальние маршруты и тяжёлая вода. Ваша личная свобода там, где заканчивается цивилизация.</p>
                 <div class="hero-actions">
                     <a href="#lineup_selector" class="btn btn-primary">Выбрать T-Rex</a>
-                    <a href="#route_stories" class="btn btn-secondary hero-cta-secondary">Истории РГО</a>
+                    <a href="#testdrive_modal" class="btn btn-secondary hero-cta-secondary">Записаться на тест-драйв</a>
                 </div>
             </div>
         </section>
@@ -6406,8 +6350,8 @@
                         </div>
 
                         <div class="rgo-actions-row">
-                            <a href="#rgo_modal_full" class="btn btn-primary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
-                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff;">RGO.RU</a>
+                            <a href="#rgo_modal_full" class="btn btn-secondary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
+                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary">RGO.RU</a>
                         </div>
 
                         <div class="rgo-news">
@@ -6515,8 +6459,8 @@
                     <div class="radar-hud radar-hud-bl">▸ SWEEP ACTIVE</div>
 
                     <!-- City points -->
-                    <div class="map-point point-msk" title="Москва"><div class="map-point-label">MSK / HQ</div></div>
-                    <div class="map-point point-srt" title="Саратов"><div class="map-point-label">SRT / BASE</div></div>
+                    <div class="map-point point-msk" onclick="document.querySelector('.contacts-list .contact-card').scrollIntoView({behavior:'smooth',block:'center'})"><div class="map-point-label">MSK / HQ</div></div>
+                    <div class="map-point point-srt" onclick="document.querySelector('.contacts-list .contact-card:nth-child(2)').scrollIntoView({behavior:'smooth',block:'center'})"><div class="map-point-label">SRT / BASE</div></div>
 
                     <!-- Animated connection -->
                     <div class="radar-connection">
@@ -6632,7 +6576,7 @@
                         <h3 class="contact-city">САРАТОВ, ВОЛГА</h3>
                         <div class="contact-address">
                             г. Саратов, ул. Большая Затонская (район Затона)
-                            <br><span style="font-size: 11px; color: rgba(255,255,255,0.3); font-family: 'Courier New', Courier, monospace; letter-spacing: 0.05em;">51.544010, 46.081743</span>
+                            <br><span style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'Courier New', Courier, monospace; letter-spacing: 0.05em;">51.544010, 46.081743</span>
                         </div>
                         <div class="contact-note">// Тест-драйв в реальных условиях. Почувствуйте корпус на воде перед покупкой.</div>
                     </a>
@@ -6659,6 +6603,9 @@
 
     <footer id="footer_cta">
         <div class="container">
+            <a href="#hero_video" style="display: block; text-align: center; margin-bottom: 28px;">
+                <img src="images/logo/kartel-logo-cut.png" alt="KARTEL BOATS" style="height: 32px; opacity: 0.5; filter: brightness(0) invert(1);">
+            </a>
             <div class="footer-cta-block">
                 <h2>Начните свой маршрут</h2>
                 <p style="margin: 0 auto 32px auto;">Офис в Москве, верфь в Саратове. Тест-драйвы и осмотр корпуса по записи.</p>
@@ -6673,7 +6620,7 @@
                 <span class="footer-email" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { const orig = this.textContent; this.textContent = '✓ Скопировано'; setTimeout(() => this.textContent = orig, 1500); });" title="Нажмите чтобы скопировать">office@kartelboats.ru</span>
                 <button class="footer-email-copy" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { this.innerHTML = '✓'; setTimeout(() => this.innerHTML = '&#128203;', 1500); });" title="Копировать email">&#128203;</button>
             </div>
-            <div class="mono" style="margin-top: 32px; color: #333;">© 2026 KARTEL BOATS</div>
+            <div class="mono" style="margin-top: 32px; color: #555;">© 2026 KARTEL BOATS</div>
         </div>
     </footer>
 
@@ -6949,7 +6896,7 @@
                         </ul>
                     </div>
                     <div class="modal__content-actions">
-                        <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
+                        <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
                     </div>
                 </div>
             </div>
@@ -6999,7 +6946,7 @@
                         </ul>
                     </div>
                     <div class="modal__content-actions">
-                        <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
+                        <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
                     </div>
                 </div>
             </div>
@@ -7706,6 +7653,24 @@
             });
         });
     })();
+    </script>
+
+    <!-- Modal fix: reset scroll and re-trigger animations on open -->
+    <script>
+    window.addEventListener('hashchange', function() {
+        var hash = location.hash;
+        if (!hash) return;
+        var modal = document.querySelector(hash);
+        if (!modal || !modal.classList.contains('modal') || modal.classList.contains('modal--media')) return;
+        var dialog = modal.querySelector('.modal__dialog');
+        if (dialog) dialog.scrollTop = 0;
+        var specItems = modal.querySelectorAll('.spec-list li');
+        specItems.forEach(function(li) {
+            li.style.animation = 'none';
+            li.offsetHeight;
+            li.style.animation = '';
+        });
+    });
     </script>
 
 </body>
