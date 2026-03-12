@@ -440,7 +440,7 @@
         .logo {
             display: inline-flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             text-decoration: none;
             padding: 0;
             margin: 0;
@@ -500,8 +500,7 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .nav-link:hover,
-        header.scrolled .nav-link:hover {
+        .nav-link:hover {
             color: var(--accent);
         }
 
@@ -1015,37 +1014,20 @@
         .expedition-arrow--prev { left: 16px; }
         .expedition-arrow--next { right: 16px; }
 
-        /* Slide counter - hidden, replaced by progress dots */
+        /* Slide counter */
         .expedition-counter {
-            display: none;
-        }
-
-        /* Slide progress dots */
-        .expedition-dots {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            top: 24px;
+            right: 32px;
             z-index: 15;
-            display: flex;
-            gap: 3px;
-            padding: 0 32px;
-        }
-
-        .expedition-dot {
-            flex: 1;
-            height: 3px;
-            background: rgba(255,255,255,0.2);
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .expedition-dot:hover {
-            background: rgba(255,255,255,0.5);
-        }
-
-        .expedition-dot.active {
-            background: var(--accent);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
         .expedition-overlay {
@@ -1305,9 +1287,8 @@
         .concept-media-slider { position: absolute; inset: 0; }
 
         .concept-media-slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; display: block; opacity: 0; transition: opacity 0.4s ease;
-            min-width: 100%; min-height: 100%;
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block; opacity: 0; transition: opacity 0.4s ease;
         }
 
         /* Show active slide based on checked radio */
@@ -1632,207 +1613,66 @@
         }
 
         footer {
-            padding: 48px 0 0; background-color: var(--bg-card);
-            border-top: 1px solid #333;
+            padding: 48px 0 32px; background-color: var(--bg-card);
+            border-top: 1px solid #333; text-align: center;
         }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            padding-bottom: 40px;
+        
+        .footer-cta-block { margin-bottom: 40px; }
+        
+        .footer-links {
+            display: flex; justify-content: center; gap: 32px;
+            font-size: 12px; text-transform: uppercase; color: var(--text-muted);
         }
-
+        /* Mobile footer adjustment */
         @media (max-width: 767px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                text-align: center;
-            }
+            .footer-links { flex-wrap: wrap; gap: 16px; }
         }
+        
+        .footer-links a { color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
 
-        /* Left column: Logo + CTA */
-        .footer-col-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 767px) {
-            .footer-col-left { align-items: center; }
-        }
-
-        .footer-logo-wrap {
-            display: block;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .footer-logo-img {
-            height: 36px;
-            filter: brightness(0) invert(1);
-            transition: filter 0.4s ease;
-        }
-
-        .footer-logo-wrap:hover .footer-logo-img {
-            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
-        }
-
-        .footer-cta-heading {
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            margin: 0 0 8px 0;
-        }
-
-        .footer-cta-text {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 0 0 20px 0;
-            line-height: 1.5;
-        }
-
-        .footer-cta-btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: var(--accent);
-            color: #000;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .footer-cta-btn:hover {
-            background: #e0ff5c;
-        }
-
-        /* Middle column: Locations */
-        .footer-col-mid h3 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #fff;
-            margin: 0 0 20px 0;
-        }
-
-        .footer-location {
-            margin-bottom: 16px;
-        }
-
-        .footer-location-name {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        @media (max-width: 767px) {
-            .footer-location-name { justify-content: center; }
-        }
-
-        .footer-location-name svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
-
-        .footer-location-addr {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Right column: Contacts */
-        .footer-col-right h3 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #fff;
-            margin: 0 0 20px 0;
-        }
-
-        .footer-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a.footer-contact-item:hover {
-            color: var(--accent);
-        }
-
-        @media (max-width: 767px) {
-            .footer-contact-item { justify-content: center; }
-        }
-
-        .footer-contact-item svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            stroke: var(--accent);
-            fill: none;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        @media (max-width: 767px) {
-            .footer-socials { justify-content: center; }
-        }
-
-        .footer-social-link {
-            width: 36px;
-            height: 36px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
+        .footer-email-block {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            gap: 8px;
+            margin-top: 24px;
         }
 
-        .footer-social-link:hover {
-            background: var(--accent);
-        }
-
-        .footer-social-link svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--accent);
-            transition: fill 0.3s ease;
-        }
-
-        .footer-social-link:hover svg {
-            fill: #000;
-        }
-
-        /* Copyright bar */
-        .footer-copyright {
-            border-top: 1px solid #333;
-            padding: 16px 0;
-            text-align: center;
+        .footer-email {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            color: #555;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-email:hover {
+            color: #fff;
+        }
+
+        .footer-email-copy {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .footer-email-copy:hover {
+            background: var(--accent);
+            color: #000;
+            transform: scale(1.1);
         }
 
         /* MODAL STYLES */
@@ -3268,11 +3108,7 @@
         }
 
         .brand-logo-wrap {
-            display: block;
-            text-align: center;
-            text-decoration: none;
             margin-bottom: 28px;
-            cursor: pointer;
         }
 
         .brand-logo-img {
@@ -5851,8 +5687,8 @@
             }
             .expedition-arrow--prev { left: 10px; }
             .expedition-arrow--next { right: 10px; }
-            .expedition-dots {
-                padding: 0 16px;
+            .expedition-counter {
+                font-size: 9px; padding: 6px 10px; top: 18px; right: 16px;
             }
 
             /* --- CONCEPT EGO BANNER --- */
@@ -6053,14 +5889,24 @@
 
             /* --- FOOTER --- */
             footer {
-                padding: 32px 16px 0;
+                padding: 50px 16px 32px;
             }
-            .footer-cta-heading {
-                font-size: 16px;
+            .footer-cta-block {
+                margin-bottom: 36px;
             }
-            .footer-cta-btn {
+            .footer-cta-block h2 {
+                font-size: 22px;
+            }
+            .footer-cta-block p {
+                font-size: 13px;
+                margin-bottom: 20px !important;
+            }
+            .footer-email {
                 font-size: 12px;
-                padding: 12px 24px;
+            }
+            .footer-links {
+                font-size: 11px;
+                gap: 12px;
             }
 
             /* --- RGO SECTION --- */
@@ -6221,7 +6067,6 @@
                         <span class="expedition-arrow expedition-arrow--next" data-dir="1">&#8250;</span>
                     </div>
                     <span class="expedition-counter"><span class="exp-current">1</span> / <span class="exp-total">9</span></span>
-                    <div class="expedition-dots"></div>
                     <div class="expedition-overlay">
                         <span class="expedition-badge">Готов к передаче</span>
                         <h3>Expedition <span style="color: var(--accent);">65</span> Lux</h3>
@@ -6311,9 +6156,9 @@
             <div class="brand-wide">
                 <div class="brand-header">
                     <div class="brand-est">EST. 1992</div>
-                    <a href="#" class="brand-logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                    <div class="brand-logo-wrap">
                         <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="brand-logo-img">
-                    </a>
+                    </div>
                     <p class="brand-subtitle">Более 30 лет судостроительного опыта. От больших кораблей класса Luxury до современных экспедиционных катеров премиум-класса.</p>
                 </div>
             </div>
@@ -6758,74 +6603,25 @@
 
     <footer id="footer_cta">
         <div class="container">
-            <div class="footer-grid">
-
-                <!-- Left: Logo + CTA -->
-                <div class="footer-col-left">
-                    <a href="#" class="footer-logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-                        <img src="images/logo/kartel-logo-cut.png" alt="KARTEL BOATS" class="footer-logo-img">
-                    </a>
-                    <h3 class="footer-cta-heading">Начните свой маршрут</h3>
-                    <p class="footer-cta-text">Тест драйв и осмотр корпуса по записи</p>
-                    <a href="#testdrive_modal" class="footer-cta-btn">Записатся на тест драйв</a>
-                </div>
-
-                <!-- Middle: Locations -->
-                <div class="footer-col-mid">
-                    <h3>Локации</h3>
-                    <div class="footer-location">
-                        <div class="footer-location-name">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                            Москва Офис
-                        </div>
-                        <div class="footer-location-addr">Краснопресенская наб. 12<br>6 подъезд, 11 этаж, офис 1148<br>Гостиница «Международная»</div>
-                    </div>
-                    <div class="footer-location">
-                        <div class="footer-location-name">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                            Верфь Саратов
-                        </div>
-                        <div class="footer-location-addr">г. Саратов, ул. Огородная, 3</div>
-                    </div>
-                    <div class="footer-location">
-                        <div class="footer-location-name">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                            Шоурум Саратов
-                        </div>
-                        <div class="footer-location-addr">г. Саратов, ул. Большая Затонская</div>
-                    </div>
-                </div>
-
-                <!-- Right: Contacts -->
-                <div class="footer-col-right">
-                    <h3>Контакты</h3>
-                    <a href="tel:+74957418258" class="footer-contact-item">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        +7 (495) 741-82-58
-                    </a>
-                    <a href="mailto:office@kartelboats.ru" class="footer-contact-item">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        office@kartelboats.ru
-                    </a>
-                    <div class="footer-socials">
-                        <!-- Telegram: link TBD -->
-                        <a href="#" class="footer-social-link" title="Telegram">
-                            <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                        </a>
-                        <!-- Instagram -->
-                        <a href="https://instagram.com/kartelboats" target="_blank" rel="noopener" class="footer-social-link" title="Instagram">
-                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                        </a>
-                        <!-- YouTube: link TBD -->
-                        <a href="#" class="footer-social-link" title="YouTube">
-                            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#000"/></svg>
-                        </a>
-                    </div>
-                </div>
-
+            <a href="#hero_video" style="display: block; text-align: center; margin-bottom: 28px;">
+                <img src="images/logo/kartel-logo-cut.png" alt="KARTEL BOATS" style="height: 32px; opacity: 0.5; filter: brightness(0) invert(1);">
+            </a>
+            <div class="footer-cta-block">
+                <h2>Начните свой маршрут</h2>
+                <p style="margin: 0 auto 32px auto;">Офис в Москве, верфь в Саратове. Тест-драйвы и осмотр корпуса по записи.</p>
+                <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
             </div>
+            <div class="footer-links">
+                <a href="#contacts">Контакты</a>
+                <a href="https://k-artel.pro/" target="_blank" rel="noopener">О верфи</a>
+                <a href="#lineup_selector">Модельный ряд</a>
+            </div>
+            <div class="footer-email-block">
+                <span class="footer-email" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { const orig = this.textContent; this.textContent = '✓ Скопировано'; setTimeout(() => this.textContent = orig, 1500); });" title="Нажмите чтобы скопировать">office@kartelboats.ru</span>
+                <button class="footer-email-copy" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { this.innerHTML = '✓'; setTimeout(() => this.innerHTML = '&#128203;', 1500); });" title="Копировать email">&#128203;</button>
+            </div>
+            <div class="mono" style="margin-top: 32px; color: #555;">© 2026 KARTEL BOATS</div>
         </div>
-        <div class="footer-copyright">© 2026 KARTEL BOATS</div>
     </footer>
 
     <!-- MOBILE BOTTOM NAV (From Your Request) -->
@@ -7689,36 +7485,11 @@
 
         if (totalEl) totalEl.textContent = slides.length;
 
-        // Build progress dots
-        const dotsContainer = container.querySelector('.expedition-dots');
-        const dots = [];
-        if (dotsContainer) {
-            for (let i = 0; i < slides.length; i++) {
-                const dot = document.createElement('span');
-                dot.className = 'expedition-dot' + (i === 0 ? ' active' : '');
-                dot.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    show(i);
-                    startAuto();
-                });
-                dotsContainer.appendChild(dot);
-                dots.push(dot);
-            }
-        }
-
-        function updateDots() {
-            dots.forEach(function(d, i) {
-                d.classList.toggle('active', i === current);
-            });
-        }
-
         function show(idx) {
             slides[current].classList.remove('active');
             current = (idx + slides.length) % slides.length;
             slides[current].classList.add('active');
             if (counterEl) counterEl.textContent = current + 1;
-            updateDots();
         }
 
         // Init first slide
