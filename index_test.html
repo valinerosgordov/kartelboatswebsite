@@ -5161,6 +5161,25 @@
 
         .contact-card:hover::before { opacity: 1; }
 
+        .contact-map-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid rgba(206, 254, 70, 0.3);
+            padding: 6px 14px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-map-link:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
         .contact-role {
             font-family: 'Courier New', Courier, monospace;
             font-size: 10px;
@@ -5206,9 +5225,22 @@
             color: rgba(255, 255, 255, 0.75);
             user-select: text;
             -webkit-user-select: text;
+            -webkit-user-drag: none;
             line-height: 1.7;
             margin-bottom: 16px;
             font-weight: 300;
+            cursor: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-phone {
+            user-select: text;
+            -webkit-user-select: text;
+            -webkit-user-drag: none;
+            cursor: text;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-phone {
@@ -6719,14 +6751,15 @@
 
                 <!-- Contact cards — horizontal row below -->
                 <div class="contacts-list">
-                    <a href="https://yandex.ru/maps/213/moscow/?ll=37.545849%2C55.752253&z=17&l=map&pt=37.545849%2C55.752253" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Штаб-квартира & Продажи</span>
                         <h3 class="contact-city">МОСКВА, ЦМТ</h3>
                         <div class="contact-address">Краснопресненская наб. 12<br>6-й подъезд, 11 этаж, офис 1148<br>Гостиница «Международная»</div>
                         <span class="contact-phone">+7 (495) 741-82-58</span>
                         <div class="contact-note">// Репрезентативный офис в центре. Встретим с кофе, вином и вниманием к деталям.</div>
-                    </a>
-                    <a href="https://yandex.ru/maps/194/saratov/?ll=46.081743%2C51.544010&z=15&l=map&pt=46.081743%2C51.544010" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                        <a href="https://yandex.com/maps/org/kartel_boats/22422353256/?indoorLevel=1&ll=37.545849%2C55.752575&z=16.88" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                    </div>
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Шоурум на воде</span>
                         <h3 class="contact-city">САРАТОВ, ВОЛГА</h3>
                         <div class="contact-address">
@@ -6734,13 +6767,15 @@
                             <br><span style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'Courier New', Courier, monospace; letter-spacing: 0.05em;">51.544010, 46.081743</span>
                         </div>
                         <div class="contact-note">// Тест-драйв в реальных условиях. Почувствуйте корпус на воде перед покупкой.</div>
-                    </a>
-                    <a href="https://yandex.ru/maps/194/saratov/?ll=45.979064%2C51.513971&z=16&l=map&pt=45.979064%2C51.513971" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                        <a href="https://yandex.ru/maps/194/saratov/?ll=46.081743%2C51.544010&z=15&l=map&pt=46.081743%2C51.544010" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                    </div>
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Производство & Heritage</span>
                         <h3 class="contact-city">КОРАБЕЛЬНАЯ АРТЕЛЬ</h3>
                         <div class="contact-address">г. Саратов, ул. Огородная, 3<br>Историческая верфь · EST. 1992</div>
-                        <span class="contact-link-btn" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://k-artel.pro/', '_blank');">История верфи →</span>
-                    </a>
+                        <a href="https://yandex.ru/maps/194/saratov/?ll=45.979064%2C51.513971&z=16&l=map&pt=45.979064%2C51.513971" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                        <span class="contact-link-btn" onclick="window.open('https://k-artel.pro/', '_blank');">История верфи →</span>
+                    </div>
                 </div>
             </div>
 
