@@ -440,7 +440,7 @@
         .logo {
             display: inline-flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             text-decoration: none;
             padding: 0;
             margin: 0;
@@ -461,10 +461,7 @@
             filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
         }
 
-        /* Logo Green on hover */
-        .logo:hover .logo-img {
-            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
-        }
+        /* Logo hover removed — logo is escape hatch, not decorative */
 
         .logo-subtitle {
             font-size: 9px;
@@ -479,10 +476,7 @@
             color: var(--accent);
         }
 
-        /* Subtitle green on hover */
-        .logo:hover .logo-subtitle {
-            color: var(--accent);
-        }
+        /* Logo subtitle hover removed */
 
         .nav-links {
             display: flex;
@@ -506,7 +500,8 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        header.scrolled .nav-link:hover {
             color: var(--accent);
         }
 
@@ -636,9 +631,9 @@
         }
 
         .hero-coordinates {
-            font-size: 11px;
+            font-size: 12px;
             letter-spacing: 0.2em;
-            opacity: 0.6;
+            opacity: 0.75;
             margin-bottom: 16px;
         }
 
@@ -729,7 +724,7 @@
 
         .lineup-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -878,10 +873,10 @@
         }
 
         .badge-accent {
-            background-color: rgba(179, 107, 255, 0.15);
-            color: #b36bff;
-            border-color: #b36bff;
-            box-shadow: 0 0 20px rgba(179, 107, 255, 0.2);
+            background-color: rgba(0, 71, 187, 0.15);
+            color: #5B9BD5;
+            border-color: #5B9BD5;
+            box-shadow: 0 0 20px rgba(0, 71, 187, 0.2);
         }
 
         .model-label {
@@ -1020,20 +1015,37 @@
         .expedition-arrow--prev { left: 16px; }
         .expedition-arrow--next { right: 16px; }
 
-        /* Slide counter */
+        /* Slide counter - hidden, replaced by progress dots */
         .expedition-counter {
+            display: none;
+        }
+
+        /* Slide progress dots */
+        .expedition-dots {
             position: absolute;
-            top: 24px;
-            right: 32px;
+            bottom: 0;
+            left: 0;
+            right: 0;
             z-index: 15;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.5);
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            padding: 8px 14px;
-            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 3px;
+            padding: 0 32px;
+        }
+
+        .expedition-dot {
+            flex: 1;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .expedition-dot:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .expedition-dot.active {
+            background: var(--accent);
         }
 
         .expedition-overlay {
@@ -1062,14 +1074,17 @@
 
         .expedition-badge {
             display: inline-block;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 9px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--accent);
-            border: 1px solid rgba(206, 254, 70, 0.3);
-            padding: 4px 12px;
+            border: 2px solid var(--accent);
+            padding: 6px 14px;
             margin-bottom: 12px;
+            font-weight: 600;
+            background-color: rgba(206, 254, 70, 0.15);
+            box-shadow: 0 0 20px rgba(206, 254, 70, 0.2);
         }
 
         @media (max-width: 767px) {
@@ -1254,15 +1269,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .concept-card:hover::before {
-            opacity: 0.8;
-        }
-
-        .concept-card:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-        }
+        /* concept-card hover removed — cards are not clickable */
 
         .concept-card h3 {
             margin-bottom: 4px;
@@ -1281,9 +1288,10 @@
         }
 
         .badge-concept {
-            background-color: rgba(206, 254, 70, 0.06);
-            border-color: rgba(206, 254, 70, 0.3);
-            color: var(--accent); width: fit-content;
+            background-color: rgba(206, 254, 70, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+            width: fit-content;
         }
 
         /* CONCEPT MEDIA */
@@ -1297,8 +1305,9 @@
         .concept-media-slider { position: absolute; inset: 0; }
 
         .concept-media-slide {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-            object-fit: cover; display: block; opacity: 0; transition: opacity 0.4s ease;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; display: block; opacity: 0; transition: opacity 0.4s ease;
+            min-width: 100%; min-height: 100%;
         }
 
         /* Show active slide based on checked radio */
@@ -1417,7 +1426,7 @@
 
         .routes-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -1623,66 +1632,207 @@
         }
 
         footer {
-            padding: 80px 0 40px; background-color: var(--bg-card);
-            border-top: 1px solid #333; text-align: center;
+            padding: 48px 0 0; background-color: var(--bg-card);
+            border-top: 1px solid #333;
         }
-        
-        .footer-cta-block { margin-bottom: 60px; }
-        
-        .footer-links {
-            display: flex; justify-content: center; gap: 32px;
-            font-size: 12px; text-transform: uppercase; color: var(--text-muted);
-        }
-        /* Mobile footer adjustment */
-        @media (max-width: 767px) {
-            .footer-links { flex-wrap: wrap; gap: 16px; }
-        }
-        
-        .footer-links a { color: var(--text-muted); text-decoration: none; }
-        .footer-links a:hover { color: var(--accent); }
 
-        .footer-email-block {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+        }
+
+        /* Left column: Logo + CTA */
+        .footer-col-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 767px) {
+            .footer-col-left { align-items: center; }
+        }
+
+        .footer-logo-wrap {
+            display: block;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .footer-logo-img {
+            height: 36px;
+            filter: brightness(0) invert(1);
+            transition: filter 0.4s ease;
+        }
+
+        .footer-logo-wrap:hover .footer-logo-img {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(45%) saturate(1436%) hue-rotate(20deg) brightness(102%) contrast(105%);
+        }
+
+        .footer-cta-heading {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 0 0 8px 0;
+        }
+
+        .footer-cta-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+
+        .footer-cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .footer-cta-btn:hover {
+            background: #e0ff5c;
+        }
+
+        /* Middle column: Locations */
+        .footer-col-mid h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #fff;
+            margin: 0 0 20px 0;
+        }
+
+        .footer-location {
+            margin-bottom: 16px;
+        }
+
+        .footer-location-name {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 24px;
-        }
-
-        .footer-email {
-            font-family: 'Courier New', Courier, monospace;
+            gap: 6px;
             font-size: 14px;
             color: var(--accent);
             font-weight: 600;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin-bottom: 4px;
         }
 
-        .footer-email:hover {
+        @media (max-width: 767px) {
+            .footer-location-name { justify-content: center; }
+        }
+
+        .footer-location-name svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .footer-location-addr {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Right column: Contacts */
+        .footer-col-right h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: #fff;
+            margin: 0 0 20px 0;
         }
 
-        .footer-email-copy {
-            background: transparent;
-            border: 1px solid var(--accent);
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a.footer-contact-item:hover {
             color: var(--accent);
-            border-radius: 4px;
-            width: 24px;
-            height: 24px;
+        }
+
+        @media (max-width: 767px) {
+            .footer-contact-item { justify-content: center; }
+        }
+
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 767px) {
+            .footer-socials { justify-content: center; }
+        }
+
+        .footer-social-link {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            padding: 0;
+            transition: background 0.3s ease;
         }
 
-        .footer-email-copy:hover {
+        .footer-social-link:hover {
             background: var(--accent);
-            color: #000;
-            transform: scale(1.1);
+        }
+
+        .footer-social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent);
+            transition: fill 0.3s ease;
+        }
+
+        .footer-social-link:hover svg {
+            fill: #000;
+        }
+
+        /* Copyright bar */
+        .footer-copyright {
+            border-top: 1px solid #333;
+            padding: 16px 0;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #555;
         }
 
         /* MODAL STYLES */
@@ -2063,7 +2213,7 @@
         
         /* Icon indicators before list items - TECH LINE STYLE */
         .spec-list li::before {
-            content: '>';
+            content: '\2022';
             position: absolute;
             left: 0;
             top: 50%;
@@ -2077,16 +2227,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .spec-list li:hover {
-            border-bottom-color: rgba(206, 254, 70, 0.2);
-            padding-left: 22px;
-            background: linear-gradient(90deg, rgba(206, 254, 70, 0.04) 0%, transparent 60%);
-        }
-        
-        .spec-list li:hover::before {
-            transform: translateY(-50%) translateX(2px);
-            text-shadow: 0 0 6px rgba(206, 254, 70, 0.6);
-        }
+        /* spec-list li hover removed — static specs, not interactive */
         
         .spec-list li {
             margin-bottom: 0;
@@ -2128,9 +2269,7 @@
             font-size: 12px;
         }
         
-        .spec-list li:hover strong {
-            color: #fff;
-        }
+        /* spec-list li:hover strong removed */
         
         /* BROCHURE BUTTON STYLES */
         .btn-brochure {
@@ -3129,7 +3268,11 @@
         }
 
         .brand-logo-wrap {
+            display: block;
+            text-align: center;
+            text-decoration: none;
             margin-bottom: 28px;
+            cursor: pointer;
         }
 
         .brand-logo-img {
@@ -3225,11 +3368,7 @@
             transition: all 0.35s ease;
         }
 
-        .brand-value-card:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            transform: translateY(-2px);
-            background: rgba(206, 254, 70, 0.03);
-        }
+        /* brand-value-card hover removed — informational cards, not clickable */
 
         .brand-value-card h4 {
             font-family: 'Montserrat', sans-serif;
@@ -3413,21 +3552,15 @@
             transition: all 0.3s ease;
         }
 
-        .fleet-item:hover {
-            color: rgba(255, 255, 255, 0.9);
-            padding-left: 8px;
-        }
+        /* fleet-item hover removed — static list, not interactive */
 
         .fleet-item::before {
-            content: '>';
+            content: '\2014';
             color: var(--accent);
             font-weight: 700;
-            transition: transform 0.3s ease;
         }
 
-        .fleet-item:hover::before {
-            transform: translateX(3px);
-        }
+        /* fleet-item::before hover removed */
 
         .fleet-item strong {
             color: var(--accent);
@@ -3481,9 +3614,7 @@
             z-index: 2;
         }
 
-        .material-card:hover::before {
-            transform: scaleX(1);
-        }
+        /* material-card hover removed — informational cards, not clickable */
 
         /* Visual area — top half of card */
         .mat-visual {
@@ -3495,9 +3626,7 @@
             overflow: hidden;
         }
 
-        .material-card:hover .mat-visual {
-            background: rgba(206, 254, 70, 0.04);
-        }
+        /* mat-visual hover removed */
 
         /* Card text area — bottom half */
         .mat-info {
@@ -3514,9 +3643,7 @@
             transition: color 0.3s ease;
         }
 
-        .material-card:hover h4 {
-            color: var(--accent);
-        }
+        /* material h4 hover removed */
 
         .material-card p {
             font-size: 11px;
@@ -3549,11 +3676,7 @@
             background: rgba(206, 254, 70, 0.08);
             border: 1px solid rgba(206, 254, 70, 0.15);
         }
-        .material-card:hover .mat-alloy {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(206, 254, 70, 0.15);
-            transform: rotate(45deg) scale(1.08);
-        }
+        /* mat-alloy hover removed */
 
         /* Дуб и Тик — Wood grain lines */
         .mat-wood {
@@ -3577,9 +3700,7 @@
         .mat-wood span:nth-child(4) { width: 80%; margin-left: 12%; }
         .mat-wood span:nth-child(5) { width: 90%; margin-left: 4%; }
         .mat-wood span:nth-child(6) { width: 75%; margin-left: 10%; }
-        .material-card:hover .mat-wood span {
-            background: rgba(210, 170, 100, 0.8);
-        }
+        /* mat-wood hover removed */
 
         /* Made in Russia — Centered flag icon */
         .mat-flag {
@@ -3598,10 +3719,7 @@
         .mat-flag-w { background: #fff; }
         .mat-flag-b { background: #0039A6; }
         .mat-flag-r { background: #D52B1E; }
-        .material-card:hover .mat-flag {
-            transform: scale(1.08);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-        }
+        /* mat-flag hover removed */
 
         /* 30+ лет — Circular progress / clock motif */
         .mat-years {
@@ -3637,13 +3755,7 @@
             transform: translate(-50%, -100%) rotate(90deg);
             border-radius: 1px;
         }
-        .material-card:hover .mat-years {
-            border-color: rgba(206, 254, 70, 0.4);
-            box-shadow: 0 0 16px rgba(206, 254, 70, 0.1);
-        }
-        .material-card:hover .mat-years::before {
-            transform: translate(-50%, -100%) rotate(360deg);
-        }
+        /* mat-years hover removed */
 
         @media (max-width: 767px) {
             .brand-values {
@@ -3743,6 +3855,7 @@
                 text-transform: uppercase;
             }
             .map-label-line {
+                display: none;
                 height: 64px; width: 1px;
                 background: linear-gradient(180deg, rgba(206, 254, 70, 0.3), rgba(255,255,255,0.1));
                 margin-top: 16px;
@@ -3829,11 +3942,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-stat:hover {
-            background: rgba(206,254,70,0.03);
-            border-color: rgba(206,254,70,0.2);
-            transform: translateY(-2px);
-        }
+        /* rgo-stat hover removed — informational, not clickable */
 
         .rgo-stat-icon {
             width: 32px;
@@ -3845,10 +3954,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-stat:hover .rgo-stat-icon {
-            background: rgba(206,254,70,0.15);
-            border-color: var(--accent);
-        }
+        /* rgo-stat-icon hover removed */
 
         /* Icon: Ship length */
         .rgo-icon-length::before {
@@ -3948,10 +4054,7 @@
             transition: all 0.35s ease;
         }
 
-        .rgo-feature:hover {
-            border-color: rgba(206, 254, 70, 0.3);
-            background: rgba(206, 254, 70, 0.03);
-        }
+        /* rgo-feature hover removed — informational, not clickable */
 
         .rgo-feature h4 {
             font-family: 'Montserrat', sans-serif;
@@ -3978,10 +4081,7 @@
             transition: all 0.3s ease;
         }
 
-        .rgo-feature:hover h4::before {
-            background: rgba(206,254,70,0.2);
-            border-color: var(--accent);
-        }
+        /* rgo-feature h4 hover removed */
 
         /* Shield icon for "Надёжность" */
         .rgo-feature:first-child h4::before {
@@ -4006,11 +4106,13 @@
 
         /* RGO News card */
         .rgo-news {
+            position: relative;
             margin-top: 24px;
             padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             background: rgba(0, 0, 0, 0.3);
             transition: all 0.35s ease;
+            cursor: pointer;
         }
 
         .rgo-news:hover {
@@ -4019,7 +4121,7 @@
 
         .rgo-news-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 9px;
+            font-size: 11px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--accent);
@@ -4064,6 +4166,12 @@
         }
 
         .rgo-news a:hover { opacity: 0.7; }
+        .rgo-news a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
 
         /* Visual enhancements for RGO panel */
         .glass-panel-rgo .rgo-header {
@@ -4115,9 +4223,7 @@
             position: relative;
         }
 
-        .rgo-feature:hover h4::before {
-            height: 100%;
-        }
+        /* rgo-feature animation hover removed */
 
         /* Floating particles effect for panel */
         .glass-panel-rgo::before {
@@ -4859,7 +4965,7 @@
 
         .partners-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -4965,7 +5071,7 @@
 
         .contacts-label {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
@@ -5055,6 +5161,25 @@
 
         .contact-card:hover::before { opacity: 1; }
 
+        .contact-map-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid rgba(206, 254, 70, 0.3);
+            padding: 6px 14px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-map-link:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
         .contact-role {
             font-family: 'Courier New', Courier, monospace;
             font-size: 10px;
@@ -5097,10 +5222,25 @@
         .contact-address {
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.75);
+            user-select: text;
+            -webkit-user-select: text;
+            -webkit-user-drag: none;
             line-height: 1.7;
             margin-bottom: 16px;
             font-weight: 300;
+            cursor: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-phone {
+            user-select: text;
+            -webkit-user-select: text;
+            -webkit-user-drag: none;
+            cursor: text;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-phone {
@@ -5743,8 +5883,8 @@
             }
             .expedition-arrow--prev { left: 10px; }
             .expedition-arrow--next { right: 10px; }
-            .expedition-counter {
-                font-size: 9px; padding: 6px 10px; top: 18px; right: 16px;
+            .expedition-dots {
+                padding: 0 16px;
             }
 
             /* --- CONCEPT EGO BANNER --- */
@@ -5945,24 +6085,14 @@
 
             /* --- FOOTER --- */
             footer {
-                padding: 50px 16px 32px;
+                padding: 32px 16px 0;
             }
-            .footer-cta-block {
-                margin-bottom: 36px;
+            .footer-cta-heading {
+                font-size: 16px;
             }
-            .footer-cta-block h2 {
-                font-size: 22px;
-            }
-            .footer-cta-block p {
-                font-size: 13px;
-                margin-bottom: 20px !important;
-            }
-            .footer-email {
+            .footer-cta-btn {
                 font-size: 12px;
-            }
-            .footer-links {
-                font-size: 11px;
-                gap: 12px;
+                padding: 12px 24px;
             }
 
             /* --- RGO SECTION --- */
@@ -6026,7 +6156,7 @@
 
     <header id="main-header">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#hero_video" class="logo">
                 <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="logo-img">
                 <span class="logo-subtitle mono">EST. 1992 · Саратов</span>
             </a>
@@ -6062,7 +6192,7 @@
                 <p class="hero-lead">Автономные катера T-Rex для покорения российских широт. Корпус АМГ5М, дальние маршруты и тяжёлая вода. Ваша личная свобода там, где заканчивается цивилизация.</p>
                 <div class="hero-actions">
                     <a href="#lineup_selector" class="btn btn-primary">Выбрать T-Rex</a>
-                    <a href="#route_stories" class="btn btn-secondary hero-cta-secondary">Истории РГО</a>
+                    <a href="#testdrive_modal" class="btn btn-secondary hero-cta-secondary">Записаться на тест-драйв</a>
                 </div>
             </div>
         </section>
@@ -6101,7 +6231,7 @@
                 </div>
 
                 <!-- EXPEDITION 65 LUX BANNER -->
-                <a href="https://bakl123.github.io/Houseboats-site/" target="_blank" rel="noopener" class="expedition-preview scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+                <a href="https://expedition65.ru" target="_blank" rel="noopener" class="expedition-preview scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
                     <div class="expedition-slider">
                         <img src="images/expedition/interior-bedroom.jpg" alt="Expedition 65 Lux — главная каюта" class="expedition-slide" loading="lazy">
                         <img src="images/expedition/expedition-65-1.jpg" alt="Expedition 65 Lux — горы" class="expedition-slide" loading="lazy">
@@ -6123,6 +6253,7 @@
                         <span class="expedition-arrow expedition-arrow--next" data-dir="1">&#8250;</span>
                     </div>
                     <span class="expedition-counter"><span class="exp-current">1</span> / <span class="exp-total">9</span></span>
+                    <div class="expedition-dots"></div>
                     <div class="expedition-overlay">
                         <span class="expedition-badge">Готов к передаче</span>
                         <h3>Expedition <span style="color: var(--accent);">65</span> Lux</h3>
@@ -6212,9 +6343,9 @@
             <div class="brand-wide">
                 <div class="brand-header">
                     <div class="brand-est">EST. 1992</div>
-                    <div class="brand-logo-wrap">
+                    <a href="#" class="brand-logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
                         <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="brand-logo-img">
-                    </div>
+                    </a>
                     <p class="brand-subtitle">Более 30 лет судостроительного опыта. От больших кораблей класса Luxury до современных экспедиционных катеров премиум-класса.</p>
                 </div>
             </div>
@@ -6406,8 +6537,8 @@
                         </div>
 
                         <div class="rgo-actions-row">
-                            <a href="#rgo_modal_full" class="btn btn-primary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
-                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff;">RGO.RU</a>
+                            <a href="#rgo_modal_full" class="btn btn-secondary" style="font-size: 12px; letter-spacing: 0.08em;">ОТКРЫТЬ ДОСЬЕ МИССИИ</a>
+                            <a href="https://www.rgo.ru/ru/krasnoyarsk/proekty/sibirskiy-issledovatel" target="_blank" rel="noopener" class="btn btn-secondary">RGO.RU</a>
                         </div>
 
                         <div class="rgo-news">
@@ -6515,8 +6646,8 @@
                     <div class="radar-hud radar-hud-bl">▸ SWEEP ACTIVE</div>
 
                     <!-- City points -->
-                    <div class="map-point point-msk" title="Москва"><div class="map-point-label">MSK / HQ</div></div>
-                    <div class="map-point point-srt" title="Саратов"><div class="map-point-label">SRT / BASE</div></div>
+                    <div class="map-point point-msk" onclick="document.querySelector('.contacts-list .contact-card').scrollIntoView({behavior:'smooth',block:'center'})"><div class="map-point-label">MSK / HQ</div></div>
+                    <div class="map-point point-srt" onclick="document.querySelector('.contacts-list .contact-card:nth-child(2)').scrollIntoView({behavior:'smooth',block:'center'})"><div class="map-point-label">SRT / BASE</div></div>
 
                     <!-- Animated connection -->
                     <div class="radar-connection">
@@ -6620,28 +6751,31 @@
 
                 <!-- Contact cards — horizontal row below -->
                 <div class="contacts-list">
-                    <a href="https://yandex.ru/maps/213/moscow/?ll=37.545849%2C55.752253&z=17&l=map&pt=37.545849%2C55.752253" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Штаб-квартира & Продажи</span>
                         <h3 class="contact-city">МОСКВА, ЦМТ</h3>
                         <div class="contact-address">Краснопресненская наб. 12<br>6-й подъезд, 11 этаж, офис 1148<br>Гостиница «Международная»</div>
                         <span class="contact-phone">+7 (495) 741-82-58</span>
                         <div class="contact-note">// Репрезентативный офис в центре. Встретим с кофе, вином и вниманием к деталям.</div>
-                    </a>
-                    <a href="https://yandex.ru/maps/194/saratov/?ll=46.081743%2C51.544010&z=15&l=map&pt=46.081743%2C51.544010" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                        <a href="https://yandex.com/maps/org/kartel_boats/22422353256/?indoorLevel=1&ll=37.545849%2C55.752575&z=16.88" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                    </div>
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Шоурум на воде</span>
                         <h3 class="contact-city">САРАТОВ, ВОЛГА</h3>
                         <div class="contact-address">
                             г. Саратов, ул. Большая Затонская (район Затона)
-                            <br><span style="font-size: 11px; color: rgba(255,255,255,0.3); font-family: 'Courier New', Courier, monospace; letter-spacing: 0.05em;">51.544010, 46.081743</span>
+                            <br><span style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'Courier New', Courier, monospace; letter-spacing: 0.05em;">51.544010, 46.081743</span>
                         </div>
                         <div class="contact-note">// Тест-драйв в реальных условиях. Почувствуйте корпус на воде перед покупкой.</div>
-                    </a>
-                    <a href="https://yandex.ru/maps/194/saratov/?ll=45.979064%2C51.513971&z=16&l=map&pt=45.979064%2C51.513971" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="text-decoration: none; color: inherit;">
+                        <a href="https://yandex.ru/maps/194/saratov/?ll=46.081743%2C51.544010&z=15&l=map&pt=46.081743%2C51.544010" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                    </div>
+                    <div class="contact-card scroll-reveal">
                         <span class="contact-role">Производство & Heritage</span>
                         <h3 class="contact-city">КОРАБЕЛЬНАЯ АРТЕЛЬ</h3>
                         <div class="contact-address">г. Саратов, ул. Огородная, 3<br>Историческая верфь · EST. 1992</div>
-                        <span class="contact-link-btn" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://k-artel.pro/', '_blank');">История верфи →</span>
-                    </a>
+                        <a href="https://yandex.ru/maps/194/saratov/?ll=45.979064%2C51.513971&z=16&l=map&pt=45.979064%2C51.513971" target="_blank" rel="noopener" class="contact-map-link">Открыть на карте →</a>
+                        <span class="contact-link-btn" onclick="window.open('https://k-artel.pro/', '_blank');">История верфи →</span>
+                    </div>
                 </div>
             </div>
 
@@ -6659,22 +6793,74 @@
 
     <footer id="footer_cta">
         <div class="container">
-            <div class="footer-cta-block">
-                <h2>Начните свой маршрут</h2>
-                <p style="margin: 0 auto 32px auto;">Офис в Москве, верфь в Саратове. Тест-драйвы и осмотр корпуса по записи.</p>
-                <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
+            <div class="footer-grid">
+
+                <!-- Left: Logo + CTA -->
+                <div class="footer-col-left">
+                    <a href="#" class="footer-logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                        <img src="images/logo/kartel-logo-cut.png" alt="KARTEL BOATS" class="footer-logo-img">
+                    </a>
+                    <h3 class="footer-cta-heading">Начните свой маршрут</h3>
+                    <p class="footer-cta-text">Тест драйв и осмотр корпуса по записи</p>
+                    <a href="#testdrive_modal" class="footer-cta-btn">Записаться на тест-драйв</a>
+                </div>
+
+                <!-- Middle: Locations -->
+                <div class="footer-col-mid">
+                    <h3>Локации</h3>
+                    <div class="footer-location">
+                        <div class="footer-location-name">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            Москва Офис
+                        </div>
+                        <div class="footer-location-addr">Краснопресненская наб. 12<br>6 подъезд, 11 этаж, офис 1148<br>Гостиница «Международная»</div>
+                    </div>
+                    <div class="footer-location">
+                        <div class="footer-location-name">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            Верфь Саратов
+                        </div>
+                        <div class="footer-location-addr">г. Саратов, ул. Огородная, 3</div>
+                    </div>
+                    <div class="footer-location">
+                        <div class="footer-location-name">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            Шоурум Саратов
+                        </div>
+                        <div class="footer-location-addr">г. Саратов, ул. Большая Затонская</div>
+                    </div>
+                </div>
+
+                <!-- Right: Contacts -->
+                <div class="footer-col-right">
+                    <h3>Контакты</h3>
+                    <a href="tel:+74957418258" class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +7 (495) 741-82-58
+                    </a>
+                    <a href="mailto:office@kartelboats.ru" class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        office@kartelboats.ru
+                    </a>
+                    <div class="footer-socials">
+                        <!-- Telegram: link TBD -->
+                        <a href="#" class="footer-social-link" title="Telegram">
+                            <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/kartelboats" target="_blank" rel="noopener" class="footer-social-link" title="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        </a>
+                        <!-- YouTube: link TBD -->
+                        <a href="#" class="footer-social-link" title="YouTube">
+                            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#000"/></svg>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-            <div class="footer-links">
-                <a href="#contacts">Контакты</a>
-                <a href="https://k-artel.pro/" target="_blank" rel="noopener">О верфи</a>
-                <a href="#lineup_selector">Модельный ряд</a>
-            </div>
-            <div class="footer-email-block">
-                <span class="footer-email" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { const orig = this.textContent; this.textContent = '✓ Скопировано'; setTimeout(() => this.textContent = orig, 1500); });" title="Нажмите чтобы скопировать">office@kartelboats.ru</span>
-                <button class="footer-email-copy" onclick="navigator.clipboard.writeText('office@kartelboats.ru').then(() => { this.innerHTML = '✓'; setTimeout(() => this.innerHTML = '&#128203;', 1500); });" title="Копировать email">&#128203;</button>
-            </div>
-            <div class="mono" style="margin-top: 32px; color: #333;">© 2026 KARTEL BOATS</div>
         </div>
+        <div class="footer-copyright">© 2026 KARTEL BOATS</div>
     </footer>
 
     <!-- MOBILE BOTTOM NAV (From Your Request) -->
@@ -6949,7 +7135,7 @@
                         </ul>
                     </div>
                     <div class="modal__content-actions">
-                        <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
+                        <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
                     </div>
                 </div>
             </div>
@@ -6999,7 +7185,7 @@
                         </ul>
                     </div>
                     <div class="modal__content-actions">
-                        <a href="#testdrive_modal" class="btn btn-primary">Запросить стоимость</a>
+                        <a href="#testdrive_modal" class="btn btn-primary">Записаться на тест-драйв</a>
                     </div>
                 </div>
             </div>
@@ -7538,11 +7724,36 @@
 
         if (totalEl) totalEl.textContent = slides.length;
 
+        // Build progress dots
+        const dotsContainer = container.querySelector('.expedition-dots');
+        const dots = [];
+        if (dotsContainer) {
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'expedition-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    show(i);
+                    startAuto();
+                });
+                dotsContainer.appendChild(dot);
+                dots.push(dot);
+            }
+        }
+
+        function updateDots() {
+            dots.forEach(function(d, i) {
+                d.classList.toggle('active', i === current);
+            });
+        }
+
         function show(idx) {
             slides[current].classList.remove('active');
             current = (idx + slides.length) % slides.length;
             slides[current].classList.add('active');
             if (counterEl) counterEl.textContent = current + 1;
+            updateDots();
         }
 
         // Init first slide
@@ -7706,6 +7917,24 @@
             });
         });
     })();
+    </script>
+
+    <!-- Modal fix: reset scroll and re-trigger animations on open -->
+    <script>
+    window.addEventListener('hashchange', function() {
+        var hash = location.hash;
+        if (!hash) return;
+        var modal = document.querySelector(hash);
+        if (!modal || !modal.classList.contains('modal') || modal.classList.contains('modal--media')) return;
+        var dialog = modal.querySelector('.modal__dialog');
+        if (dialog) dialog.scrollTop = 0;
+        var specItems = modal.querySelectorAll('.spec-list li');
+        specItems.forEach(function(li) {
+            li.style.animation = 'none';
+            li.offsetHeight;
+            li.style.animation = '';
+        });
+    });
     </script>
 
 </body>
