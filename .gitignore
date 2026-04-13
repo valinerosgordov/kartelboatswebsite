@@ -1,6 +1,9 @@
 # Игнорировать папку External_Files
 External_Files/
 
+# OS junk
+.DS_Store
+
 # Claude Code
 .claude/
 
