@@ -1,0 +1,45 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'api/src/KartelBoats.Api/wwwroot/**'
+      - '*.html'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'api/src/KartelBoats.Api/wwwroot/**'
+      - '*.html'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Install Stylelint
+        run: npm install -g stylelint stylelint-config-standard
+
+      - name: Install ESLint
+        run: npm install -g eslint
+
+      - name: Lint HTML
+        run: htmlhint api/src/KartelBoats.Api/wwwroot/*.html || true
+
+      - name: Lint CSS
+        run: stylelint "api/src/KartelBoats.Api/wwwroot/css/*.css" --config '{"extends":"stylelint-config-standard","rules":{"no-descending-specificity":null,"selector-class-pattern":null,"custom-property-pattern":null,"keyframes-name-pattern":null,"declaration-block-no-redundant-longhand-properties":null}}' || true
+
+      - name: Lint JS
+        run: |
+          echo '{"env":{"browser":true,"es2022":true},"rules":{"no-unused-vars":"warn","no-undef":"warn"}}' > /tmp/.eslintrc.json
+          eslint -c /tmp/.eslintrc.json api/src/KartelBoats.Api/wwwroot/js/*.js || true
