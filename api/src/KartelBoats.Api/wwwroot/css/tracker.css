@@ -1,0 +1,767 @@
+/* ========== DESIGN TOKENS (from Kartel main site) ========== */
+:root {
+    --bg-main: #000000;
+    --bg-card: #0a0a0a;
+    --bg-panel: rgba(10, 10, 10, 0.85);
+    --accent: #CEFE46;
+    --accent-dim: rgba(206, 254, 70, 0.15);
+    --accent-glow: rgba(206, 254, 70, 0.4);
+    --radar-green: #CEFE46;
+    --text-main: #FFFFFF;
+    --text-muted: #808080;
+    --text-dim: #4a4a4a;
+    --border-thin: 1px solid #1a1a1a;
+    --border-accent: 1px solid rgba(206, 254, 70, 0.3);
+    --transition: all 0.3s ease;
+    --font-mono: 'Courier New', Courier, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.mono {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ========== LAYOUT ========== */
+.tracker-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ========== MAP ========== */
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Dark map tiles override */
+.leaflet-container {
+    background: #000 !important;
+}
+.leaflet-control-zoom { display: none !important; }
+.leaflet-control-attribution { display: none !important; }
+
+/* ========== RADAR SWEEP ========== */
+.radar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200vmax;
+    height: 200vmax;
+    transform: translate(-50%, -50%);
+    animation: radarSpin 8s linear infinite;
+}
+
+.radar-sweep::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    transform-origin: bottom left;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(206, 254, 70, 0.0) 0deg,
+        rgba(206, 254, 70, 0.03) 15deg,
+        rgba(206, 254, 70, 0.08) 25deg,
+        rgba(206, 254, 70, 0.12) 30deg,
+        transparent 35deg
+    );
+}
+
+@keyframes radarSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Radar SCANNING mode — faster, brighter */
+.radar-sweep.scanning {
+    animation-duration: 2s !important;
+}
+
+.radar-sweep.scanning::before {
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(206, 254, 70, 0.0) 0deg,
+        rgba(206, 254, 70, 0.06) 10deg,
+        rgba(206, 254, 70, 0.15) 20deg,
+        rgba(206, 254, 70, 0.25) 30deg,
+        rgba(206, 254, 70, 0.18) 40deg,
+        transparent 50deg
+    ) !important;
+}
+
+/* ========== SCAN OVERLAY (coordinates rain + status) ========== */
+.scan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.scan-overlay.active {
+    opacity: 1;
+}
+
+/* Floating coordinates that appear during scan */
+.scan-coord {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(206, 254, 70, 0.4);
+    letter-spacing: 0.05em;
+    animation: scanCoordFade 1.2s ease-out forwards;
+    white-space: nowrap;
+}
+
+@keyframes scanCoordFade {
+    0% { opacity: 0; transform: translateY(0); }
+    20% { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* Scan status text (center of screen) */
+.scan-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.scan-status.active {
+    opacity: 1;
+}
+
+.scan-status-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(206, 254, 70, 0.5);
+    animation: statusBlink 0.8s ease-in-out infinite;
+}
+
+.scan-status-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Ring pulse when vessel is found */
+.scan-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    pointer-events: none;
+    z-index: 5;
+    animation: scanRingExpand 1.5s ease-out forwards;
+}
+
+@keyframes scanRingExpand {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 200px; height: 200px; opacity: 0; }
+}
+
+/* Flash when target acquired */
+.scan-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--flash-x, 50%) var(--flash-y, 50%),
+        rgba(206, 254, 70, 0.15) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    animation: scanFlash 0.6s ease-out forwards;
+}
+
+@keyframes scanFlash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Scanlines effect */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px,
+        rgba(0, 0, 0, 0.08) 4px
+    );
+}
+
+/* Vignette */
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 50%,
+        rgba(0, 0, 0, 0.5) 80%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+}
+
+/* ========== HEADER BAR ========== */
+.tracker-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.header-logo img {
+    height: 28px;
+    filter: brightness(0) invert(1);
+}
+
+.header-logo-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.header-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--text-dim);
+    margin: 0 8px;
+}
+
+.header-tracker-label {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+}
+
+.header-back {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: var(--transition);
+}
+
+.header-back:hover {
+    color: var(--accent);
+}
+
+/* ========== SEARCH PANEL ========== */
+.search-panel {
+    position: absolute;
+    top: 80px;
+    left: 32px;
+    z-index: 10;
+    width: 360px;
+}
+
+.search-box {
+    display: flex;
+    align-items: stretch;
+    background: var(--bg-panel);
+    border: 1px solid #222;
+    backdrop-filter: blur(20px);
+    transition: var(--transition);
+}
+
+.search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(206, 254, 70, 0.1);
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    color: var(--text-dim);
+    font-size: 14px;
+}
+
+.search-box:focus-within .search-icon {
+    color: var(--accent);
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 14px 0;
+}
+
+.search-input::placeholder {
+    color: var(--text-dim);
+}
+
+.search-btn {
+    background: var(--accent);
+    border: none;
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    background: #E2FF80;
+}
+
+.search-hint {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+}
+
+/* ========== VESSEL INFO PANELS ========== */
+.vessel-panel {
+    position: absolute;
+    z-index: 10;
+    background: var(--bg-panel);
+    border: 1px solid #1a1a1a;
+    backdrop-filter: blur(20px);
+    padding: 20px 24px;
+    min-width: 260px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.vessel-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vessel-panel--left {
+    bottom: 100px;
+    left: 32px;
+}
+
+.vessel-panel--right {
+    top: 80px;
+    right: 32px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.panel-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.panel-status--offline {
+    background: #555;
+    box-shadow: none;
+    animation: none;
+}
+
+.panel-vessel-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.panel-vessel-type {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+.panel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+}
+
+.panel-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+}
+
+.panel-value {
+    font-size: 12px;
+    color: var(--text-main);
+    letter-spacing: 0.03em;
+}
+
+.panel-value--accent {
+    color: var(--accent);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ========== MAP MARKERS ========== */
+.vessel-marker {
+    position: relative;
+}
+
+.vessel-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-glow), 0 0 24px rgba(206, 254, 70, 0.2);
+    position: relative;
+}
+
+.vessel-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(206, 254, 70, 0.3);
+    transform: translate(-50%, -50%);
+    animation: markerPulse 2s ease-out infinite;
+}
+
+@keyframes markerPulse {
+    0% { width: 10px; height: 10px; opacity: 1; }
+    100% { width: 40px; height: 40px; opacity: 0; }
+}
+
+.vessel-label {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* ========== BOTTOM STATUS BAR ========== */
+.status-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.status-item {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+}
+
+.status-item span {
+    color: var(--text-muted);
+}
+
+.status-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ========== GRID OVERLAY ========== */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image:
+        linear-gradient(rgba(206, 254, 70, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(206, 254, 70, 0.5) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+/* ========== CROSSHAIR CENTER ========== */
+.crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: '';
+    position: absolute;
+    background: var(--accent);
+}
+
+.crosshair::before {
+    width: 1px;
+    height: 40px;
+    top: -20px;
+    left: 0;
+}
+
+.crosshair::after {
+    width: 40px;
+    height: 1px;
+    top: 0;
+    left: -20px;
+}
+
+/* ========== LOADING STATE ========== */
+.search-loading {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--accent);
+}
+
+.search-loading.active {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--accent-dim);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== ERROR STATE ========== */
+.search-error {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(255, 60, 60, 0.1);
+    border: 1px solid rgba(255, 60, 60, 0.2);
+    font-size: 11px;
+    color: #ff6b6b;
+}
+
+.search-error.active {
+    display: block;
+}
+
+/* ========== RESULTS LIST ========== */
+.search-results {
+    margin-top: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    display: none;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-results::-webkit-scrollbar {
+    width: 4px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-panel);
+    border: 1px solid #1a1a1a;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(20px);
+}
+
+.result-item:hover {
+    border-color: var(--accent);
+    background: rgba(206, 254, 70, 0.05);
+}
+
+.result-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+
+.result-name {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.result-meta {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-left: auto;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .search-panel {
+        left: 16px;
+        right: 16px;
+        width: auto;
+        top: 70px;
+    }
+
+    .tracker-header {
+        padding: 14px 16px;
+    }
+
+    .vessel-panel--right {
+        top: auto;
+        bottom: 70px;
+        right: 16px;
+        left: 16px;
+        min-width: auto;
+    }
+
+    .vessel-panel--left {
+        bottom: 180px;
+        left: 16px;
+        right: 16px;
+        min-width: auto;
+    }
+
+    .status-bar {
+        padding: 10px 16px;
+    }
+
+    .header-back { display: none; }
+}

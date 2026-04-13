@@ -1,0 +1,334 @@
+/* ====== MOBILE PREMIUM OVERHAUL ====== */
+@media (max-width: 767px) {
+
+    /* --- GLOBAL --- */
+    .btn {
+        padding: 13px 24px;
+        font-size: 12px;
+    }
+
+    /* --- HERO --- */
+    #hero_video {
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+    .hero-lead {
+        font-size: 14px;
+        line-height: 1.6;
+        padding-top: 16px;
+        margin-bottom: 24px;
+    }
+    .hero-sub {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    .hero-actions {
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .hero-actions .btn {
+        padding: 12px 20px;
+        font-size: 11px;
+    }
+    h1 {
+        font-size: clamp(32px, 8vw, 48px);
+        margin-bottom: 20px;
+    }
+
+    /* --- LINEUP SECTION --- */
+    .lineup-header {
+        padding: 60px 0 32px;
+    }
+    .lineup-lead {
+        font-size: 13px;
+    }
+
+    /* --- T-REX CARDS --- */
+    .card {
+        min-height: 360px;
+        padding: 28px 20px;
+    }
+    .card .model-name {
+        font-size: 22px;
+    }
+    .card .model-desc {
+        font-size: 12px;
+    }
+
+    /* --- EXPEDITION 65 LUX BANNER --- */
+    .expedition-preview::before {
+        font-size: 9px;
+        padding: 6px 12px;
+        top: 16px;
+        left: 16px;
+    }
+    .expedition-preview::after {
+        font-size: 7px;
+        padding: 14px 16px;
+        letter-spacing: 0.1em;
+    }
+    .expedition-overlay p {
+        font-size: 11px;
+        max-width: 260px;
+    }
+    .expedition-arrow {
+        width: 36px; height: 36px; font-size: 20px;
+    }
+    .expedition-arrow--prev { left: 10px; }
+    .expedition-arrow--next { right: 10px; }
+    .expedition-dots {
+        padding: 0 16px;
+    }
+
+    /* --- CONCEPT EGO BANNER --- */
+    .concept-ego-preview {
+        margin-top: 32px;
+        height: clamp(260px, 65vw, 380px);
+    }
+    .concept-ego-preview::before {
+        font-size: 8px;
+        padding: 6px 12px;
+        top: 16px;
+        left: 16px;
+    }
+    .concept-ego-preview::after {
+        font-size: 7px;
+        padding: 14px 16px;
+    }
+
+    /* --- CONCEPT PLATFORM & CARDS --- */
+    .concept-platform {
+        margin-top: 32px;
+        padding-top: 24px;
+    }
+    .concept-platform > p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    .concept-card {
+        padding: 20px 16px;
+        gap: 10px;
+    }
+    .concept-card h3 {
+        font-size: 18px;
+    }
+    .concept-card p {
+        font-size: 12px;
+    }
+    .concept-nav-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+    .concept-nav-prev { left: 6px; }
+    .concept-nav-next { right: 6px; }
+
+    /* --- О KARTEL --- */
+    .brand-header {
+        padding: 60px 0 32px;
+    }
+    .brand-subtitle {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    .brand-left h3,
+    .brand-shipyard h3 {
+        font-size: 18px;
+    }
+    .brand-left > p,
+    .brand-shipyard > p {
+        font-size: 13px;
+    }
+    .brand-quote {
+        padding: 16px 18px;
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+    .brand-quote::before {
+        font-size: 36px;
+        top: -6px;
+        left: 8px;
+    }
+    .brand-value-card {
+        padding: 16px;
+    }
+    .brand-value-card h4 {
+        font-size: 11px;
+    }
+    .brand-value-card p {
+        font-size: 12px;
+    }
+
+    /* --- DNA VIDEO / COUNTERS --- */
+    .dna-content {
+        padding: 24px 16px;
+    }
+    .dna-text {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    .counter-value {
+        font-size: clamp(22px, 5vw, 30px);
+    }
+    .counter-suffix {
+        font-size: 12px;
+    }
+    .counter-label {
+        font-size: 8px;
+        letter-spacing: 0.08em;
+    }
+
+    /* --- MATERIAL CARDS --- */
+    .mat-visual {
+        height: 70px;
+    }
+    .mat-info {
+        padding: 14px 12px 18px;
+    }
+    .material-card h4 {
+        font-size: 12px;
+    }
+    .material-card p {
+        font-size: 10px;
+    }
+
+    /* --- ROUTES --- */
+    .routes-section {
+        padding: 50px 16px;
+    }
+    .routes-header {
+        margin-bottom: 32px;
+    }
+    .route-card {
+        padding: 18px;
+    }
+    .route-card h3 {
+        font-size: 16px;
+    }
+    .route-card p {
+        font-size: 12px;
+    }
+
+    /* --- PARTNERS --- */
+    .partners-section {
+        padding: 32px 16px;
+    }
+
+    /* --- CONTACTS --- */
+    .contacts-section {
+        padding: 50px 16px;
+    }
+    .contacts-header {
+        margin-bottom: 32px;
+    }
+    .contact-card {
+        padding: 20px;
+    }
+    .contact-city {
+        font-size: 17px;
+        margin-bottom: 12px;
+    }
+    .contact-address {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    .contact-phone {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    .contact-note {
+        font-size: 10px;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    /* --- MODALS --- */
+    .modal__dialog {
+        padding: 20px 16px;
+        margin: 16px auto;
+        width: calc(100% - 24px);
+    }
+    .modal__dialog h2 {
+        font-size: 22px;
+    }
+    .modal__dialog > p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    .modal__gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .modal__block {
+        padding: 16px;
+    }
+    .modal__block p {
+        font-size: 12px;
+    }
+    .spec-list {
+        font-size: 11px;
+    }
+    .spec-list li {
+        padding: 6px 0 6px 14px;
+    }
+    .spec-list li strong {
+        font-size: 10px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        padding: 32px 16px 0;
+    }
+    .footer-cta-heading {
+        font-size: 16px;
+    }
+    .footer-cta-btn {
+        font-size: 12px;
+        padding: 12px 24px;
+    }
+
+    /* --- RGO SECTION --- */
+    .glass-panel-rgo {
+        padding: 18px 14px;
+    }
+
+    /* --- RGO MODAL --- */
+    .rgo-modal-dialog {
+        height: 85vh;
+    }
+    .rgo-modal-bar {
+        padding: 10px 16px;
+    }
+    .rgo-col-left,
+    .rgo-col-right {
+        padding: 18px 14px;
+    }
+
+    /* --- RADAR MAP --- */
+    .radar-map-container {
+        min-height: 280px;
+    }
+}
+
+/* Extra small screens (360px and below) */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 28px;
+    }
+    .card {
+        min-height: 300px;
+        padding: 20px 16px;
+    }
+    .expedition-preview::before {
+        display: none;
+    }
+    .concept-ego-preview::before {
+        display: none;
+    }
+    .modal__gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>

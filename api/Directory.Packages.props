@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- EF Core -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0-preview.3.25171.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0-preview.3.25171.6" />
+    <!-- HTTP -->
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.0.0" />
+    <!-- RSS Parsing -->
+    <PackageVersion Include="System.ServiceModel.Syndication" Version="10.0.0-preview.3.25171.5" />
+    <!-- OpenAPI -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.3.25172.1" />
+  </ItemGroup>
+</Project>

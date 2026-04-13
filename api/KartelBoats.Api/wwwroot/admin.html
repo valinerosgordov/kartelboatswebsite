@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARTEL BOATS — Admin</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/logo-kartel-boats.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header" class="scrolled">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="logo-img">
+                <span class="logo-subtitle mono">ADMIN PANEL</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Сайт</a>
+                <a href="/blog.html" class="nav-link">Блог</a>
+                <a href="/tracker.html" class="nav-link">Трекер</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container">
+            <!-- TABS -->
+            <div class="admin-tabs" id="adminTabs">
+                <button class="admin-tab active mono" data-tab="articles">Статьи</button>
+                <button class="admin-tab mono" data-tab="sources">Источники</button>
+            </div>
+
+            <!-- ARTICLES TAB -->
+            <section class="admin-section" id="tabArticles">
+                <div class="admin-section-header">
+                    <h2>Статьи</h2>
+                    <span class="mono" id="articleCount">0 статей</span>
+                </div>
+                <div class="admin-table-wrap">
+                    <table class="admin-table" id="articlesTable">
+                        <thead>
+                            <tr>
+                                <th class="mono">Статус</th>
+                                <th class="mono">Заголовок</th>
+                                <th class="mono">Источник</th>
+                                <th class="mono">Категория</th>
+                                <th class="mono">Дата</th>
+                                <th class="mono">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articlesBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin-pagination" id="articlesPagination"></div>
+            </section>
+
+            <!-- SOURCES TAB -->
+            <section class="admin-section" id="tabSources" style="display:none;">
+                <div class="admin-section-header">
+                    <h2>RSS Источники</h2>
+                    <button class="btn btn-primary btn-sm mono" id="addSourceBtn">+ Добавить</button>
+                </div>
+                <div class="admin-table-wrap">
+                    <table class="admin-table" id="sourcesTable">
+                        <thead>
+                            <tr>
+                                <th class="mono">Статус</th>
+                                <th class="mono">Название</th>
+                                <th class="mono">RSS URL</th>
+                                <th class="mono">Категория</th>
+                                <th class="mono">Последний парсинг</th>
+                                <th class="mono">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sourcesBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

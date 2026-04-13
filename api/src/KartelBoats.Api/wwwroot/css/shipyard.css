@@ -1,0 +1,441 @@
+/* ====== SHIPYARD MODAL PREMIUM ====== */
+#shipyard_modal .modal__dialog {
+    background: linear-gradient(160deg, #0c0c0c 0%, #060606 60%, #0a0a0a 100%);
+    border: 1px solid rgba(206, 254, 70, 0.08);
+    width: min(1280px, calc(100% - 32px));
+}
+
+#shipyard_modal .modal__dialog::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Photo category tags */
+.shipyard-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.shipyard-tag {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.45);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* Interior — accent green */
+.shipyard-tag--int {
+    border-color: rgba(206, 254, 70, 0.2);
+    color: rgba(206, 254, 70, 0.6);
+}
+.shipyard-tag--int:hover {
+    border-color: rgba(206, 254, 70, 0.5);
+    color: var(--accent);
+    background: rgba(206, 254, 70, 0.05);
+}
+
+/* Details — brand blue */
+.shipyard-tag--det {
+    border-color: rgba(0, 71, 187, 0.25);
+    color: rgba(100, 160, 255, 0.6);
+}
+.shipyard-tag--det:hover {
+    border-color: rgba(0, 71, 187, 0.5);
+    color: rgba(130, 180, 255, 0.9);
+    background: rgba(0, 71, 187, 0.06);
+}
+
+/* Production — warm amber/orange */
+.shipyard-tag--prod {
+    border-color: rgba(255, 160, 50, 0.2);
+    color: rgba(255, 180, 80, 0.6);
+}
+.shipyard-tag--prod:hover {
+    border-color: rgba(255, 160, 50, 0.5);
+    color: rgba(255, 190, 100, 0.9);
+    background: rgba(255, 160, 50, 0.06);
+}
+
+/* Shimmer animation for tags */
+.shipyard-tag {
+    background-size: 200% 100%;
+    animation: tagShimmer 4s ease-in-out infinite;
+}
+.shipyard-tag--int {
+    background-image: linear-gradient(90deg, transparent 0%, rgba(206,254,70,0.04) 25%, transparent 50%, rgba(206,254,70,0.04) 75%, transparent 100%);
+}
+.shipyard-tag--det {
+    background-image: linear-gradient(90deg, transparent 0%, rgba(0,71,187,0.06) 25%, transparent 50%, rgba(0,71,187,0.06) 75%, transparent 100%);
+}
+.shipyard-tag--prod {
+    background-image: linear-gradient(90deg, transparent 0%, rgba(255,160,50,0.05) 25%, transparent 50%, rgba(255,160,50,0.05) 75%, transparent 100%);
+}
+
+@keyframes tagShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ====== EASTER EGG: T-Rex vs Shark ====== */
+.shipyard-easter {
+    position: relative;
+    height: 200px;
+    margin-top: 16px;
+    overflow: hidden;
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+    border-top: 1px solid rgba(0, 71, 187, 0.1);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 20, 60, 0.04) 40%, rgba(0, 30, 80, 0.08) 100%);
+}
+.shipyard-easter:hover {
+    opacity: 0.85;
+}
+
+/* Water — gradient zone */
+.easter-water {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 40, 100, 0.1) 20%, rgba(0, 50, 130, 0.18) 60%, rgba(0, 30, 80, 0.25) 100%);
+}
+
+.easter-waves {
+    position: absolute;
+    bottom: 76px;
+    left: 0;
+    width: 200%;
+    height: 4px;
+    animation: waveScroll 3s linear infinite;
+}
+.easter-waves::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 6px,
+        rgba(100, 170, 255, 0.25) 6px, rgba(100, 170, 255, 0.25) 10px,
+        transparent 10px, transparent 18px,
+        rgba(100, 170, 255, 0.15) 18px, rgba(100, 170, 255, 0.15) 20px,
+        transparent 20px, transparent 30px
+    );
+}
+
+.easter-waves-2 {
+    position: absolute;
+    bottom: 68px;
+    left: 0;
+    width: 200%;
+    height: 3px;
+    animation: waveScroll2 5s linear infinite;
+}
+.easter-waves-2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 10px,
+        rgba(0, 71, 187, 0.15) 10px, rgba(0, 71, 187, 0.15) 14px,
+        transparent 14px, transparent 24px
+    );
+}
+
+@keyframes waveScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+@keyframes waveScroll2 {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+/* === T-Rex boat === */
+.easter-boat {
+    position: absolute;
+    bottom: 78px;
+    animation: boatSail 14s linear infinite;
+    z-index: 2;
+}
+
+@keyframes boatSail {
+    0% { left: -80px; }
+    100% { left: calc(100% + 80px); }
+}
+
+.boat-hull {
+    width: 44px;
+    height: 11px;
+    background: var(--accent);
+    clip-path: polygon(10% 0%, 100% 0%, 88% 100%, 0% 100%);
+    position: relative;
+}
+
+.boat-cabin {
+    position: absolute;
+    bottom: 11px;
+    left: 12px;
+    width: 18px;
+    height: 9px;
+    background: rgba(206, 254, 70, 0.6);
+    clip-path: polygon(0% 100%, 5% 0%, 95% 0%, 100% 100%);
+}
+
+.boat-fly {
+    position: absolute;
+    bottom: 20px;
+    left: 8px;
+    width: 24px;
+    height: 4px;
+    background: rgba(206, 254, 70, 0.4);
+}
+
+/* Antenna */
+.boat-antenna {
+    position: absolute;
+    bottom: 24px;
+    left: 18px;
+    width: 1px;
+    height: 8px;
+    background: rgba(206, 254, 70, 0.35);
+}
+.boat-antenna::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: antennaBlink 1.5s ease-in-out infinite;
+}
+@keyframes antennaBlink {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Wake & spray */
+.boat-wake {
+    position: absolute;
+    bottom: 1px;
+    right: 40px;
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+}
+
+.boat-spray {
+    position: absolute;
+    bottom: 8px;
+    left: 42px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: spray 0.8s ease-out infinite;
+}
+.boat-spray::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    width: 2px;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    animation: spray 0.8s ease-out 0.2s infinite;
+}
+
+@keyframes spray {
+    0% { transform: translate(0, 0); opacity: 0.4; }
+    100% { transform: translate(6px, -6px); opacity: 0; }
+}
+
+/* === Shark chasing === */
+.easter-shark {
+    position: absolute;
+    bottom: 72px;
+    animation: sharkChase 14s linear infinite;
+    z-index: 1;
+}
+
+@keyframes sharkChase {
+    0% { left: -140px; }
+    100% { left: calc(100% + 20px); }
+}
+
+/* Shark fin */
+.shark-fin {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 14px solid rgba(180, 40, 40, 0.6);
+    position: relative;
+    animation: finBob 1s ease-in-out infinite;
+}
+
+@keyframes finBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+/* Shark body underwater (subtle) */
+.shark-body {
+    position: absolute;
+    top: 14px;
+    left: -8px;
+    width: 28px;
+    height: 6px;
+    background: rgba(180, 40, 40, 0.2);
+    border-radius: 40% 60% 60% 40%;
+    clip-path: polygon(0% 50%, 15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%);
+}
+
+/* Shark tail */
+.shark-tail {
+    position: absolute;
+    top: 12px;
+    left: -16px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 8px solid rgba(180, 40, 40, 0.2);
+    animation: tailSwish 0.6s ease-in-out infinite;
+}
+
+@keyframes tailSwish {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+}
+
+/* Bubbles from shark */
+.shark-bubble {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    width: 3px;
+    height: 3px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    animation: bubble 1.2s ease-out infinite;
+}
+.shark-bubble::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 5px;
+    width: 2px;
+    height: 2px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+    animation: bubble 1.2s ease-out 0.4s infinite;
+}
+
+@keyframes bubble {
+    0% { transform: translateY(0); opacity: 0.5; }
+    100% { transform: translateY(-10px); opacity: 0; }
+}
+
+/* === Island === */
+.easter-island {
+    position: absolute;
+    bottom: 76px;
+    right: 18%;
+    z-index: 0;
+}
+
+/* Island base */
+.island-land {
+    width: 80px;
+    height: 22px;
+    background: rgba(120, 90, 40, 0.45);
+    border-radius: 50% 50% 40% 40%;
+    position: relative;
+}
+
+/* Sand/beach edge */
+.island-land::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: -6px;
+    right: -6px;
+    height: 7px;
+    background: rgba(200, 170, 100, 0.2);
+    border-radius: 50%;
+}
+
+/* Small rock */
+.island-land::before {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: -10px;
+    width: 16px;
+    height: 10px;
+    background: rgba(100, 80, 40, 0.3);
+    border-radius: 50% 50% 40% 40%;
+}
+
+/* Palm tree trunk */
+.island-palm {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    width: 3px;
+    height: 32px;
+    background: rgba(140, 100, 50, 0.5);
+    transform: rotate(-6deg);
+    transform-origin: bottom center;
+    border-radius: 1px;
+}
+
+/* Palm leaves */
+.island-palm::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -14px;
+    width: 30px;
+    height: 14px;
+    border-radius: 50% 50% 0 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(70, 150, 50, 0.5) 0%, transparent 70%);
+}
+
+.island-palm::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -8px;
+    width: 20px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 80%, rgba(50, 130, 35, 0.4) 0%, transparent 70%);
+    transform: rotate(15deg);
+}
+
+/* Second smaller palm */
+.island-palm-2 {

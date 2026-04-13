@@ -1,0 +1,182 @@
+/* ========== ADMIN PAGE ========== */
+
+.admin-main {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: 100vh;
+}
+
+/* ========== TABS ========== */
+.admin-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.admin-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px 24px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.admin-tab:hover {
+    color: var(--text-main);
+}
+
+.admin-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* ========== SECTION HEADER ========== */
+.admin-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 11px;
+}
+
+/* ========== TABLE ========== */
+.admin-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #333;
+    font-size: 10px;
+    color: var(--text-dim, #4a4a4a);
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #111;
+    color: var(--text-muted);
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.status-badge--published {
+    color: var(--accent);
+    border: 1px solid rgba(206, 254, 70, 0.3);
+}
+
+.status-badge--draft {
+    color: var(--text-dim, #4a4a4a);
+    border: 1px solid #333;
+}
+
+.status-badge--enabled {
+    color: var(--accent);
+    border: 1px solid rgba(206, 254, 70, 0.3);
+}
+
+.status-badge--disabled {
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+/* Action buttons */
+.action-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-right: 4px;
+}
+
+.action-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.action-btn--danger:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+/* ========== PAGINATION ========== */
+.admin-pagination {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.page-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.page-btn:hover,
+.page-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+    .admin-main {
+padding-top: 80px;
+    }
+
+    .admin-table {
+font-size: 11px;
+    }
+
+    .admin-table td,
+    .admin-table th {
+padding: 8px;
+    }
+}

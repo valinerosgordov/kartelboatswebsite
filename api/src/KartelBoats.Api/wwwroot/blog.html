@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARTEL BOATS — Блог</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/logo-kartel-boats.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header" class="scrolled">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="images/logo/kartel-logo-cut.png" alt="KARTEL" class="logo-img">
+                <span class="logo-subtitle mono">EST. 1992 · Саратов</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Главная</a>
+                <a href="/tracker.html" class="nav-link">Трекер</a>
+                <a href="/blog.html" class="nav-link" style="color: var(--accent)">Блог</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="blog-main">
+        <div class="container">
+            <!-- BLOG HEADER -->
+            <div class="blog-header">
+                <span class="mono">// Новости яхтенного мира</span>
+                <h1 class="blog-title">Блог</h1>
+                <div class="blog-divider"></div>
+            </div>
+
+            <!-- CATEGORY FILTER -->
+            <div class="blog-filters" id="blogFilters">
+                <button class="filter-btn active mono" data-category="">Все</button>
+                <button class="filter-btn mono" data-category="IndustryNews">Новости</button>
+                <button class="filter-btn mono" data-category="Reviews">Обзоры</button>
+                <button class="filter-btn mono" data-category="Lifestyle">Образ жизни</button>
+                <button class="filter-btn mono" data-category="Events">События</button>
+                <button class="filter-btn mono" data-category="Safety">Безопасность</button>
+            </div>
+
+            <!-- ARTICLES GRID -->
+            <div class="blog-grid" id="blogGrid">
+                <!-- Articles loaded dynamically -->
+            </div>
+
+            <!-- LOAD MORE -->
+            <div class="blog-load-more" id="blogLoadMore" style="display:none;">
+                <button class="btn btn-secondary mono" id="loadMoreBtn">Загрузить ещё</button>
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div class="blog-empty" id="blogEmpty" style="display:none;">
+                <p class="mono">Статьи скоро появятся</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="blog-footer">
+        <div class="container">
+            <span class="mono">KARTEL BOATS © 2026</span>
+        </div>
+    </footer>
+
+    <script src="js/blog.js"></script>
+</body>
+</html>

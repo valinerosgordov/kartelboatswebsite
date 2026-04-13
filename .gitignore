@@ -3,3 +3,12 @@ External_Files/
 
 # Claude Code
 .claude/
+
+# API secrets & build artifacts
+api/src/KartelBoats.Api/appsettings.json
+api/src/KartelBoats.Api/appsettings.Development.json
+api/src/KartelBoats.Api/bin/
+api/src/KartelBoats.Api/obj/
+api/src/KartelBoats.Api/*.db
+api/src/KartelBoats.Api/*.db-shm
+api/src/KartelBoats.Api/*.db-wal
