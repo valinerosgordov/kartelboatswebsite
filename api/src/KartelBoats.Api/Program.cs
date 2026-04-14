@@ -31,6 +31,10 @@ builder.Services.AddHttpClient<ArticleProcessor>(client =>
     client.Timeout = TimeSpan.FromSeconds(30);
 });
 
+// ===== AIS Stream (Live vessel tracking) =====
+builder.Services.AddSingleton<AisStreamRelay>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<AisStreamRelay>());
+
 // ===== News Parser =====
 builder.Services.AddHttpClient<NewsParserService>(client =>
 {

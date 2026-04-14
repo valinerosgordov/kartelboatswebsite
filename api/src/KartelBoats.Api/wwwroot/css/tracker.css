@@ -409,11 +409,21 @@ body {
     background: var(--bg-panel);
     border: 1px solid #1a1a1a;
     backdrop-filter: blur(20px);
-    padding: 20px 24px;
-    min-width: 260px;
+    padding: 0;
+    width: 320px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.vessel-panel::-webkit-scrollbar {
+    width: 3px;
+}
+
+.vessel-panel::-webkit-scrollbar-thumb {
+    background: #333;
 }
 
 .vessel-panel.visible {
@@ -422,7 +432,7 @@ body {
 }
 
 .vessel-panel--left {
-    bottom: 100px;
+    bottom: 60px;
     left: 32px;
 }
 
@@ -431,12 +441,64 @@ body {
     right: 32px;
 }
 
+/* Panel photo */
+.panel-photo {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.panel-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.panel-photo--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    color: var(--text-dim);
+    font-size: 11px;
+}
+
+/* Panel body */
+.panel-body {
+    padding: 16px 20px 20px;
+}
+
+/* Flag row */
+.panel-flag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.panel-status-text {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+}
+
+/* Divider */
+.panel-divider {
+    height: 1px;
+    background: #1a1a1a;
+    margin: 10px 0;
+}
+
 .panel-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid #1a1a1a;
 }
 
@@ -525,6 +587,28 @@ body {
 @keyframes markerPulse {
     0% { width: 10px; height: 10px; opacity: 1; }
     100% { width: 40px; height: 40px; opacity: 0; }
+}
+
+/* Live AIS markers — smaller, subtler */
+.vessel-dot--live {
+    width: 6px;
+    height: 6px;
+    background: rgba(206, 254, 70, 0.7);
+    box-shadow: 0 0 6px rgba(206, 254, 70, 0.3);
+}
+
+.vessel-dot--live::after {
+    display: none;
+}
+
+.vessel-marker--live .vessel-label {
+    display: none;
+}
+
+.vessel-marker--live:hover .vessel-label {
+    display: block;
+    font-size: 8px;
+    top: -18px;
 }
 
 .vessel-label {
