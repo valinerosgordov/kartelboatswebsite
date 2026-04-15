@@ -15,3 +15,6 @@ api/src/KartelBoats.Api/obj/
 api/src/KartelBoats.Api/*.db
 api/src/KartelBoats.Api/*.db-shm
 api/src/KartelBoats.Api/*.db-wal
+
+# Prevent old duplicate paths
+api/KartelBoats.Api/
